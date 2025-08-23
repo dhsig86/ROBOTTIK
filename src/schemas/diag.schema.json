@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotto.local/schemas/diag.schema.json",
+  "title": "Schema de Base Clínica por Área (diag_<area>.json)",
+  "type": "object",
+  "required": [
+    "version",
+    "area",
+    "intake",
+    "dx"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "area": {
+      "type": "string",
+      "enum": [
+        "ouvido",
+        "nariz",
+        "garganta",
+        "pescoco"
+      ]
+    },
+    "intake": {
+      "type": "object",
+      "required": [
+        "symptoms",
+        "modifiers"
+      ],
+      "properties": {
+        "symptoms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9_\\.]+$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "aliases": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true,
+                "default": []
+              },
+              "weights": {
+                "type": "number",
+                "minimum": 0,
+                "default": 1.0
+              }
+            },
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "modifiers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "type"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9_\\.]+$"
+              },
+              "type": {
+                "type": "string",
+                "enum": [
+                  "boolean",
+                  "ordinal",
+                  "categorical",
+                  "number",
+                  "string"
+                ]
+              },
+              "levels": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "default": []
+              },
+              "unit": {
+                "type": "string",
+                "default": ""
+              }
+            },
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "dx": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "pretest"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_\\.]+$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pretest": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          },
+          "criteria": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "if"
+              ],
+              "properties": {
+                "if": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "lr+": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "lr-": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                },
+                "weight": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "default": []
+          },
+          "heuristics": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "when",
+                "boost"
+              ],
+              "properties": {
+                "when": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                },
+                "boost": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "additionalProperties": false
+            },
+            "default": []
+          },
+          "red_flags": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "default": []
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "profiles": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "multipliers": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "default": {}
+    },
+    "via_atendimento": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "enum": [
+          "ambulatorio_rotina",
+          "telemedicina",
+          "emergencia_geral",
+          "emergencia_especializada"
+        ]
+      },
+      "default": {}
+    }
+  },
+  "additionalProperties": false
+}

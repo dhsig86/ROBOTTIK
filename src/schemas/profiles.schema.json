@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotto.local/schemas/profiles.schema.json",
+  "title": "Perfis por área",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "multipliers": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "additionalProperties": false
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://robotto.local/schemas/lexicon.schema.json",
+  "title": "Lexicon de aliases por área",
+  "type": "object",
+  "required": [
+    "aliases"
+  ],
+  "properties": {
+    "aliases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      }
+    }
+  },
+  "additionalProperties": false
+}

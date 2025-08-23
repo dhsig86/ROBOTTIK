@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "validate:rules": "node scripts/validate_rules.js"
+  }
+}
