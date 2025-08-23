@@ -118,10 +118,13 @@
           "pretest"
         ],
         "properties": {
-          "id": {
-            "type": "string",
-            "pattern": "^[a-z0-9_\\.]+$"
-          },
+          "global_id": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
+            "tags": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 },
+              "uniqueItems": true,
+              "default": []
+          },  
           "label": {
             "type": "string",
             "minLength": 1
