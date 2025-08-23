@@ -112,105 +112,68 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": [
-          "id",
-          "label",
-          "pretest"
-        ],
+        "additionalProperties": false,
         "properties": {
+          "id":        { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
           "global_id": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
-            "tags": {
-              "type": "array",
-              "items": { "type": "string", "minLength": 1 },
-              "uniqueItems": true,
-              "default": []
-          },  
-          "label": {
-            "type": "string",
-            "minLength": 1
-          },
-          "pretest": {
-            "type": "number",
-            "exclusiveMinimum": 0,
-            "exclusiveMaximum": 1
-          },
-          "criteria": {
+          "tags": {
             "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "if"
-              ],
-              "properties": {
-                "if": {
-                  "type": "array",
-                  "minItems": 1,
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
-                },
-                "lr+": {
-                  "type": "number",
-                  "exclusiveMinimum": 0
-                },
-                "lr-": {
-                  "type": "number",
-                  "exclusiveMinimum": 0
-                },
-                "weight": {
-                  "type": "number",
-                  "minimum": 0
-                },
-                "note": {
-                  "type": "string"
-                }
-              },
-              "additionalProperties": false
-            },
+            "items": { "type": "string", "minLength": 1 },
+            "uniqueItems": true,
             "default": []
           },
+          "label":   { "type": "string", "minLength": 1 },
+          "pretest": { "type": "number", "minimum": 0, "maximum": 1 },
+
+          "criteria": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "if": {
+                  "oneOf": [
+                    { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" } },
+                    { "type": "string", "pattern": "^[a-z0-9_\\.]+$" }
+                  ]
+                },
+                "lr+":   { "type": "number" },
+                "lr-":   { "type": "number" },
+                "weight":{ "type": "number" }
+              },
+              "required": ["if"]
+            }
+          },
+
           "heuristics": {
             "type": "array",
             "items": {
               "type": "object",
-              "required": [
-                "when",
-                "boost"
-              ],
+              "additionalProperties": false,
               "properties": {
                 "when": {
                   "type": "array",
-                  "items": {
-                    "type": "string",
-                    "minLength": 1
-                  }
+                  "minItems": 1,
+                  "items": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" }
                 },
-                "boost": {
-                  "type": "number",
-                  "exclusiveMinimum": 0
-                }
+                "boost": { "type": "number" }
               },
-              "additionalProperties": false
+              "required": ["when", "boost"]
             },
             "default": []
           },
+
           "red_flags": {
             "type": "array",
-            "items": {
-              "type": "string",
-              "minLength": 1
-            },
-            "uniqueItems": true,
+            "items": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
             "default": []
-          },
-          "notes": {
-            "type": "string"
           }
         },
-        "additionalProperties": false
+        "required": ["id", "label", "pretest", "criteria"]
       }
     },
+
     "profiles": {
       "type": "object",
       "additionalProperties": {
