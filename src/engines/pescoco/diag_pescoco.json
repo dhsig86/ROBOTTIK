@@ -5,8 +5,15 @@
     "symptoms": [
       { "id": "dor_cervical", "label": "Dor cervical", "aliases": ["dor no pescoço"], "weights": 1.0 },
       { "id": "linfonodo_cervical_aumentado", "label": "Íngua / linfonodo aumentado", "aliases": ["caroço no pescoço"], "weights": 1.0 },
+      { "id": "rigidez_cervical", "label": "Rigidez/dor cervical", "aliases": ["pescoço duro"], "weights": 1.2 },
       { "id": "febre", "label": "Febre", "aliases": [], "weights": 0.8 },
-      { "id": "rigidez_cervical", "label": "Rigidez/dor cervical", "aliases": ["pescoço duro"], "weights": 1.2 }
+
+      { "id": "trismo", "label": "Dificuldade de abrir a boca (trismo)", "aliases": [], "weights": 1.0 },
+      { "id": "disfagia", "label": "Dificuldade para engolir (disfagia)", "aliases": ["engasga para engolir", "passagem difícil"], "weights": 1.0 },
+      { "id": "odinofagia", "label": "Dor de garganta (odinofagia)", "aliases": ["garganta doendo", "dor ao engolir"], "weights": 0.8 },
+      { "id": "rouquidao", "label": "Rouquidão (disfonia)", "aliases": ["voz rouca"], "weights": 0.8 },
+      { "id": "toxemia", "label": "Comprometimento sistêmico (toxemia)", "aliases": ["muito ruim/abatido"], "weights": 1.2 },
+      { "id": "dispneia", "label": "Falta de ar/dispneia", "aliases": ["respiração difícil", "dispnéia"], "weights": 1.4 }
     ],
     "modifiers": [
       { "id": "duracao_dias", "type": "number", "unit": "d" }
@@ -15,6 +22,8 @@
   "dx": [
     {
       "id": "linfadenopatia_infecciosa",
+      "global_id": "linfadenopatia_infecciosa",
+      "tags": ["pescoco"],
       "label": "Linfadenopatia infecciosa",
       "pretest": 0.08,
       "criteria": [
@@ -23,8 +32,87 @@
       ],
       "heuristics": [],
       "red_flags": []
+    },
+    {
+      "id": "torcicolo_agudo",
+      "global_id": "torcicolo_agudo",
+      "tags": ["pescoco"],
+      "label": "Torcicolo agudo (espasmo muscular cervical)",
+      "pretest": 0.06,
+      "criteria": [
+        { "if": ["rigidez_cervical"], "lr+": 2.2 },
+        { "if": ["dor_cervical"], "lr+": 1.6 },
+        { "if": ["febre"], "lr-": 0.7 }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "celulite_cervical",
+      "global_id": "celulite_cervical",
+      "tags": ["pescoco"],
+      "label": "Celulite cervical (infecção de partes moles)",
+      "pretest": 0.02,
+      "criteria": [
+        { "if": ["dor_cervical"], "lr+": 1.8 },
+        { "if": ["rigidez_cervical"], "lr+": 1.6 },
+        { "if": ["febre"], "lr+": 1.4 },
+        { "if": ["disfagia"], "lr+": 1.3 },
+        { "if": ["trismo"], "lr+": 1.3 }
+      ],
+      "heuristics": [],
+      "red_flags": ["toxemia", "dispneia"]
+    },
+    {
+      "id": "tireoidite_subaguda",
+      "global_id": "tireoidite_subaguda",
+      "tags": ["pescoco"],
+      "label": "Tireoidite subaguda (de Quervain)",
+      "pretest": 0.01,
+      "criteria": [
+        { "if": ["dor_cervical"], "lr+": 1.6 },
+        { "if": ["febre"], "lr+": 1.2 }
+      ],
+      "heuristics": [
+        { "when": ["duracao_dias"], "boost": 1.1 }
+      ],
+      "red_flags": []
+    },
+    {
+      "id": "sialadenite_aguda",
+      "global_id": "sialadenite_aguda",
+      "tags": ["pescoco"],
+      "label": "Sialadenite aguda (glândula salivar)",
+      "pretest": 0.02,
+      "criteria": [
+        { "if": ["dor_cervical"], "lr+": 1.6 },
+        { "if": ["febre"], "lr+": 1.3 },
+        { "if": ["trismo"], "lr+": 1.2 }
+      ],
+      "heuristics": [],
+      "red_flags": ["toxemia"]
+    },
+    {
+      "id": "neoplasia_cabeca_pescoco_suspeita",
+      "global_id": "neoplasia_cabeca_pescoco_suspeita",
+      "tags": ["pescoco"],
+      "label": "Suspeita de neoplasia de cabeça e pescoço",
+      "pretest": 0.01,
+      "criteria": [
+        { "if": ["linfonodo_cervical_aumentado"], "lr+": 2.0 },
+        { "if": ["odinofagia"], "lr+": 1.3 },
+        { "if": ["rouquidao"], "lr+": 1.3 }
+      ],
+      "heuristics": [
+        { "when": ["duracao_dias"], "boost": 1.2 }
+      ],
+      "red_flags": []
     }
   ],
   "profiles": {},
-  "via_atendimento": {}
+  "via_atendimento": {
+    "toxemia": "emergencia_geral",
+    
+    "dispneia": "emergencia_geral"
+  }
 }

@@ -36,6 +36,8 @@
   "dx": [
     {
       "id": "faringoamigdalite_bacteriana",
+      "global_id": "faringoamigdalite_bacteriana",
+      "tags": ["garganta"],
       "label": "Faringoamigdalite bacteriana (estreptocócica)",
       "pretest": 0.15,
       "criteria": [
@@ -49,6 +51,8 @@
     },
     {
       "id": "faringite_viral",
+      "global_id": "uri_nasofaringite",
+      "tags": ["nariz", "garganta", "ouvido", "pescoco"],
       "label": "Faringite viral inespecífica",
       "pretest": 0.25,
       "criteria": [
@@ -60,6 +64,8 @@
     },
     {
       "id": "mononucleose_infecciosa",
+      "global_id": "mononucleose_infecciosa",
+      "tags": ["garganta", "pescoco"],
       "label": "Mononucleose infecciosa",
       "pretest": 0.03,
       "criteria": [
@@ -72,6 +78,8 @@
     },
     {
       "id": "abscesso_peritonsilar",
+      "global_id": "abscesso_peritonsilar",
+      "tags": ["garganta"],
       "label": "Abscesso peritonsilar (quinsy)",
       "pretest": 0.01,
       "criteria": [
@@ -84,6 +92,8 @@
     },
     {
       "id": "abscesso_retrofaringeo",
+      "global_id": "abscesso_retrofaringeo",
+      "tags": ["garganta", "pescoco"],
       "label": "Abscesso retrofaríngeo",
       "pretest": 0.005,
       "criteria": [
@@ -95,6 +105,8 @@
     },
     {
       "id": "epiglotite_aguda",
+      "global_id": "epiglotite_aguda",
+      "tags": ["garganta"],
       "label": "Epiglotite aguda",
       "pretest": 0.002,
       "criteria": [
@@ -107,6 +119,8 @@
     },
     {
       "id": "laringite_aguda",
+      "global_id": "laringite_aguda",
+      "tags": ["garganta"],
       "label": "Laringite aguda",
       "pretest": 0.08,
       "criteria": [
@@ -118,6 +132,8 @@
     },
     {
       "id": "crupe_laringotraqueite",
+      "global_id": "laringotraqueite_crupe",
+      "tags": ["garganta"],
       "label": "Laringotraqueíte (Crupe)",
       "pretest": 0.01,
       "criteria": [
@@ -129,6 +145,8 @@
     },
     {
       "id": "lpr",
+      "global_id": "refluxo_laringofaringeo",
+      "tags": ["garganta"],
       "label": "Refluxo laringofaríngeo (LPR)",
       "pretest": 0.06,
       "criteria": [
@@ -141,6 +159,8 @@
     },
     {
       "id": "disfonia_abuso_vocal",
+      "global_id": "disfonia_abuso_vocal",
+      "tags": ["garganta"],
       "label": "Disfonia por abuso vocal",
       "pretest": 0.05,
       "criteria": [
@@ -151,6 +171,8 @@
     },
     {
       "id": "candidiase_orofaringea",
+      "global_id": "candidiase_orofaringea",
+      "tags": ["garganta"],
       "label": "Candidíase orofaríngea",
       "pretest": 0.01,
       "criteria": [
@@ -161,6 +183,8 @@
     },
     {
       "id": "corpo_estranho_faringe",
+      "global_id": "corpo_estranho_faringe",
+      "tags": ["garganta"],
       "label": "Corpo estranho faringe/laringe",
       "pretest": 0.005,
       "criteria": [

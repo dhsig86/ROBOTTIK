@@ -8,7 +8,9 @@
       { "id": "espirros", "label": "Espíros repetidos", "aliases": ["espirrando muito"], "weights": 1.0 },
       { "id": "dor_face", "label": "Dor/pressão na face", "aliases": ["dor nos seios da face", "pressão facial"], "weights": 1.0 },
       { "id": "hiposmia", "label": "Redução do olfato (hiposmia)", "aliases": ["cheiro fraco", "sem olfato"], "weights": 0.8 },
-      { "id": "febre", "label": "Febre", "aliases": [], "weights": 0.8 }
+      { "id": "febre", "label": "Febre", "aliases": [], "weights": 0.8 },
+      { "id": "tosse", "label": "Tosse", "aliases": [], "weights": 0.8 },
+      { "id": "cefaleia", "label": "Cefaleia", "aliases": ["dor de cabeça"], "weights": 0.8 }
     ],
     "modifiers": [
       { "id": "duracao_dias", "type": "number", "unit": "d" }
@@ -16,7 +18,25 @@
   },
   "dx": [
     {
+      "id": "rinite_viral",
+      "global_id": "uri_nasofaringite",
+      "tags": ["nariz", "garganta", "ouvido", "pescoco"],
+      "label": "Rinite viral / Nasofaringite",
+      "pretest": 0.22,
+      "criteria": [
+        { "if": ["rinorreia", "obstrucao_nasal"], "weight": 1.7 },
+        { "if": ["tosse"], "lr+": 1.3 },
+        { "if": ["febre"], "lr+": 1.2 }
+      ],
+      "heuristics": [
+        { "when": ["duracao_dias"], "boost": 1.0 }
+      ],
+      "red_flags": []
+    },
+    {
       "id": "rinite_alergica",
+      "global_id": "rinite_alergica",
+      "tags": ["nariz"],
       "label": "Rinite alérgica",
       "pretest": 0.20,
       "criteria": [
@@ -28,11 +48,14 @@
     },
     {
       "id": "sinusite_aguda_nao_complicada",
+      "global_id": "rinossinusite_aguda",
+      "tags": ["nariz"],
       "label": "Sinusite aguda não complicada",
       "pretest": 0.08,
       "criteria": [
         { "if": ["dor_face"], "lr+": 2.0 },
         { "if": ["febre"], "lr+": 1.3 },
+        { "if": ["cefaleia"], "lr+": 1.2 },
         { "if": ["duracao_dias"], "weight": 1.1 }
       ],
       "heuristics": [],
