@@ -1,11 +1,41 @@
 {
   "crianca": {
-    "multipliers": {}
+    "multipliers": {
+      "uri_nasofaringite": 1.3,
+      "rinite_alergica": 1.1,
+      "rinossinusite_aguda": 1.1,
+      "rinossinusite_aguda_bacteriana": 1.2
+    }
   },
   "adulto": {
-    "multipliers": {}
+    "multipliers": {
+    }
   },
   "idoso": {
-    "multipliers": {}
+    "multipliers": {
+      "uri_nasofaringite": 1.1,
+      "rinite_alergica": 0.8,
+      "rinossinusite_aguda": 1.1,
+      "rinossinusite_aguda_bacteriana": 1.3
+    }
+  },
+  "imunossuprimido": {
+    "multipliers": {
+      "uri_nasofaringite": 1.2,
+      "rinossinusite_aguda": 1.15,
+      "rinossinusite_aguda_bacteriana": 1.4
+    }
+  },
+  "alergico": {
+    "multipliers": {
+      "rinite_alergica": 1.4
+    }
+  },
+  "tabagista": {
+    "multipliers": {
+      "rinite_alergica": 0.8,
+      "rinossinusite_aguda": 1.1,
+      "rinossinusite_aguda_bacteriana": 1.1
+    }
   }
 }
