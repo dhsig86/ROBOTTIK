@@ -1,5 +1,19 @@
 {
   "scripts": {
-    "validate:rules": "node scripts/validate_rules.js"
-  }
+    "serve": "http-server -p 5500 -c-1",
+    "validate:rules": "node scripts/validate_rules.cjs",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "name": "robotto_skeleton",
+  "description": "ROBO PARA PREDIÇÃO E TRIAGEM EM OTORRINOLARINGOLOGIA",
+  "version": "1.0.0",
+  "main": "main.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "jest": "^30.0.5"
+  },
+  "type": "module"
 }
