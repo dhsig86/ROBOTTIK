@@ -1,13 +1,11 @@
-// File: scripts/smoke.js
-// Usa o triageEngine via Node, ajustando fetch para apontar para BASE_URL.
-
+// File: scripts/smoke.mjs
 const BASE = (process.env.BASE_URL || 'http://127.0.0.1:5500').replace(/\/$/, '');
 const mode = process.argv.includes('--always') ? 'always' : 'gated';
 
-// Wrap em fetch: transforma "/src/..." em "http://127.0.0.1:5500/src/..."
+// Prefixa fetch("/src/...") -> "http://127.0.0.1:5500/src/..."
 const origFetch = globalThis.fetch;
 if (typeof origFetch !== 'function') {
-  throw new Error('Este script requer Node 18+ (fetch nativo).');
+  throw new Error('Node 18+ é necessário (fetch nativo).');
 }
 globalThis.fetch = (input, init) => {
   let url = input;
@@ -17,12 +15,11 @@ globalThis.fetch = (input, init) => {
   return origFetch(url, init);
 };
 
+import { triage, explainTop } from '../src/core/triageEngine.js';
+import { loadRegistry } from '../src/core/conditionRegistry.js';
+
 (async () => {
   try {
-    const { triage, explainTop } = await import('../src/core/triageEngine.js');
-    const { loadRegistry } = await import('../src/core/conditionRegistry.js');
-
-    // Caso de teste multiárea (nasofaringite)
     const raw = {
       symptoms: ['rinorreia','obstrucao_nasal','odinofagia','plenitude_auricular','linfonodo_cervical_aumentado'],
       idade: 28,
