@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>ROBOTTO — Chat de Triagem</title>
+    <link rel="stylesheet" href="./styles_chat.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <div>
+          <div class="title">ROBOTTO — Chat de Triagem</div>
+          <div class="muted small">MVP</div>
+        </div>
+        <div class="actions">
+          <button id="themeToggle" class="btn" aria-label="Alternar tema">
+            Tema
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <div id="messages" class="messages" aria-live="polite"></div>
+      </main>
+
+      <section class="panel" aria-label="Painel de resumo e respostas rápidas">
+        <div id="summary" class="summary"></div>
+        <div id="quick" class="quick"></div>
+      </section>
+
+      <div class="inputbar">
+        <input
+          id="input"
+          type="text"
+          autocomplete="off"
+          placeholder="Descreva sua queixa (ex.: há 3 dias dor de garganta e febre)..."
+          aria-label="Digite sua queixa"
+        />
+        <button id="send" aria-label="Enviar mensagem">Enviar</button>
+      </div>
+    </div>
+
+    <script type="module" src="./chat.js"></script>
+  </body>
+</html>

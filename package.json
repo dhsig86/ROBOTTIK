@@ -1,8 +1,20 @@
 {
   "scripts": {
+    "fmt": "prettier -w .",
+    "lint": "eslint src scripts --ext .js,.mjs",
+    "validate:rules": "node scripts/validate_rules.mjs",
+    "check": "node scripts/check_consistency.mjs",
+    "snapshot": "node scripts/build_registry_snapshot.mjs",
     "serve": "http-server -p 5500 -c-1",
-    "validate:rules": "node scripts/validate_rules.cjs",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "ci": "npm run validate:rules && npm run check && BASE_URL=http://127.0.0.1:5500 node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "eslint": "^9.34.0",
+    "http-server": "^14.1.1",
+    "prettier": "^3.3.3"
   },
   "name": "robotto_skeleton",
   "description": "ROBO PARA PREDIÇÃO E TRIAGEM EM OTORRINOLARINGOLOGIA",
@@ -11,9 +23,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "http-server": "^14.1.1",
-    "jest": "^30.0.5"
-  },
   "type": "module"
 }

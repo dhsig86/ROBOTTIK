@@ -14,7 +14,11 @@ export const ALL_AREAS = ["ouvido", "nariz", "garganta", "pescoco"];
  */
 export function selectAreas(intake, { mode = "gated", registry } = {}) {
   const present = new Set(
-    Array.isArray(intake?.symptoms) ? intake.symptoms : (intake?.symptoms instanceof Set ? Array.from(intake.symptoms) : [])
+    Array.isArray(intake?.symptoms)
+      ? intake.symptoms
+      : intake?.symptoms instanceof Set
+        ? Array.from(intake.symptoms)
+        : [],
   );
 
   if (mode === "always" || !registry) {
@@ -25,8 +29,10 @@ export function selectAreas(intake, { mode = "gated", registry } = {}) {
   for (const area of ALL_AREAS) {
     const areaBundle = registry.byArea?.[area];
     if (!areaBundle) continue;
-    const areaFeatures = (areaBundle.intake?.symptoms || []).map(s => s.id).filter(Boolean);
-    const hasSignal = areaFeatures.some(fid => present.has(fid));
+    const areaFeatures = (areaBundle.intake?.symptoms || [])
+      .map((s) => s.id)
+      .filter(Boolean);
+    const hasSignal = areaFeatures.some((fid) => present.has(fid));
     if (hasSignal) picked.push(area);
   }
 

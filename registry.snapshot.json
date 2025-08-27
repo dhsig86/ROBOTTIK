@@ -1,0 +1,1729 @@
+{
+  "features": 119,
+  "byArea": {
+    "ouvido": {
+      "intake": {
+        "symptoms": [
+          {
+            "id": "otalgia",
+            "label": "Dor de ouvido",
+            "aliases": [
+              "dor no ouvido",
+              "dor auricular"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "otorreia",
+            "label": "Saída de secreção pelo ouvido",
+            "aliases": [
+              "pús no ouvido",
+              "vazamento de ouvido"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "hipoacusia",
+            "label": "Diminuição da audição",
+            "aliases": [
+              "surdez",
+              "ouvir menos"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "plenitude_auricular",
+            "label": "Sensação de ouvido tampado",
+            "aliases": [
+              "pressão no ouvido",
+              "entupido"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "prurido_auricular",
+            "label": "Coceira no ouvido",
+            "aliases": [
+              "coçando o ouvido"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "zumbido",
+            "label": "Zumbido",
+            "aliases": [
+              "apito no ouvido",
+              "chiado no ouvido"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "vertigem",
+            "label": "Tontura/vertigem",
+            "aliases": [
+              "rotatória",
+              "girando"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "febre",
+            "label": "Febre",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "dor_trago_pavilhao",
+            "label": "Dor à pressão no tragus ou ao tracionar a orelha",
+            "aliases": [
+              "dor no tragus",
+              "dor ao puxar a orelha"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "edema_conduto",
+            "label": "Inchaço do conduto auditivo",
+            "aliases": [
+              "conduto inchado",
+              "canal inchado"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "hiperemia_mt",
+            "label": "Vermelhidão da membrana timpânica",
+            "aliases": [
+              "tímpano vermelho"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "perfuracao_mt",
+            "label": "Perfuração no tímpano",
+            "aliases": [
+              "furo no tímpano"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "natacao_recente",
+            "label": "Natação/banho de piscina recente",
+            "aliases": [
+              "entrou na piscina",
+              "mar/água"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "voo_mergulho_recente",
+            "label": "Voo ou mergulho recente",
+            "aliases": [
+              "pressão do avião",
+              "mergulho"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "diabetes_imunossupressao",
+            "label": "Diabetes ou imunossupressão",
+            "aliases": [
+              "baixa imunidade",
+              "imunodeficiência"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "q_tip_uso",
+            "label": "Uso de haste flexível / cotonete",
+            "aliases": [
+              "cotonete",
+              "limpar o ouvido"
+            ],
+            "weights": 0.6
+          },
+          {
+            "id": "trauma_auricular",
+            "label": "Trauma no ouvido",
+            "aliases": [
+              "pancada no ouvido",
+              "corpo estranho"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "cefaleia",
+            "label": "Cefaleia",
+            "aliases": [
+              "dor de cabeça"
+            ],
+            "weights": 0.6
+          },
+          {
+            "id": "posicional",
+            "label": "Vertigem desencadeada por posição",
+            "aliases": [
+              "piora ao deitar",
+              "piora ao virar na cama"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "dor_noturna_intensa",
+            "label": "Dor noturna intensa",
+            "aliases": [],
+            "weights": 1.2
+          },
+          {
+            "id": "paralisia_facial",
+            "label": "Fraqueza/paralisia facial",
+            "aliases": [],
+            "weights": 1.5
+          },
+          {
+            "id": "granulacao_conduto",
+            "label": "Granulação no conduto",
+            "aliases": [],
+            "weights": 1.2
+          },
+          {
+            "id": "sinais_neurologicos_focais",
+            "label": "Sinais neurológicos focais",
+            "aliases": [],
+            "weights": 1.5
+          },
+          {
+            "id": "surdidez_subita",
+            "label": "Perda auditiva súbita",
+            "aliases": [],
+            "weights": 1.5
+          }
+        ],
+        "modifiers": [
+          {
+            "id": "duracao_dias",
+            "type": "number",
+            "unit": "d"
+          },
+          {
+            "id": "piora_48_72h",
+            "type": "boolean"
+          },
+          {
+            "id": "laterality",
+            "type": "categorical",
+            "levels": [
+              "dir",
+              "esq",
+              "bilateral"
+            ]
+          },
+          {
+            "id": "intensidade_dor",
+            "type": "ordinal",
+            "levels": [
+              "leve",
+              "moderada",
+              "intensa"
+            ]
+          }
+        ]
+      },
+      "via_atendimento": {
+        "mastoidite_suspeita": "emergencia_geral",
+        "surdidez_subita": "emergencia_especializada",
+        "sinais_neurologicos_focais": "emergencia_geral",
+        "paralisia_facial": "emergencia_geral",
+        "granulacao_conduto": "ambulatorio_rotina",
+        "dor_noturna_intensa": "emergencia_especializada",
+        "diabetes_imunossupressao": "emergencia_geral",
+        "otomicose": "ambulatorio_rotina",
+        "cerume_impactado": "ambulatorio_rotina",
+        "vppb": "ambulatorio_rotina",
+        "perfuracao_timpanica": "ambulatorio_rotina",
+        "surdidez_subita_neurossensorial": "emergencia_especializada",
+        "otite_externa_maligna": "emergencia_geral",
+        "dor_edema_retroauricular": "emergencia_geral"
+      },
+      "profiles": {
+        "crianca": {
+          "multipliers": {}
+        },
+        "adulto": {
+          "multipliers": {}
+        },
+        "idoso": {
+          "multipliers": {}
+        }
+      }
+    },
+    "nariz": {
+      "intake": {
+        "symptoms": [
+          {
+            "id": "obstrucao_nasal",
+            "label": "Nariz entupido (obstrução nasal)",
+            "aliases": [
+              "congestão nasal",
+              "nariz trancado"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "rinorreia",
+            "label": "Coriza/saída nasal (rinorreia)",
+            "aliases": [
+              "nariz escorrendo",
+              "catarro nasal"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "espirros",
+            "label": "Espíros repetidos",
+            "aliases": [
+              "espirrando muito"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "dor_face",
+            "label": "Dor/pressão na face",
+            "aliases": [
+              "dor nos seios da face",
+              "pressão facial"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "hiposmia",
+            "label": "Redução do olfato (hiposmia)",
+            "aliases": [
+              "cheiro fraco",
+              "sem olfato"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "febre",
+            "label": "Febre",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "tosse",
+            "label": "Tosse",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "cefaleia",
+            "label": "Cefaleia",
+            "aliases": [
+              "dor de cabeça"
+            ],
+            "weights": 0.8
+          }
+        ],
+        "modifiers": [
+          {
+            "id": "duracao_dias",
+            "type": "number",
+            "unit": "d"
+          }
+        ]
+      },
+      "via_atendimento": {
+        "rinorreia_liquida_clara": "emergencia_geral",
+        "epistaxe": "emergencia_geral",
+        "necrose_tecidual": "emergencia_especializada",
+        "hemorragia_abundante": "emergencia_geral",
+        "historia_trauma": "emergencia_geral",
+        "deformidade_nasal": "emergencia_especializada",
+        "obstrucao_nasal_unilateral": "emergencia_especializada",
+        "rinorreia_purulenta_unilateral": "emergencia_especializada",
+        "ulceracoes_nasais": "emergencia_especializada",
+        "lesoes_granulomatosas": "emergencia_especializada",
+        "obstrucao_nasal_inspiratoria": "telemedicina",
+        "polipose_nasal": "ambulatorio_rotina",
+        "intolerancia_aspirina": "ambulatorio_rotina",
+        "uso_descongestionante_topico": "ambulatorio_rotina"
+      },
+      "profiles": {
+        "crianca": {
+          "multipliers": {
+            "uri_nasofaringite": 1.3,
+            "rinite_alergica": 1.1,
+            "rinossinusite_aguda": 1.1,
+            "rinossinusite_aguda_bacteriana": 1.2
+          }
+        },
+        "adulto": {
+          "multipliers": {}
+        },
+        "idoso": {
+          "multipliers": {
+            "uri_nasofaringite": 1.1,
+            "rinite_alergica": 0.8,
+            "rinossinusite_aguda": 1.1,
+            "rinossinusite_aguda_bacteriana": 1.3
+          }
+        },
+        "imunossuprimido": {
+          "multipliers": {
+            "uri_nasofaringite": 1.2,
+            "rinossinusite_aguda": 1.15,
+            "rinossinusite_aguda_bacteriana": 1.4
+          }
+        },
+        "alergico": {
+          "multipliers": {
+            "rinite_alergica": 1.4
+          }
+        },
+        "tabagista": {
+          "multipliers": {
+            "rinite_alergica": 0.8,
+            "rinossinusite_aguda": 1.1,
+            "rinossinusite_aguda_bacteriana": 1.1
+          }
+        }
+      }
+    },
+    "garganta": {
+      "intake": {
+        "symptoms": [
+          {
+            "id": "odinofagia",
+            "label": "Dor de garganta (odinofagia)",
+            "aliases": [
+              "garganta doendo",
+              "dor ao engolir"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "disfagia",
+            "label": "Dificuldade para engolir (disfagia)",
+            "aliases": [
+              "engasga para engolir",
+              "passagem difícil"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "febre",
+            "label": "Febre",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "tosse",
+            "label": "Tosse",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "ausencia_tosse",
+            "label": "Ausência de tosse",
+            "aliases": [
+              "sem tosse"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "exsudato_tonsilar",
+            "label": "Exsudato/amígdalas com placas",
+            "aliases": [
+              "placas na garganta"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "adenopatia_anterior_dolorosa",
+            "label": "Linfonodos cervicais anteriores dolorosos",
+            "aliases": [
+              "ínguas doloridas na frente do pescoço"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "petequias_palato",
+            "label": "Petéquias em palato",
+            "aliases": [],
+            "weights": 1
+          },
+          {
+            "id": "halitose",
+            "label": "Mau hálito",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "trismo",
+            "label": "Dificuldade de abrir a boca (trismo)",
+            "aliases": [],
+            "weights": 1.2
+          },
+          {
+            "id": "voz_batata_quente",
+            "label": "Voz de 'batata quente'",
+            "aliases": [
+              "voz abafada"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "sialorreia",
+            "label": "Baba/sialorreia",
+            "aliases": [
+              "saliva caindo"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "estridor",
+            "label": "Estridor/ruído ao respirar",
+            "aliases": [
+              "respiração ruidosa"
+            ],
+            "weights": 1.4
+          },
+          {
+            "id": "rouquidao",
+            "label": "Rouquidão (disfonia)",
+            "aliases": [
+              "voz rouca"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "odinofagia_unilateral",
+            "label": "Dor unilateral",
+            "aliases": [],
+            "weights": 1
+          },
+          {
+            "id": "cansaco_mialgia",
+            "label": "Cansaço/mialgia",
+            "aliases": [],
+            "weights": 0.7
+          },
+          {
+            "id": "tosse_seca",
+            "label": "Tosse seca",
+            "aliases": [],
+            "weights": 0.7
+          },
+          {
+            "id": "refluxo_pirose",
+            "label": "Azia/refluxo",
+            "aliases": [
+              "queimação no peito",
+              "ácido"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "globus",
+            "label": "Sensação de bolo na garganta (globus)",
+            "aliases": [
+              "nó na garganta"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "rigidez_cervical",
+            "label": "Rigidez/dor cervical",
+            "aliases": [
+              "pescoço duro"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "toxemia",
+            "label": "Comprometimento sistêmico (toxemia)",
+            "aliases": [
+              "muito ruim/abatido"
+            ],
+            "weights": 1.3
+          },
+          {
+            "id": "imunossupressao",
+            "label": "Imunossupressão/uso de corticoide crônico",
+            "aliases": [],
+            "weights": 1.2
+          },
+          {
+            "id": "dispneia",
+            "label": "Falta de ar/dispneia",
+            "aliases": [
+              "respiração difícil"
+            ],
+            "weights": 1.5
+          }
+        ],
+        "modifiers": [
+          {
+            "id": "duracao_dias",
+            "type": "number",
+            "unit": "d"
+          },
+          {
+            "id": "piora_48_72h",
+            "type": "boolean"
+          },
+          {
+            "id": "idade_grupo",
+            "type": "categorical",
+            "levels": [
+              "3-14",
+              "15-44",
+              "45+"
+            ]
+          }
+        ]
+      },
+      "via_atendimento": {
+        "estridor": "emergencia_geral",
+        "dispneia": "emergencia_geral",
+        "toxemia": "emergencia_geral",
+        "trismo": "emergencia_especializada",
+        "sialorreia": "emergencia_especializada",
+        "voz_batata_quente": "emergencia_especializada"
+      },
+      "profiles": {
+        "crianca": {
+          "multipliers": {}
+        },
+        "adulto": {
+          "multipliers": {}
+        },
+        "idoso": {
+          "multipliers": {}
+        }
+      }
+    },
+    "pescoco": {
+      "intake": {
+        "symptoms": [
+          {
+            "id": "dor_cervical",
+            "label": "Dor cervical",
+            "aliases": [
+              "dor no pescoço"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "linfonodo_cervical_aumentado",
+            "label": "Íngua / linfonodo aumentado",
+            "aliases": [
+              "caroço no pescoço"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "rigidez_cervical",
+            "label": "Rigidez/dor cervical",
+            "aliases": [
+              "pescoço duro"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "febre",
+            "label": "Febre",
+            "aliases": [],
+            "weights": 0.8
+          },
+          {
+            "id": "trismo",
+            "label": "Dificuldade de abrir a boca (trismo)",
+            "aliases": [],
+            "weights": 1
+          },
+          {
+            "id": "disfagia",
+            "label": "Dificuldade para engolir (disfagia)",
+            "aliases": [
+              "engasga para engolir",
+              "passagem difícil"
+            ],
+            "weights": 1
+          },
+          {
+            "id": "odinofagia",
+            "label": "Dor de garganta (odinofagia)",
+            "aliases": [
+              "garganta doendo",
+              "dor ao engolir"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "rouquidao",
+            "label": "Rouquidão (disfonia)",
+            "aliases": [
+              "voz rouca"
+            ],
+            "weights": 0.8
+          },
+          {
+            "id": "toxemia",
+            "label": "Comprometimento sistêmico (toxemia)",
+            "aliases": [
+              "muito ruim/abatido"
+            ],
+            "weights": 1.2
+          },
+          {
+            "id": "dispneia",
+            "label": "Falta de ar/dispneia",
+            "aliases": [
+              "respiração difícil",
+              "dispnéia"
+            ],
+            "weights": 1.4
+          }
+        ],
+        "modifiers": [
+          {
+            "id": "duracao_dias",
+            "type": "number",
+            "unit": "d"
+          }
+        ]
+      },
+      "via_atendimento": {
+        "toxemia": "emergencia_geral",
+        "dispneia": "emergencia_geral",
+        "trismo": "emergencia_especializada"
+      },
+      "profiles": {
+        "crianca": {
+          "multipliers": {}
+        },
+        "adulto": {
+          "multipliers": {}
+        },
+        "idoso": {
+          "multipliers": {}
+        }
+      }
+    }
+  },
+  "byGlobalId": {
+    "otite_externa_aguda": [
+      {
+        "area": "ouvido",
+        "id": "otite_externa_aguda",
+        "label": "Otite Externa Aguda",
+        "pretest": 0.12,
+        "tags": [
+          "ouvido",
+          "infeccioso",
+          "agudo",
+          "bacteriano"
+        ]
+      }
+    ],
+    "otomicose": [
+      {
+        "area": "ouvido",
+        "id": "otomicose",
+        "label": "Otomicose",
+        "pretest": 0.03,
+        "tags": [
+          "ouvido",
+          "infeccioso",
+          "agudo",
+          "fungico"
+        ]
+      }
+    ],
+    "otite_media_aguda": [
+      {
+        "area": "ouvido",
+        "id": "otite_media_aguda",
+        "label": "Otite Média Aguda",
+        "pretest": 0.15,
+        "tags": [
+          "ouvido",
+          "infeccioso",
+          "agudo",
+          "bacteriano",
+          "viral",
+          "pediatrico"
+        ]
+      }
+    ],
+    "otite_media_com_efusao": [
+      {
+        "area": "ouvido",
+        "id": "otite_media_com_efusao",
+        "label": "Otite Média com Efusão (Sero-mucosa)",
+        "pretest": 0.08,
+        "tags": [
+          "ouvido",
+          "inflamatorio",
+          "cronico",
+          "pediatrico"
+        ]
+      }
+    ],
+    "cerume_impactado": [
+      {
+        "area": "ouvido",
+        "id": "cerume_impactado",
+        "label": "Tampão de Cerume (Impactação)",
+        "pretest": 0.2,
+        "tags": [
+          "ouvido",
+          "benigno"
+        ]
+      }
+    ],
+    "disfuncao_tuba_auditiva": [
+      {
+        "area": "ouvido",
+        "id": "disfuncao_tuba_auditiva",
+        "label": "Disfunção da Tuba Auditiva",
+        "pretest": 0.09,
+        "tags": [
+          "ouvido",
+          "inflamatorio",
+          "cronico"
+        ]
+      }
+    ],
+    "perfuracao_timpanica": [
+      {
+        "area": "ouvido",
+        "id": "perfuracao_timpanica",
+        "label": "Perfuração Timpânica",
+        "pretest": 0.02,
+        "tags": [
+          "ouvido",
+          "trauma",
+          "agudo"
+        ]
+      }
+    ],
+    "barotrauma_otico": [
+      {
+        "area": "ouvido",
+        "id": "barotrauma_otico",
+        "label": "Barotrauma Ótico",
+        "pretest": 0.04,
+        "tags": [
+          "ouvido",
+          "trauma",
+          "agudo"
+        ]
+      }
+    ],
+    "otite_externa_maligna": [
+      {
+        "area": "ouvido",
+        "id": "otite_externa_maligna",
+        "label": "Otite Externa Maligna (Necrosante)",
+        "pretest": 0.002,
+        "tags": [
+          "ouvido",
+          "infeccioso",
+          "agudo",
+          "bacteriano",
+          "grave"
+        ]
+      }
+    ],
+    "mastoidite_aguda": [
+      {
+        "area": "ouvido",
+        "id": "mastoidite_aguda",
+        "label": "Mastoidite Aguda",
+        "pretest": 0.005,
+        "tags": [
+          "ouvido",
+          "infeccioso",
+          "agudo",
+          "bacteriano",
+          "grave",
+          "pediatrico"
+        ]
+      }
+    ],
+    "vppb": [
+      {
+        "area": "ouvido",
+        "id": "vppb",
+        "label": "Vertigem Posicional Paroxística Benigna (VPPB)",
+        "pretest": 0.1,
+        "tags": [
+          "ouvido",
+          "neurologico",
+          "agudo",
+          "benigno"
+        ]
+      }
+    ],
+    "neurite_vestibular": [
+      {
+        "area": "ouvido",
+        "id": "neurite_vestibular",
+        "label": "Neurite Vestibular",
+        "pretest": 0.03,
+        "tags": [
+          "ouvido",
+          "neurologico",
+          "agudo",
+          "viral",
+          "inflamatorio"
+        ]
+      }
+    ],
+    "doenca_meniere": [
+      {
+        "area": "ouvido",
+        "id": "doenca_meniere",
+        "label": "Doença de Ménière",
+        "pretest": 0.01,
+        "tags": [
+          "ouvido",
+          "neurologico",
+          "cronico"
+        ]
+      }
+    ],
+    "surdidez_subita_neurossensorial": [
+      {
+        "area": "ouvido",
+        "id": "surdidez_subita_neurossensorial",
+        "label": "Perda Auditiva Súbita Neurossensorial",
+        "pretest": 0.003,
+        "tags": [
+          "ouvido",
+          "neurologico",
+          "agudo",
+          "grave"
+        ]
+      }
+    ],
+    "colesteatoma": [
+      {
+        "area": "ouvido",
+        "id": "colesteatoma",
+        "label": "Colesteatoma",
+        "pretest": 0.008,
+        "tags": [
+          "ouvido",
+          "cronico",
+          "infeccioso",
+          "inflamatorio"
+        ]
+      }
+    ],
+    "zumbido_essencial": [
+      {
+        "area": "ouvido",
+        "id": "zumbido_essencial",
+        "label": "Zumbido Essencial",
+        "pretest": 0.18,
+        "tags": [
+          "ouvido",
+          "cronico",
+          "neurologico",
+          "benigno"
+        ]
+      }
+    ],
+    "adenoidite": [
+      {
+        "area": "nariz",
+        "id": "adenoidite",
+        "label": "Adenoidite / Adenoidomegalia sintomática",
+        "pretest": 0.03,
+        "tags": [
+          "infeccioso",
+          "agudo",
+          "pediatrico"
+        ]
+      }
+    ],
+    "colapso_valva_nasal": [
+      {
+        "area": "nariz",
+        "id": "colapso_valva_nasal",
+        "label": "Colapso da válvula nasal",
+        "pretest": 0.01,
+        "tags": [
+          "estrutural",
+          "cronico"
+        ]
+      }
+    ],
+    "corpo_estranho_nasal": [
+      {
+        "area": "nariz",
+        "id": "corpo_estranho_nasal",
+        "label": "Corpo estranho nasal",
+        "pretest": 0.01,
+        "tags": [
+          "trauma",
+          "agudo",
+          "pediatrico"
+        ]
+      }
+    ],
+    "desvio_septo_sintomatico": [
+      {
+        "area": "nariz",
+        "id": "desvio_septo_sintomatico",
+        "label": "Desvio septal sintomático",
+        "pretest": 0.05,
+        "tags": [
+          "estrutural",
+          "cronico"
+        ]
+      }
+    ],
+    "aerd": [
+      {
+        "area": "nariz",
+        "id": "aerd",
+        "label": "Doença exacerbada por aspirina (DEA/ tríade de Samter)",
+        "pretest": 0.005,
+        "tags": [
+          "alergico",
+          "cronico",
+          "asma"
+        ]
+      }
+    ],
+    "epistaxe_anterior": [
+      {
+        "area": "nariz",
+        "id": "epistaxe_anterior",
+        "label": "Epistaxe anterior",
+        "pretest": 0.02,
+        "tags": [
+          "sangramento",
+          "agudo"
+        ]
+      }
+    ],
+    "epistaxe_posterior": [
+      {
+        "area": "nariz",
+        "id": "epistaxe_posterior",
+        "label": "Epistaxe posterior",
+        "pretest": 0.01,
+        "tags": [
+          "sangramento",
+          "agudo",
+          "grave"
+        ]
+      }
+    ],
+    "fratura_nasal": [
+      {
+        "area": "nariz",
+        "id": "fratura_nasal",
+        "label": "Fratura nasal",
+        "pretest": 0.01,
+        "tags": [
+          "trauma",
+          "agudo"
+        ]
+      }
+    ],
+    "granulomatose_com_poliangiite_sinonasal": [
+      {
+        "area": "nariz",
+        "id": "granulomatose_com_poliangiite_sinonasal",
+        "label": "Granulomatose com poliangiíte (síndrome sino-nasal)",
+        "pretest": 0.002,
+        "tags": [
+          "autoimune",
+          "cronico",
+          "grave"
+        ]
+      }
+    ],
+    "hipertrofia_conchas_inferiores": [
+      {
+        "area": "nariz",
+        "id": "hipertrofia_conchas_inferiores",
+        "label": "Hipertrofia de conchas inferiores",
+        "pretest": 0.04,
+        "tags": [
+          "estrutural",
+          "cronico",
+          "alergico"
+        ]
+      }
+    ],
+    "polipo_invertido": [
+      {
+        "area": "nariz",
+        "id": "polipo_invertido",
+        "label": "Papiloma invertido sinonasal",
+        "pretest": 0.005,
+        "tags": [
+          "neoplasico",
+          "benigno",
+          "cronico"
+        ]
+      }
+    ],
+    "rinite_alergica": [
+      {
+        "area": "nariz",
+        "id": "rinite_alergica",
+        "label": "Rinite alérgica",
+        "pretest": 0.2,
+        "tags": [
+          "nariz"
+        ]
+      }
+    ],
+    "rinite_medicamentosa": [
+      {
+        "area": "nariz",
+        "id": "rinite_medicamentosa",
+        "label": "Rinite medicamentosa (rebote por vasoconstritor)",
+        "pretest": 0.02,
+        "tags": [
+          "medicamentosa",
+          "cronico"
+        ]
+      }
+    ],
+    "rinite_nao_alergica_nao_infecciosa": [
+      {
+        "area": "nariz",
+        "id": "rinite_nao_alergica_nao_infecciosa",
+        "label": "Rinite não alérgica não infecciosa (vasomotora)",
+        "pretest": 0.03,
+        "tags": [
+          "vasomotora",
+          "cronico"
+        ]
+      }
+    ],
+    "uri_nasofaringite": [
+      {
+        "area": "nariz",
+        "id": "uri_nasofaringite",
+        "label": "Rinite viral / Nasofaringite",
+        "pretest": 0.22,
+        "tags": [
+          "nariz",
+          "garganta",
+          "ouvido",
+          "pescoco"
+        ]
+      },
+      {
+        "area": "garganta",
+        "id": "uri_nasofaringite",
+        "label": "Rinite viral / Nasofaringite",
+        "pretest": 0.25,
+        "tags": [
+          "nariz",
+          "garganta",
+          "ouvido",
+          "pescoco"
+        ]
+      }
+    ],
+    "rinoliquorreia": [
+      {
+        "area": "nariz",
+        "id": "rinoliquorreia",
+        "label": "Rinoliquorreia (fístula LCR)",
+        "pretest": 0.005,
+        "tags": [
+          "trauma",
+          "cronico",
+          "neurologico"
+        ]
+      }
+    ],
+    "rinossinusite_aguda_bacteriana": [
+      {
+        "area": "nariz",
+        "id": "rinossinusite_aguda_bacteriana",
+        "label": "Rinossinusite aguda bacteriana",
+        "pretest": 0.08,
+        "tags": [
+          "bacteriano",
+          "agudo",
+          "infeccioso"
+        ]
+      }
+    ],
+    "rinossinusite_cronica_com_polipose": [
+      {
+        "area": "nariz",
+        "id": "rinossinusite_cronica_com_polipose",
+        "label": "Rinossinusite crônica com polipose",
+        "pretest": 0.03,
+        "tags": [
+          "cronico",
+          "polipose",
+          "alergico"
+        ]
+      }
+    ],
+    "rinossinusite_cronica_sem_polipose": [
+      {
+        "area": "nariz",
+        "id": "rinossinusite_cronica_sem_polipose",
+        "label": "Rinossinusite crônica sem polipose",
+        "pretest": 0.05,
+        "tags": [
+          "cronico",
+          "inflamatorio"
+        ]
+      }
+    ],
+    "sarcoidose_sinonasal": [
+      {
+        "area": "nariz",
+        "id": "sarcoidose_sinonasal",
+        "label": "Sarcoidose sinonasal",
+        "pretest": 0.002,
+        "tags": [
+          "autoimune",
+          "cronico"
+        ]
+      }
+    ],
+    "rinossinusite_aguda": [
+      {
+        "area": "nariz",
+        "id": "rinossinusite_aguda",
+        "label": "Sinusite aguda não complicada",
+        "pretest": 0.08,
+        "tags": [
+          "nariz"
+        ]
+      }
+    ],
+    "sinusite_fungica_invasiva_aguda": [
+      {
+        "area": "nariz",
+        "id": "sinusite_fungica_invasiva_aguda",
+        "label": "Sinusite fúngica invasiva aguda",
+        "pretest": 0.003,
+        "tags": [
+          "fungico",
+          "agudo",
+          "grave",
+          "imunossupressao"
+        ]
+      }
+    ],
+    "vestibulite_nasal": [
+      {
+        "area": "nariz",
+        "id": "vestibulite_nasal",
+        "label": "Vestibulite nasal / Furunculose",
+        "pretest": 0.01,
+        "tags": [
+          "inflamatorio",
+          "agudo"
+        ]
+      }
+    ],
+    "abscesso_peritonsilar": [
+      {
+        "area": "garganta",
+        "id": "abscesso_peritonsilar",
+        "label": "Abscesso peritonsilar (quinsy)",
+        "pretest": 0.01,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "abscesso_retrofaringeo": [
+      {
+        "area": "garganta",
+        "id": "abscesso_retrofaringeo",
+        "label": "Abscesso retrofaríngeo",
+        "pretest": 0.005,
+        "tags": [
+          "garganta",
+          "pescoco"
+        ]
+      }
+    ],
+    "candidiase_orofaringea": [
+      {
+        "area": "garganta",
+        "id": "candidiase_orofaringea",
+        "label": "Candidíase orofaríngea",
+        "pretest": 0.01,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "corpo_estranho_faringe": [
+      {
+        "area": "garganta",
+        "id": "corpo_estranho_faringe",
+        "label": "Corpo estranho faringe/laringe",
+        "pretest": 0.005,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "disfonia_abuso_vocal": [
+      {
+        "area": "garganta",
+        "id": "disfonia_abuso_vocal",
+        "label": "Disfonia por abuso vocal",
+        "pretest": 0.05,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "epiglotite_aguda": [
+      {
+        "area": "garganta",
+        "id": "epiglotite_aguda",
+        "label": "Epiglotite aguda",
+        "pretest": 0.002,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "faringoamigdalite_bacteriana": [
+      {
+        "area": "garganta",
+        "id": "faringoamigdalite_bacteriana",
+        "label": "Faringoamigdalite bacteriana (estreptocócica)",
+        "pretest": 0.15,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "laringite_aguda": [
+      {
+        "area": "garganta",
+        "id": "laringite_aguda",
+        "label": "Laringite aguda",
+        "pretest": 0.08,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "laringotraqueite_crupe": [
+      {
+        "area": "garganta",
+        "id": "laringotraqueite_crupe",
+        "label": "Laringotraqueíte (Crupe)",
+        "pretest": 0.01,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "mononucleose_infecciosa": [
+      {
+        "area": "garganta",
+        "id": "mononucleose_infecciosa",
+        "label": "Mononucleose infecciosa",
+        "pretest": 0.03,
+        "tags": [
+          "garganta",
+          "pescoco"
+        ]
+      }
+    ],
+    "refluxo_laringofaringeo": [
+      {
+        "area": "garganta",
+        "id": "refluxo_laringofaringeo",
+        "label": "Refluxo laringofaríngeo (LPR)",
+        "pretest": 0.06,
+        "tags": [
+          "garganta"
+        ]
+      }
+    ],
+    "faringite_adenovirus": [
+      {
+        "area": "garganta",
+        "id": "faringite_adenovirus",
+        "label": "Faringite por Adenovírus",
+        "pretest": 0.06,
+        "tags": [
+          "garganta",
+          "agudo",
+          "infeccioso",
+          "viral"
+        ]
+      }
+    ],
+    "herpangina": [
+      {
+        "area": "garganta",
+        "id": "herpangina",
+        "label": "Herpangina",
+        "pretest": 0.04,
+        "tags": [
+          "garganta",
+          "agudo",
+          "infeccioso",
+          "viral",
+          "pediatrico"
+        ]
+      }
+    ],
+    "uvulite_aguda": [
+      {
+        "area": "garganta",
+        "id": "uvulite_aguda",
+        "label": "Uvulite Aguda",
+        "pretest": 0.015,
+        "tags": [
+          "garganta",
+          "agudo",
+          "inflamatorio",
+          "infeccioso"
+        ]
+      }
+    ],
+    "faringite_gonococica": [
+      {
+        "area": "garganta",
+        "id": "faringite_gonococica",
+        "label": "Faringite Gonocócica",
+        "pretest": 0.005,
+        "tags": [
+          "garganta",
+          "agudo",
+          "infeccioso",
+          "bacteriano"
+        ]
+      }
+    ],
+    "tonsilite_cronica_caseosa": [
+      {
+        "area": "garganta",
+        "id": "tonsilite_cronica_caseosa",
+        "label": "Tonsilite Crônica Caseosa",
+        "pretest": 0.05,
+        "tags": [
+          "garganta",
+          "cronico",
+          "inflamatorio",
+          "benigno"
+        ]
+      }
+    ],
+    "suspeita_neoplasia_orofaringe": [
+      {
+        "area": "garganta",
+        "id": "suspeita_neoplasia_orofaringe",
+        "label": "Suspeita de Neoplasia de Orofaringe",
+        "pretest": 0.002,
+        "tags": [
+          "garganta",
+          "cronico",
+          "grave"
+        ]
+      }
+    ],
+    "difteria_faringea": [
+      {
+        "area": "garganta",
+        "id": "difteria_faringea",
+        "label": "Difteria Faríngea",
+        "pretest": 0.001,
+        "tags": [
+          "garganta",
+          "agudo",
+          "infeccioso",
+          "bacteriano",
+          "grave"
+        ]
+      }
+    ],
+    "estomatite_aftosa_faringea": [
+      {
+        "area": "garganta",
+        "id": "estomatite_aftosa_faringea",
+        "label": "Estomatite Aftosa Faríngea (Major)",
+        "pretest": 0.02,
+        "tags": [
+          "garganta",
+          "agudo",
+          "inflamatorio",
+          "autoimune"
+        ]
+      }
+    ],
+    "sindrome_pfapa": [
+      {
+        "area": "garganta",
+        "id": "sindrome_pfapa",
+        "label": "Síndrome PFAPA",
+        "pretest": 0.004,
+        "tags": [
+          "garganta",
+          "agudo",
+          "inflamatorio",
+          "pediatrico"
+        ]
+      }
+    ],
+    "laringite_fungica": [
+      {
+        "area": "garganta",
+        "id": "laringite_fungica",
+        "label": "Laringite Fúngica",
+        "pretest": 0.003,
+        "tags": [
+          "garganta",
+          "cronico",
+          "infeccioso",
+          "fungico"
+        ]
+      }
+    ],
+    "edema_de_reinke": [
+      {
+        "area": "garganta",
+        "id": "edema_de_reinke",
+        "label": "Edema de Reinke",
+        "pretest": 0.01,
+        "tags": [
+          "garganta",
+          "cronico",
+          "inflamatorio"
+        ]
+      }
+    ],
+    "polipo_vocal": [
+      {
+        "area": "garganta",
+        "id": "polipo_vocal",
+        "label": "Pólipo Vocal",
+        "pretest": 0.012,
+        "tags": [
+          "garganta",
+          "cronico",
+          "inflamatorio",
+          "benigno"
+        ]
+      }
+    ],
+    "celulite_cervical": [
+      {
+        "area": "pescoco",
+        "id": "celulite_cervical",
+        "label": "Celulite cervical (infecção de partes moles)",
+        "pretest": 0.02,
+        "tags": [
+          "pescoco"
+        ]
+      }
+    ],
+    "linfadenopatia_infecciosa": [
+      {
+        "area": "pescoco",
+        "id": "linfadenopatia_infecciosa",
+        "label": "Linfadenopatia infecciosa",
+        "pretest": 0.08,
+        "tags": [
+          "pescoco"
+        ]
+      }
+    ],
+    "sialadenite_aguda": [
+      {
+        "area": "pescoco",
+        "id": "sialadenite_aguda",
+        "label": "Sialadenite aguda (glândula salivar)",
+        "pretest": 0.02,
+        "tags": [
+          "pescoco"
+        ]
+      }
+    ],
+    "neoplasia_cabeca_pescoco_suspeita": [
+      {
+        "area": "pescoco",
+        "id": "neoplasia_cabeca_pescoco_suspeita",
+        "label": "Suspeita de neoplasia de cabeça e pescoço",
+        "pretest": 0.01,
+        "tags": [
+          "pescoco"
+        ]
+      }
+    ],
+    "tireoidite_subaguda": [
+      {
+        "area": "pescoco",
+        "id": "tireoidite_subaguda",
+        "label": "Tireoidite subaguda (de Quervain)",
+        "pretest": 0.01,
+        "tags": [
+          "pescoco"
+        ]
+      }
+    ],
+    "torcicolo_agudo": [
+      {
+        "area": "pescoco",
+        "id": "torcicolo_agudo",
+        "label": "Torcicolo agudo (espasmo muscular cervical)",
+        "pretest": 0.06,
+        "tags": [
+          "pescoco"
+        ]
+      }
+    ],
+    "angina_de_ludwig": [
+      {
+        "area": "pescoco",
+        "id": "angina_de_ludwig",
+        "label": "Angina de Ludwig (Abscesso Submandibular)",
+        "pretest": 0.008,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "bacteriano",
+          "grave"
+        ]
+      }
+    ],
+    "parotidite_viral_caxumba": [
+      {
+        "area": "pescoco",
+        "id": "parotidite_viral_caxumba",
+        "label": "Parotidite Viral (Caxumba)",
+        "pretest": 0.05,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "viral"
+        ]
+      }
+    ],
+    "sialolitiase_submandibular": [
+      {
+        "area": "pescoco",
+        "id": "sialolitiase_submandibular",
+        "label": "Sialolitíase Submandibular",
+        "pretest": 0.06,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "inflamatorio",
+          "benigno"
+        ]
+      }
+    ],
+    "cisto_tireoglosso_infectado": [
+      {
+        "area": "pescoco",
+        "id": "cisto_tireoglosso_infectado",
+        "label": "Cisto de Ducto Tireoglosso Infectado",
+        "pretest": 0.02,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "inflamatorio"
+        ]
+      }
+    ],
+    "cisto_branquial_infectado": [
+      {
+        "area": "pescoco",
+        "id": "cisto_branquial_infectado",
+        "label": "Cisto Branquial Infectado",
+        "pretest": 0.025,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "inflamatorio"
+        ]
+      }
+    ],
+    "abscesso_parafaringeo": [
+      {
+        "area": "pescoco",
+        "id": "abscesso_parafaringeo",
+        "label": "Abscesso Parafaríngeo",
+        "pretest": 0.005,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "bacteriano",
+          "grave"
+        ]
+      }
+    ],
+    "parotidite_bacteriana_aguda": [
+      {
+        "area": "pescoco",
+        "id": "parotidite_bacteriana_aguda",
+        "label": "Parotidite Bacteriana Aguda",
+        "pretest": 0.015,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "bacteriano",
+          "grave"
+        ]
+      }
+    ],
+    "sindrome_de_lemierre": [
+      {
+        "area": "pescoco",
+        "id": "sindrome_de_lemierre",
+        "label": "Síndrome de Lemierre",
+        "pretest": 0.001,
+        "tags": [
+          "pescoco",
+          "agudo",
+          "infeccioso",
+          "bacteriano",
+          "grave"
+        ]
+      }
+    ],
+    "linfadenite_tuberculosa_cervical": [
+      {
+        "area": "pescoco",
+        "id": "linfadenite_tuberculosa_cervical",
+        "label": "Linfadenite Tuberculosa Cervical (Escrófula)",
+        "pretest": 0.004,
+        "tags": [
+          "pescoco",
+          "cronico",
+          "infeccioso",
+          "bacteriano"
+        ]
+      }
+    ]
+  }
+}

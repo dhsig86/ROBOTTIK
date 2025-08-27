@@ -4,6 +4,7 @@ npm-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 package-lock.json
+.backend/
 
 # Build/output
 dist/
@@ -25,3 +26,7 @@ coverage/
 Thumbs.db
 *.swp
 *.swo
+
+# IMPORTANTES PARA A PAGES (devem ser versionados)
+!registry.snapshot.json
+!src/config/env.json

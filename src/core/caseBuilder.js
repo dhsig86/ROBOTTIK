@@ -40,7 +40,7 @@ function suggestCare(topGlobalId) {
   const commons = [
     "Hidratação adequada e repouso relativo.",
     "Analgésicos/antitérmicos conforme necessidade e alergias.",
-    "Evitar automedicação antibiótica."
+    "Evitar automedicação antibiótica.",
   ];
   if (!topGlobalId) return commons;
 
@@ -48,19 +48,19 @@ function suggestCare(topGlobalId) {
   if (gid.includes("rinite") || gid.includes("nasofaringite")) {
     return commons.concat([
       "Lavagem nasal com solução salina 2–3x/dia.",
-      "Cabeceira levemente elevada para dormir."
+      "Cabeceira levemente elevada para dormir.",
     ]);
   }
   if (gid.includes("otite_externa")) {
     return commons.concat([
       "Evitar água no conduto até avaliação.",
-      "Não usar cotonetes/objetos no ouvido."
+      "Não usar cotonetes/objetos no ouvido.",
     ]);
   }
   if (gid.includes("lpr") || gid.includes("refluxo")) {
     return commons.concat([
       "Evitar refeições volumosas à noite; elevar cabeceira.",
-      "Reduzir alimentos gatilho (gordura, álcool, café) se aplicável."
+      "Reduzir alimentos gatilho (gordura, álcool, café) se aplicável.",
     ]);
   }
   return commons;
@@ -74,7 +74,13 @@ function suggestCare(topGlobalId) {
  * @param {string[]} params.areas
  * @param {Array} params.ranking
  */
-export function buildOutputs({ rawInput, intakeSet, registry, areas, ranking }) {
+export function buildOutputs({
+  rawInput,
+  intakeSet,
+  registry,
+  areas,
+  ranking,
+}) {
   const resumo = {
     paciente: {
       nome: rawInput?.paciente_nome || null,
@@ -95,7 +101,9 @@ export function buildOutputs({ rawInput, intakeSet, registry, areas, ranking }) 
     }
   }
   const via = pickWorstRoute(routesHit);
-  const alarmes = presentFlags.map((id) => registry.featuresMap[id]?.label || id);
+  const alarmes = presentFlags.map(
+    (id) => registry.featuresMap[id]?.label || id,
+  );
 
   const top = Array.isArray(ranking) && ranking.length ? ranking[0] : null;
   const cuidados = suggestCare(top?.global_id);
@@ -104,19 +112,26 @@ export function buildOutputs({ rawInput, intakeSet, registry, areas, ranking }) 
 }
 
 /** renderiza relatório Markdown usando template */
-export function renderReportMarkdown({ outputs, ranking, registry, templateText }) {
+export function renderReportMarkdown({
+  outputs,
+  ranking,
+  registry,
+  templateText,
+}) {
   function bullets(arr) {
     if (!arr || !arr.length) return "- (sem itens)\n";
     return arr.map((x) => `- ${x}`).join("\n") + "\n";
   }
   const paciente = outputs.resumo.paciente || {};
-  const top3 = (ranking || []).slice(0, 3).map((r) => {
-    const label =
-      registry?.byGlobalId?.[r.global_id]?.entries?.[0]?.label ||
-      r.global_id;
-    const pct = Math.round((r.posterior || 0) * 100);
-    return `- ${label}: ~${pct}%`;
-  }).join("\n");
+  const top3 = (ranking || [])
+    .slice(0, 3)
+    .map((r) => {
+      const label =
+        registry?.byGlobalId?.[r.global_id]?.entries?.[0]?.label || r.global_id;
+      const pct = Math.round((r.posterior || 0) * 100);
+      return `- ${label}: ~${pct}%`;
+    })
+    .join("\n");
 
   let md = String(templateText || "");
   md = md.replace(/{{\s*nome\s*}}/g, paciente.nome ?? "");
@@ -124,9 +139,15 @@ export function renderReportMarkdown({ outputs, ranking, registry, templateText 
   md = md.replace(/{{\s*sexo\s*}}/g, paciente.sexo ?? "");
   md = md.replace(/{{\s*hpi\s*}}/g, outputs.resumo.hpi ?? "");
   md = md.replace(/{{\s*via\s*}}/g, outputs.via ?? "");
-  md = md.replace(/{{\s*sintomas\s*}}/g, "\n" + bullets(outputs.resumo.sintomas));
+  md = md.replace(
+    /{{\s*sintomas\s*}}/g,
+    "\n" + bullets(outputs.resumo.sintomas),
+  );
   md = md.replace(/{{\s*alarmes\s*}}/g, "\n" + bullets(outputs.alarmes));
   md = md.replace(/{{\s*cuidados\s*}}/g, "\n" + bullets(outputs.cuidados));
-  md = md.replace(/{{\s*hipoteses\s*}}/g, "\n" + (top3 || "- (sem hipóteses)\n"));
+  md = md.replace(
+    /{{\s*hipoteses\s*}}/g,
+    "\n" + (top3 || "- (sem hipóteses)\n"),
+  );
   return md;
 }

@@ -3,40 +3,24 @@
   "$id": "https://robotto.local/schemas/diag.schema.json",
   "title": "Schema de Base Clínica por Área (diag_<area>.json)",
   "type": "object",
-  "required": [
-    "version",
-    "area",
-    "intake",
-    "dx"
-  ],
+  "required": ["version", "area", "intake", "dx"],
   "properties": {
     "version": {
       "type": "string"
     },
     "area": {
       "type": "string",
-      "enum": [
-        "ouvido",
-        "nariz",
-        "garganta",
-        "pescoco"
-      ]
+      "enum": ["ouvido", "nariz", "garganta", "pescoco"]
     },
     "intake": {
       "type": "object",
-      "required": [
-        "symptoms",
-        "modifiers"
-      ],
+      "required": ["symptoms", "modifiers"],
       "properties": {
         "symptoms": {
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "id",
-              "label"
-            ],
+            "required": ["id", "label"],
             "properties": {
               "id": {
                 "type": "string",
@@ -69,10 +53,7 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": [
-              "id",
-              "type"
-            ],
+            "required": ["id", "type"],
             "properties": {
               "id": {
                 "type": "string",
@@ -114,7 +95,7 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "id":        { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
+          "id": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
           "global_id": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" },
           "tags": {
             "type": "array",
@@ -122,7 +103,7 @@
             "uniqueItems": true,
             "default": []
           },
-          "label":   { "type": "string", "minLength": 1 },
+          "label": { "type": "string", "minLength": 1 },
           "pretest": { "type": "number", "minimum": 0, "maximum": 1 },
 
           "criteria": {
@@ -134,13 +115,20 @@
               "properties": {
                 "if": {
                   "oneOf": [
-                    { "type": "array", "minItems": 1, "items": { "type": "string", "pattern": "^[a-z0-9_\\.]+$" } },
+                    {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "string",
+                        "pattern": "^[a-z0-9_\\.]+$"
+                      }
+                    },
                     { "type": "string", "pattern": "^[a-z0-9_\\.]+$" }
                   ]
                 },
-                "lr+":   { "type": "number" },
-                "lr-":   { "type": "number" },
-                "weight":{ "type": "number" }
+                "lr+": { "type": "number" },
+                "lr-": { "type": "number" },
+                "weight": { "type": "number" }
               },
               "required": ["if"]
             }

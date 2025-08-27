@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "common": {
+    "dispneia": "emergencia_geral",
+    "toxemia": "emergencia_geral"
+  },
+  "nariz": {
+    "epistaxe": "emergencia_geral",
+    "hemorragia_abundante": "emergencia_geral",
+    "epistaxe_posterior": "emergencia_geral",
+    "rinoliquorreia": "emergencia_especializada",
+    "sinusite_fungica_invasiva_aguda": "emergencia_especializada"
+  },
+  "garganta": {
+    "estridor": "emergencia_geral",
+    "sialorreia": "emergencia_geral",
+    "trismo": "emergencia_especializada",
+    "voz_batata_quente": "emergencia_especializada"
+  },
+  "ouvido": {
+    "surdidez_subita": "emergencia_especializada",
+    "paralisia_facial": "emergencia_especializada",
+    "sinais_neurologicos_focais": "emergencia_especializada",
+    "dor_noturna_intensa": "emergencia_especializada",
+    "diabetes_imunossupressao": "emergencia_especializada"
+  },
+  "pescoco": {
+    "rigidez_cervical": "emergencia_geral"
+  }
+}

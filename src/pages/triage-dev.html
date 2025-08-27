@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>ROBOTTO — Triage Dev</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --border: #ddd;
+        --soft: #eee;
+        --bg: #fafafa;
+        --text-muted: #666;
+      }
+      body {
+        font-family:
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          sans-serif;
+        margin: 20px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      fieldset {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 16px;
+      }
+      legend {
+        font-weight: 600;
+      }
+      .out {
+        white-space: pre-wrap;
+        background: var(--bg);
+        border: 1px solid var(--soft);
+        padding: 12px;
+        border-radius: 8px;
+      }
+      .btn {
+        padding: 10px 14px;
+        border-radius: 10px;
+        border: 1px solid #222;
+        background: #111;
+        color: #fff;
+        cursor: pointer;
+      }
+      .btn.secondary {
+        background: #fff;
+        color: #111;
+      }
+      .btn:disabled {
+        opacity: 0.6;
+        cursor: default;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      label {
+        display: inline-flex;
+        gap: 6px;
+        align-items: center;
+        margin-right: 12px;
+      }
+      .box {
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px 16px;
+        background: #fff;
+      }
+      .muted {
+        color: var(--text-muted);
+      }
+      /* responsivo simples */
+      @media (max-width: 850px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ROBOTTO — Triage Dev</h1>
+    <p>Playground simples para exercitar o <code>triageEngine</code>.</p>
+
+    <div class="grid">
+      <fieldset>
+        <legend>Dados do paciente</legend>
+        <div class="row">
+          <label
+            >Idade <input id="idade" type="number" min="0" style="width: 90px"
+          /></label>
+          <label
+            >Sexo
+            <select id="sexo">
+              <option value="">—</option>
+              <option>F</option>
+              <option>M</option>
+            </select>
+          </label>
+        </div>
+        <div style="margin-top: 8px">
+          <label>HPI/Queixa</label>
+          <textarea
+            id="hpi"
+            rows="3"
+            style="width: 100%"
+            placeholder="Ex: Há 3 dias: coriza, leve dor de garganta, ouvido tampado."
+          ></textarea>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sintomas comuns</legend>
+        <div id="symptoms"></div>
+      </fieldset>
+    </div>
+
+    <div class="row" style="margin: 16px 0">
+      <label
+        >Modo do roteador
+        <select id="mode">
+          <option value="gated" selected>gated (auto)</option>
+          <option value="always">always (todas áreas)</option>
+        </select>
+      </label>
+      <button class="btn" id="run">Rodar triagem</button>
+      <button class="btn secondary" id="report">Gerar relatório (MD)</button>
+    </div>
+
+    <h3>Top-5 hipóteses</h3>
+    <div id="rank" class="out"></div>
+
+    <!-- Painel de Resultados (Sprint A) -->
+    <section id="painel-resultados" style="margin-top: 12px">
+      <h2>Resultados</h2>
+
+      <article class="box">
+        <h3 style="margin: 0">Via de atendimento</h3>
+        <p style="margin: 4px 0 0">
+          <strong id="viaText">—</strong><br />
+          <small class="muted">Motivo: <span id="viaReason">—</span></small>
+        </p>
+      </article>
+
+      <article class="box" style="margin-top: 8px">
+        <h3 style="margin: 0">Alarmes</h3>
+        <ul id="alarmesList" style="margin: 6px 0 0 18px"></ul>
+      </article>
+
+      <article class="box" style="margin-top: 8px">
+        <h3 style="margin: 0">Top-3 hipóteses</h3>
+        <ol id="top3List" style="margin: 6px 0 0 18px"></ol>
+      </article>
+
+      <article class="box" style="margin-top: 8px">
+        <h3 style="margin: 0">Resumo do caso</h3>
+        <div id="resumoPaciente" class="muted" style="margin-top: 6px"></div>
+        <div style="margin-top: 6px">
+          <strong>Sintomas:</strong>
+          <div id="resumoSintomas" style="margin-top: 4px"></div>
+        </div>
+        <div style="margin-top: 6px">
+          <strong>HPI:</strong>
+          <div id="resumoHPI" class="muted"></div>
+        </div>
+      </article>
+    </section>
+
+    <!-- NBQ: Próximas melhores perguntas -->
+    <section class="box" id="nbq" style="display: none; margin-top: 16px">
+      <h3 style="margin-top: 0">Pergunta seguinte</h3>
+      <div id="nbq-items" class="grid"></div>
+    </section>
+
+    <!-- Ações (Salvar / Exportar) -->
+    <section style="margin-top: 12px">
+      <div class="row">
+        <button id="btn-save" class="btn">Salvar caso</button>
+        <button id="btn-export" class="btn secondary">Exportar PDF</button>
+      </div>
+      <small id="saveToast" class="muted" style="display: none"
+        >Caso salvo!</small
+      >
+    </section>
+
+    <h3 style="margin-top: 18px">Relatório (Markdown)</h3>
+    <div id="md" class="out"></div>
+
+    <script type="module" src="./triage-dev.js"></script>
+  </body>
+</html>

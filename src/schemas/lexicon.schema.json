@@ -3,9 +3,7 @@
   "$id": "https://robotto.local/schemas/lexicon.schema.json",
   "title": "Lexicon de aliases por área",
   "type": "object",
-  "required": [
-    "aliases"
-  ],
+  "required": ["aliases"],
   "properties": {
     "aliases": {
       "type": "object",

@@ -21,17 +21,28 @@ function basePath() {
 }
 
 async function fetchJSON(path) {
-  const url = basePath() + path.replace(/^\/*/, "/"); // garante uma / no começo
+  const url = basePath() + path.replace(/^\/*/, "/"); // garante / inicial
   const res = await fetch(url, { cache: "no-cache" });
-  if (!res.ok) {
-    throw new Error(`Falha ao carregar ${url}: ${res.status} ${res.statusText}`);
+  if (!res.ok)
+    throw new Error(
+      `Falha ao carregar ${url}: ${res.status} ${res.statusText}`,
+    );
+  const text = await res.text();
+  try {
+    return JSON.parse(text);
+  } catch (e) {
+    const tail = text.slice(Math.max(0, text.length - 300)); // últimos 300 chars
+    throw new Error(
+      `JSON parse fail em ${url}: ${e.message}\n--- Fim do arquivo ---\n${tail}\n---`,
+    );
   }
-  return res.json();
 }
 
 async function loadArea(area) {
   const diag = await fetchJSON(`/src/engines/${area}/diag_${area}.json`);
-  const profiles = await fetchJSON(`/src/engines/${area}/profiles_${area}.json`).catch(() => ({}));
+  const profiles = await fetchJSON(
+    `/src/engines/${area}/profiles_${area}.json`,
+  ).catch(() => ({}));
   return {
     area,
     intake: diag.intake || { symptoms: [], modifiers: [] },
@@ -44,7 +55,10 @@ async function loadArea(area) {
 function computeGlobalPretest(entries) {
   // Média simples dos pretests locais (poderemos ponderar por qualidade/área futuramente)
   if (!entries.length) return 0.01;
-  const sum = entries.reduce((acc, e) => acc + (typeof e.pretest === "number" ? e.pretest : 0), 0);
+  const sum = entries.reduce(
+    (acc, e) => acc + (typeof e.pretest === "number" ? e.pretest : 0),
+    0,
+  );
   return Math.max(0, Math.min(1, sum / entries.length));
 }
 
@@ -64,7 +78,11 @@ export async function loadRegistry({ force = false } = {}) {
   const featuresMap = Object.create(null);
   for (const f of features.features || []) {
     if (!f || !f.id) continue;
-    featuresMap[f.id] = { id: f.id, label: f.label || f.id, aliases: f.aliases || [] };
+    featuresMap[f.id] = {
+      id: f.id,
+      label: f.label || f.id,
+      aliases: f.aliases || [],
+    };
   }
 
   // 2) Carrega dados por área
@@ -99,7 +117,12 @@ export async function loadRegistry({ force = false } = {}) {
 
       // byGlobalId
       if (!byGlobalId[global_id]) {
-        byGlobalId[global_id] = { global_id, entries: [], pretest_global: 0.01, areas: new Set() };
+        byGlobalId[global_id] = {
+          global_id,
+          entries: [],
+          pretest_global: 0.01,
+          areas: new Set(),
+        };
       }
       byGlobalId[global_id].entries.push(entry);
       byGlobalId[global_id].areas.add(area);

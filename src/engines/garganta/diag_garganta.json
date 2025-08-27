@@ -3,79 +3,163 @@
   "area": "garganta",
   "intake": {
     "symptoms": [
-      { "id": "odinofagia", "label": "Dor de garganta (odinofagia)", "aliases": ["garganta doendo", "dor ao engolir"], "weights": 1.0 },
-      { "id": "disfagia", "label": "Dificuldade para engolir (disfagia)", "aliases": ["engasga para engolir", "passagem difícil"], "weights": 1.2 },
-      { "id": "febre", "label": "Febre", "aliases": [], "weights": 0.8 },
-      { "id": "tosse", "label": "Tosse", "aliases": [], "weights": 0.8 },
-      { "id": "ausencia_tosse", "label": "Ausência de tosse", "aliases": ["sem tosse"], "weights": 1.0 },
-      { "id": "exsudato_tonsilar", "label": "Exsudato/amígdalas com placas", "aliases": ["placas na garganta"], "weights": 1.2 },
-      { "id": "adenopatia_anterior_dolorosa", "label": "Linfonodos cervicais anteriores dolorosos", "aliases": ["ínguas doloridas na frente do pescoço"], "weights": 1.0 },
-      { "id": "petequias_palato", "label": "Petéquias em palato", "aliases": [], "weights": 1.0 },
-      { "id": "halitose", "label": "Mau hálito", "aliases": [], "weights": 0.8 },
-      { "id": "trismo", "label": "Dificuldade de abrir a boca (trismo)", "aliases": [], "weights": 1.2 },
-      { "id": "voz_batata_quente", "label": "Voz de 'batata quente'", "aliases": ["voz abafada"], "weights": 1.2 },
-      { "id": "sialorreia", "label": "Baba/sialorreia", "aliases": ["saliva caindo"], "weights": 1.2 },
-      { "id": "estridor", "label": "Estridor/ruído ao respirar", "aliases": ["respiração ruidosa"], "weights": 1.4 },
-      { "id": "rouquidao", "label": "Rouquidão (disfonia)", "aliases": ["voz rouca"], "weights": 1.0 },
-      { "id": "odinofagia_unilateral", "label": "Dor unilateral", "aliases": [], "weights": 1.0 },
-      { "id": "cansaco_mialgia", "label": "Cansaço/mialgia", "aliases": [], "weights": 0.7 },
-      { "id": "tosse_seca", "label": "Tosse seca", "aliases": [], "weights": 0.7 },
-      { "id": "refluxo_pirose", "label": "Azia/refluxo", "aliases": ["queimação no peito", "ácido"], "weights": 0.8 },
-      { "id": "globus", "label": "Sensação de bolo na garganta (globus)", "aliases": ["nó na garganta"], "weights": 0.8 },
-      { "id": "rigidez_cervical", "label": "Rigidez/dor cervical", "aliases": ["pescoço duro"], "weights": 1.2 },
-      { "id": "toxemia", "label": "Comprometimento sistêmico (toxemia)", "aliases": ["muito ruim/abatido"], "weights": 1.3 },
-      { "id": "imunossupressao", "label": "Imunossupressão/uso de corticoide crônico", "aliases": [], "weights": 1.2 },
-      { "id": "dispneia", "label": "Falta de ar/dispneia", "aliases": ["respiração difícil"], "weights": 1.5 }
+      {
+        "id": "odinofagia",
+        "label": "Dor de garganta (odinofagia)",
+        "aliases": ["garganta doendo", "dor ao engolir"],
+        "weights": 1
+      },
+      {
+        "id": "disfagia",
+        "label": "Dificuldade para engolir (disfagia)",
+        "aliases": ["engasga para engolir", "passagem difícil"],
+        "weights": 1.2
+      },
+      {
+        "id": "febre",
+        "label": "Febre",
+        "aliases": [],
+        "weights": 0.8
+      },
+      {
+        "id": "tosse",
+        "label": "Tosse",
+        "aliases": [],
+        "weights": 0.8
+      },
+      {
+        "id": "ausencia_tosse",
+        "label": "Ausência de tosse",
+        "aliases": ["sem tosse"],
+        "weights": 1
+      },
+      {
+        "id": "exsudato_tonsilar",
+        "label": "Exsudato/amígdalas com placas",
+        "aliases": ["placas na garganta"],
+        "weights": 1.2
+      },
+      {
+        "id": "adenopatia_anterior_dolorosa",
+        "label": "Linfonodos cervicais anteriores dolorosos",
+        "aliases": ["ínguas doloridas na frente do pescoço"],
+        "weights": 1
+      },
+      {
+        "id": "petequias_palato",
+        "label": "Petéquias em palato",
+        "aliases": [],
+        "weights": 1
+      },
+      {
+        "id": "halitose",
+        "label": "Mau hálito",
+        "aliases": [],
+        "weights": 0.8
+      },
+      {
+        "id": "trismo",
+        "label": "Dificuldade de abrir a boca (trismo)",
+        "aliases": [],
+        "weights": 1.2
+      },
+      {
+        "id": "voz_batata_quente",
+        "label": "Voz de 'batata quente'",
+        "aliases": ["voz abafada"],
+        "weights": 1.2
+      },
+      {
+        "id": "sialorreia",
+        "label": "Baba/sialorreia",
+        "aliases": ["saliva caindo"],
+        "weights": 1.2
+      },
+      {
+        "id": "estridor",
+        "label": "Estridor/ruído ao respirar",
+        "aliases": ["respiração ruidosa"],
+        "weights": 1.4
+      },
+      {
+        "id": "rouquidao",
+        "label": "Rouquidão (disfonia)",
+        "aliases": ["voz rouca"],
+        "weights": 1
+      },
+      {
+        "id": "odinofagia_unilateral",
+        "label": "Dor unilateral",
+        "aliases": [],
+        "weights": 1
+      },
+      {
+        "id": "cansaco_mialgia",
+        "label": "Cansaço/mialgia",
+        "aliases": [],
+        "weights": 0.7
+      },
+      {
+        "id": "tosse_seca",
+        "label": "Tosse seca",
+        "aliases": [],
+        "weights": 0.7
+      },
+      {
+        "id": "refluxo_pirose",
+        "label": "Azia/refluxo",
+        "aliases": ["queimação no peito", "ácido"],
+        "weights": 0.8
+      },
+      {
+        "id": "globus",
+        "label": "Sensação de bolo na garganta (globus)",
+        "aliases": ["nó na garganta"],
+        "weights": 0.8
+      },
+      {
+        "id": "rigidez_cervical",
+        "label": "Rigidez/dor cervical",
+        "aliases": ["pescoço duro"],
+        "weights": 1.2
+      },
+      {
+        "id": "toxemia",
+        "label": "Comprometimento sistêmico (toxemia)",
+        "aliases": ["muito ruim/abatido"],
+        "weights": 1.3
+      },
+      {
+        "id": "imunossupressao",
+        "label": "Imunossupressão/uso de corticoide crônico",
+        "aliases": [],
+        "weights": 1.2
+      },
+      {
+        "id": "dispneia",
+        "label": "Falta de ar/dispneia",
+        "aliases": ["respiração difícil"],
+        "weights": 1.5
+      }
     ],
     "modifiers": [
-      { "id": "duracao_dias", "type": "number", "unit": "d" },
-      { "id": "piora_48_72h", "type": "boolean" },
-      { "id": "idade_grupo", "type": "categorical", "levels": ["3-14", "15-44", "45+"] }
+      {
+        "id": "duracao_dias",
+        "type": "number",
+        "unit": "d"
+      },
+      {
+        "id": "piora_48_72h",
+        "type": "boolean"
+      },
+      {
+        "id": "idade_grupo",
+        "type": "categorical",
+        "levels": ["3-14", "15-44", "45+"]
+      }
     ]
   },
   "dx": [
-    {
-      "id": "faringoamigdalite_bacteriana",
-      "global_id": "faringoamigdalite_bacteriana",
-      "tags": ["garganta"],
-      "label": "Faringoamigdalite bacteriana (estreptocócica)",
-      "pretest": 0.15,
-      "criteria": [
-        { "if": ["febre"], "lr+": 1.4 },
-        { "if": ["exsudato_tonsilar"], "lr+": 3.0 },
-        { "if": ["adenopatia_anterior_dolorosa"], "lr+": 1.8 },
-        { "if": ["ausencia_tosse"], "lr+": 1.6 }
-      ],
-      "heuristics": [{ "when": ["idade_grupo"], "boost": 1.2 }],
-      "red_flags": []
-    },
-    {
-      "id": "faringite_viral",
-      "global_id": "uri_nasofaringite",
-      "tags": ["nariz", "garganta", "ouvido", "pescoco"],
-      "label": "Faringite viral inespecífica",
-      "pretest": 0.25,
-      "criteria": [
-        { "if": ["tosse"], "lr+": 1.4 },
-        { "if": ["cansaco_mialgia"], "lr+": 1.3 }
-      ],
-      "heuristics": [{ "when": ["duracao_dias"], "boost": 1.0 }],
-      "red_flags": []
-    },
-    {
-      "id": "mononucleose_infecciosa",
-      "global_id": "mononucleose_infecciosa",
-      "tags": ["garganta", "pescoco"],
-      "label": "Mononucleose infecciosa",
-      "pretest": 0.03,
-      "criteria": [
-        { "if": ["febre", "cansaco_mialgia"], "lr+": 1.6 },
-        { "if": ["exsudato_tonsilar"], "lr+": 1.5 },
-        { "if": ["adenopatia_anterior_dolorosa"], "lr+": 1.3 }
-      ],
-      "heuristics": [],
-      "red_flags": []
-    },
     {
       "id": "abscesso_peritonsilar",
       "global_id": "abscesso_peritonsilar",
@@ -83,11 +167,25 @@
       "label": "Abscesso peritonsilar (quinsy)",
       "pretest": 0.01,
       "criteria": [
-        { "if": ["trismo", "odinofagia_unilateral"], "lr+": 3.0 },
-        { "if": ["voz_batata_quente"], "lr+": 2.0 },
-        { "if": ["sialorreia"], "lr+": 2.0 }
+        {
+          "if": ["trismo", "odinofagia_unilateral"],
+          "lr+": 3
+        },
+        {
+          "if": ["voz_batata_quente"],
+          "lr+": 2
+        },
+        {
+          "if": ["sialorreia"],
+          "lr+": 2
+        }
       ],
-      "heuristics": [{ "when": ["piora_48_72h"], "boost": 1.5 }],
+      "heuristics": [
+        {
+          "when": ["piora_48_72h"],
+          "boost": 1.5
+        }
+      ],
       "red_flags": ["trismo", "sialorreia", "toxemia"]
     },
     {
@@ -97,77 +195,22 @@
       "label": "Abscesso retrofaríngeo",
       "pretest": 0.005,
       "criteria": [
-        { "if": ["disfagia", "sialorreia"], "lr+": 2.5 },
-        { "if": ["febre"], "lr+": 1.4 }
+        {
+          "if": ["disfagia", "sialorreia"],
+          "lr+": 2.5
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.4
+        }
       ],
-      "heuristics": [{ "when": ["rigidez_cervical"], "boost": 1.5 }],
+      "heuristics": [
+        {
+          "when": ["rigidez_cervical"],
+          "boost": 1.5
+        }
+      ],
       "red_flags": ["dispneia", "estridor", "sialorreia"]
-    },
-    {
-      "id": "epiglotite_aguda",
-      "global_id": "epiglotite_aguda",
-      "tags": ["garganta"],
-      "label": "Epiglotite aguda",
-      "pretest": 0.002,
-      "criteria": [
-        { "if": ["sialorreia"], "lr+": 3.0 },
-        { "if": ["disfagia"], "lr+": 2.0 },
-        { "if": ["febre"], "lr+": 1.4 }
-      ],
-      "heuristics": [{ "when": ["estridor"], "boost": 1.8 }],
-      "red_flags": ["estridor", "dispneia", "toxemia"]
-    },
-    {
-      "id": "laringite_aguda",
-      "global_id": "laringite_aguda",
-      "tags": ["garganta"],
-      "label": "Laringite aguda",
-      "pretest": 0.08,
-      "criteria": [
-        { "if": ["rouquidao"], "lr+": 3.0 },
-        { "if": ["tosse"], "lr+": 1.4 }
-      ],
-      "heuristics": [],
-      "red_flags": []
-    },
-    {
-      "id": "crupe_laringotraqueite",
-      "global_id": "laringotraqueite_crupe",
-      "tags": ["garganta"],
-      "label": "Laringotraqueíte (Crupe)",
-      "pretest": 0.01,
-      "criteria": [
-        { "if": ["estridor", "tosse_seca"], "lr+": 3.0 },
-        { "if": ["febre"], "lr+": 1.3 }
-      ],
-      "heuristics": [],
-      "red_flags": ["estridor", "dispneia"]
-    },
-    {
-      "id": "lpr",
-      "global_id": "refluxo_laringofaringeo",
-      "tags": ["garganta"],
-      "label": "Refluxo laringofaríngeo (LPR)",
-      "pretest": 0.06,
-      "criteria": [
-        { "if": ["refluxo_pirose"], "lr+": 1.5 },
-        { "if": ["globus"], "lr+": 1.6 },
-        { "if": ["rouquidao"], "lr+": 1.4 }
-      ],
-      "heuristics": [],
-      "red_flags": []
-    },
-    {
-      "id": "disfonia_abuso_vocal",
-      "global_id": "disfonia_abuso_vocal",
-      "tags": ["garganta"],
-      "label": "Disfonia por abuso vocal",
-      "pretest": 0.05,
-      "criteria": [
-        { "if": ["rouquidao"], "lr+": 2.0 }
-      ],
-      "heuristics": [],
-      "red_flags": []
     },
     {
       "id": "candidiase_orofaringea",
@@ -176,9 +219,17 @@
       "label": "Candidíase orofaríngea",
       "pretest": 0.01,
       "criteria": [
-        { "if": ["odinofagia"], "lr+": 1.3 }
+        {
+          "if": ["odinofagia"],
+          "lr+": 1.3
+        }
       ],
-      "heuristics": [{ "when": ["imunossupressao"], "boost": 1.6 }],
+      "heuristics": [
+        {
+          "when": ["imunossupressao"],
+          "boost": 1.6
+        }
+      ],
       "red_flags": []
     },
     {
@@ -188,23 +239,404 @@
       "label": "Corpo estranho faringe/laringe",
       "pretest": 0.005,
       "criteria": [
-        { "if": ["disfagia"], "lr+": 2.0 },
-        { "if": ["odinofagia"], "lr+": 1.4 }
+        {
+          "if": ["disfagia"],
+          "lr+": 2
+        },
+        {
+          "if": ["odinofagia"],
+          "lr+": 1.4
+        }
       ],
-      "heuristics": [{ "when": ["sialorreia"], "boost": 1.6 }],
+      "heuristics": [
+        {
+          "when": ["sialorreia"],
+          "boost": 1.6
+        }
+      ],
       "red_flags": ["dispneia", "estridor"]
+    },
+    {
+      "id": "disfonia_abuso_vocal",
+      "global_id": "disfonia_abuso_vocal",
+      "tags": ["garganta"],
+      "label": "Disfonia por abuso vocal",
+      "pretest": 0.05,
+      "criteria": [
+        {
+          "if": ["rouquidao"],
+          "lr+": 2
+        }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "epiglotite_aguda",
+      "global_id": "epiglotite_aguda",
+      "tags": ["garganta"],
+      "label": "Epiglotite aguda",
+      "pretest": 0.002,
+      "criteria": [
+        {
+          "if": ["sialorreia"],
+          "lr+": 3
+        },
+        {
+          "if": ["disfagia"],
+          "lr+": 2
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.4
+        }
+      ],
+      "heuristics": [
+        {
+          "when": ["estridor"],
+          "boost": 1.8
+        }
+      ],
+      "red_flags": ["estridor", "dispneia", "toxemia"]
+    },
+    {
+      "id": "uri_nasofaringite",
+      "global_id": "uri_nasofaringite",
+      "tags": ["nariz", "garganta", "ouvido", "pescoco"],
+      "label": "Rinite viral / Nasofaringite",
+      "pretest": 0.25,
+      "criteria": [
+        { "if": ["tosse"], "lr+": 1.4 },
+        { "if": ["cansaco_mialgia"], "lr+": 1.3 }
+      ],
+      "heuristics": [{ "when": ["duracao_dias"], "boost": 1 }],
+      "red_flags": []
+    },
+    {
+      "id": "faringoamigdalite_bacteriana",
+      "global_id": "faringoamigdalite_bacteriana",
+      "tags": ["garganta"],
+      "label": "Faringoamigdalite bacteriana (estreptocócica)",
+      "pretest": 0.15,
+      "criteria": [
+        {
+          "if": ["febre"],
+          "lr+": 1.4
+        },
+        {
+          "if": ["exsudato_tonsilar"],
+          "lr+": 3
+        },
+        {
+          "if": ["adenopatia_anterior_dolorosa"],
+          "lr+": 1.8
+        },
+        {
+          "if": ["ausencia_tosse"],
+          "lr+": 1.6
+        }
+      ],
+      "heuristics": [
+        {
+          "when": ["idade_grupo"],
+          "boost": 1.2
+        }
+      ],
+      "red_flags": []
+    },
+    {
+      "id": "laringite_aguda",
+      "global_id": "laringite_aguda",
+      "tags": ["garganta"],
+      "label": "Laringite aguda",
+      "pretest": 0.08,
+      "criteria": [
+        {
+          "if": ["rouquidao"],
+          "lr+": 3
+        },
+        {
+          "if": ["tosse"],
+          "lr+": 1.4
+        }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "laringotraqueite_crupe",
+      "global_id": "laringotraqueite_crupe",
+      "tags": ["garganta"],
+      "label": "Laringotraqueíte (Crupe)",
+      "pretest": 0.01,
+      "criteria": [
+        {
+          "if": ["estridor", "tosse_seca"],
+          "lr+": 3
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.3
+        }
+      ],
+      "heuristics": [],
+      "red_flags": ["estridor", "dispneia"]
+    },
+    {
+      "id": "mononucleose_infecciosa",
+      "global_id": "mononucleose_infecciosa",
+      "tags": ["garganta", "pescoco"],
+      "label": "Mononucleose infecciosa",
+      "pretest": 0.03,
+      "criteria": [
+        {
+          "if": ["febre", "cansaco_mialgia"],
+          "lr+": 1.6
+        },
+        {
+          "if": ["exsudato_tonsilar"],
+          "lr+": 1.5
+        },
+        {
+          "if": ["adenopatia_anterior_dolorosa"],
+          "lr+": 1.3
+        }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "refluxo_laringofaringeo",
+      "global_id": "refluxo_laringofaringeo",
+      "tags": ["garganta"],
+      "label": "Refluxo laringofaríngeo (LPR)",
+      "pretest": 0.06,
+      "criteria": [
+        {
+          "if": ["refluxo_pirose"],
+          "lr+": 1.5
+        },
+        {
+          "if": ["globus"],
+          "lr+": 1.6
+        },
+        {
+          "if": ["rouquidao"],
+          "lr+": 1.4
+        }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "faringite_adenovirus",
+      "global_id": "faringite_adenovirus",
+      "label": "Faringite por Adenovírus",
+      "pretest": 0.06,
+      "tags": ["garganta", "agudo", "infeccioso", "viral"],
+      "criteria": [
+        { "if": ["odinofagia", "febre", "exsudato_tonsilar"], "lr+": 2.5 },
+        { "if": ["conjuntivite_associada"], "lr+": 3.5 }
+      ],
+      "heuristics": [],
+      "red_flags": ["dispneia", "toxemia"]
+    },
+    {
+      "id": "herpangina",
+      "global_id": "herpangina",
+      "label": "Herpangina",
+      "pretest": 0.04,
+      "tags": ["garganta", "agudo", "infeccioso", "viral", "pediatrico"],
+      "criteria": [
+        { "if": ["odinofagia", "febre"], "lr+": 2.8 },
+        { "if": ["vesiculas_ulceras_orofaringe"], "lr+": 4.0 },
+        { "if": ["idade_grupo"], "weight": 1.2 }
+      ],
+      "heuristics": [],
+      "red_flags": ["sialorreia", "dispneia"]
+    },
+    {
+      "id": "uvulite_aguda",
+      "global_id": "uvulite_aguda",
+      "label": "Uvulite Aguda",
+      "pretest": 0.015,
+      "tags": ["garganta", "agudo", "inflamatorio", "infeccioso"],
+      "criteria": [
+        { "if": ["odinofagia", "disfagia", "sialorreia"], "lr+": 3.0 },
+        { "if": ["edema_uvula_visivel"], "lr+": 4.0 },
+        { "if": ["globus"], "weight": 1.4 }
+      ],
+      "heuristics": [],
+      "red_flags": ["dispneia", "estridor", "sialorreia", "toxemia"]
+    },
+    {
+      "id": "faringite_gonococica",
+      "global_id": "faringite_gonococica",
+      "label": "Faringite Gonocócica",
+      "pretest": 0.005,
+      "tags": ["garganta", "agudo", "infeccioso", "bacteriano"],
+      "criteria": [
+        { "if": ["odinofagia", "exsudato_tonsilar"], "lr+": 2.0 },
+        { "if": ["historia_sexual_recente"], "weight": 2.0 },
+        { "if": ["ausencia_tosse"], "weight": 1.3 },
+        { "if": ["febre"], "lr-": 0.7 }
+      ],
+      "heuristics": [],
+      "red_flags": ["imunossupressao"]
+    },
+    {
+      "id": "tonsilite_cronica_caseosa",
+      "global_id": "tonsilite_cronica_caseosa",
+      "label": "Tonsilite Crônica Caseosa",
+      "pretest": 0.05,
+      "tags": ["garganta", "cronico", "inflamatorio", "benigno"],
+      "criteria": [
+        { "if": ["caseos_amigdalianos", "halitose"], "lr+": 3.5 },
+        { "if": ["globus", "odinofagia"], "lr+": 2.0 }
+      ],
+      "heuristics": [{ "when": ["duracao_dias"], "boost": 1.5 }],
+      "red_flags": []
+    },
+    {
+      "id": "suspeita_neoplasia_orofaringe",
+      "global_id": "suspeita_neoplasia_orofaringe",
+      "label": "Suspeita de Neoplasia de Orofaringe",
+      "pretest": 0.002,
+      "tags": ["garganta", "cronico", "grave"],
+      "criteria": [
+        { "if": ["odinofagia_unilateral", "disfagia"], "lr+": 3.0 },
+        { "if": ["lesao_ulcerada_cronica"], "lr+": 4.0 },
+        { "if": ["tabagismo_etilismo_pesado"], "weight": 1.8 },
+        {
+          "if": ["perda_peso_inexplicada", "adenopatia_cervical_endurecida"],
+          "lr+": 3.5
+        }
+      ],
+      "heuristics": [],
+      "red_flags": [
+        "odinofagia_unilateral",
+        "lesao_ulcerada_cronica",
+        "perda_peso_inexplicada",
+        "adenopatia_cervical_endurecida",
+        "trismo"
+      ]
+    },
+    {
+      "id": "difteria_faringea",
+      "global_id": "difteria_faringea",
+      "label": "Difteria Faríngea",
+      "pretest": 0.001,
+      "tags": ["garganta", "agudo", "infeccioso", "bacteriano", "grave"],
+      "criteria": [
+        { "if": ["odinofagia", "febre", "toxemia"], "lr+": 3.2 },
+        { "if": ["placas_pseudomembranosas"], "lr+": 4.0 },
+        { "if": ["adenopatia_anterior_dolorosa"], "weight": 1.5 }
+      ],
+      "heuristics": [],
+      "red_flags": [
+        "toxemia",
+        "dispneia",
+        "estridor",
+        "placas_pseudomembranosas",
+        "rigidez_cervical"
+      ]
+    },
+    {
+      "id": "estomatite_aftosa_faringea",
+      "global_id": "estomatite_aftosa_faringea",
+      "label": "Estomatite Aftosa Faríngea (Major)",
+      "pretest": 0.02,
+      "tags": ["garganta", "agudo", "inflamatorio", "autoimune"],
+      "criteria": [
+        { "if": ["odinofagia", "vesiculas_ulceras_orofaringe"], "lr+": 3.8 },
+        { "if": ["disfagia"], "weight": 1.3 },
+        { "if": ["febre"], "lr-": 0.6 },
+        { "if": ["imunossupressao"], "weight": 1.4 }
+      ],
+      "heuristics": [],
+      "red_flags": ["disfagia", "sialorreia", "imunossupressao"]
+    },
+    {
+      "id": "sindrome_pfapa",
+      "global_id": "sindrome_pfapa",
+      "label": "Síndrome PFAPA",
+      "pretest": 0.004,
+      "tags": ["garganta", "agudo", "inflamatorio", "pediatrico"],
+      "criteria": [
+        { "if": ["febre_recorrente_ciclica", "odinofagia"], "lr+": 4.0 },
+        { "if": ["idade_grupo"], "weight": 1.5 },
+        { "if": ["adenopatia_anterior_dolorosa"], "weight": 1.3 },
+        { "if": ["exsudato_tonsilar"], "lr-": 0.7 }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "laringite_fungica",
+      "global_id": "laringite_fungica",
+      "label": "Laringite Fúngica",
+      "pretest": 0.003,
+      "tags": ["garganta", "cronico", "infeccioso", "fungico"],
+      "criteria": [
+        { "if": ["rouquidao", "imunossupressao"], "lr+": 3.8 },
+        { "if": ["odinofagia"], "weight": 1.2 },
+        { "if": ["uso_corticoide_inalatorio"], "weight": 1.6 }
+      ],
+      "heuristics": [],
+      "red_flags": ["imunossupressao", "dispneia", "disfagia"]
+    },
+    {
+      "id": "edema_de_reinke",
+      "global_id": "edema_de_reinke",
+      "label": "Edema de Reinke",
+      "pretest": 0.01,
+      "tags": ["garganta", "cronico", "inflamatorio"],
+      "criteria": [
+        { "if": ["rouquidao", "tabagismo_etilismo_pesado"], "lr+": 3.5 },
+        { "if": ["tosse_seca"], "weight": 1.3 },
+        { "if": ["febre"], "lr-": 0.4 }
+      ],
+      "heuristics": [{ "when": ["duracao_dias"], "boost": 1.4 }],
+      "red_flags": ["dispneia"]
+    },
+    {
+      "id": "polipo_vocal",
+      "global_id": "polipo_vocal",
+      "label": "Pólipo Vocal",
+      "pretest": 0.012,
+      "tags": ["garganta", "cronico", "inflamatorio", "benigno"],
+      "criteria": [
+        { "if": ["rouquidao", "abuso_vocal_recente_cronico"], "lr+": 3.8 },
+        { "if": ["odinofagia"], "lr-": 0.6 }
+      ],
+      "heuristics": [],
+      "red_flags": ["dispneia"]
     }
   ],
   "profiles": {
-    "crianca": { "multipliers": { "crupe_laringotraqueite": 1.3, "abscesso_retrofaringeo": 1.2 } },
-    "adulto": { "multipliers": { "faringoamigdalite_bacteriana": 1.0 } },
-    "idoso": { "multipliers": { "epiglotite_aguda": 1.1 } }
+    "crianca": {
+      "multipliers": {
+        "crupe_laringotraqueite": 1.3,
+        "abscesso_retrofaringeo": 1.2
+      }
+    },
+    "adulto": {
+      "multipliers": {
+        "faringoamigdalite_bacteriana": 1
+      }
+    },
+    "idoso": {
+      "multipliers": {
+        "epiglotite_aguda": 1.1
+      }
+    }
   },
   "via_atendimento": {
     "estridor": "emergencia_geral",
     "dispneia": "emergencia_geral",
     "toxemia": "emergencia_geral",
     "trismo": "emergencia_especializada",
-    "sialorreia": "emergencia_especializada"
+    "sialorreia": "emergencia_especializada",
+    "voz_batata_quente": "emergencia_especializada"
   }
 }

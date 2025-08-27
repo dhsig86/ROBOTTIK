@@ -6,7 +6,12 @@ export function createEvidenceStore() {
 
   function ensure(featureId) {
     if (!map.has(featureId)) {
-      map.set(featureId, { featureId, sources: new Set(), value: true, meta: {} });
+      map.set(featureId, {
+        featureId,
+        sources: new Set(),
+        value: true,
+        meta: {},
+      });
     }
     return map.get(featureId);
   }
@@ -19,25 +24,41 @@ export function createEvidenceStore() {
       if (value !== undefined && value !== null) slot.value = value;
       Object.assign(slot.meta, meta || {});
     },
-    addMany(items = []) { for (const it of items) this.add(it); },
+    addMany(items = []) {
+      for (const it of items) this.add(it);
+    },
     merge(otherStore) {
       for (const rec of otherStore.list()) {
-        this.add({ featureId: rec.featureId, source: [...rec.sources][0] || "merge", value: rec.value, meta: rec.meta });
+        this.add({
+          featureId: rec.featureId,
+          source: [...rec.sources][0] || "merge",
+          value: rec.value,
+          meta: rec.meta,
+        });
       }
     },
-    has(featureId) { return map.has(featureId); },
-    get(featureId) { return map.get(featureId) || null; },
+    has(featureId) {
+      return map.has(featureId);
+    },
+    get(featureId) {
+      return map.get(featureId) || null;
+    },
     list() {
-      return Array.from(map.values()).map(v => ({ ...v, sources: new Set(v.sources) }));
+      return Array.from(map.values()).map((v) => ({
+        ...v,
+        sources: new Set(v.sources),
+      }));
     },
     toJSON() {
-      return this.list().map(v => ({
+      return this.list().map((v) => ({
         featureId: v.featureId,
         sources: Array.from(v.sources),
         value: v.value,
         meta: v.meta,
       }));
     },
-    clear() { map.clear(); },
+    clear() {
+      map.clear();
+    },
   };
 }

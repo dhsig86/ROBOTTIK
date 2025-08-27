@@ -3,126 +3,265 @@
   "area": "ouvido",
   "intake": {
     "symptoms": [
-      { "id": "otalgia", "label": "Dor de ouvido", "aliases": ["dor no ouvido", "dor auricular"], "weights": 1.0 },
-      { "id": "otorreia", "label": "Saída de secreção pelo ouvido", "aliases": ["pús no ouvido", "vazamento de ouvido"], "weights": 1.0 },
-      { "id": "hipoacusia", "label": "Diminuição da audição", "aliases": ["surdez", "ouvir menos"], "weights": 1.0 },
-      { "id": "plenitude_auricular", "label": "Sensação de ouvido tampado", "aliases": ["pressão no ouvido", "entupido"], "weights": 1.0 },
-      { "id": "prurido_auricular", "label": "Coceira no ouvido", "aliases": ["coçando o ouvido"], "weights": 1.0 },
-      { "id": "zumbido", "label": "Zumbido", "aliases": ["apito no ouvido", "chiado no ouvido"], "weights": 0.8 },
-      { "id": "vertigem", "label": "Tontura/vertigem", "aliases": ["rotatória", "girando"], "weights": 1.0 },
+      {
+        "id": "otalgia",
+        "label": "Dor de ouvido",
+        "aliases": ["dor no ouvido", "dor auricular"],
+        "weights": 1
+      },
+      {
+        "id": "otorreia",
+        "label": "Saída de secreção pelo ouvido",
+        "aliases": ["pús no ouvido", "vazamento de ouvido"],
+        "weights": 1
+      },
+      {
+        "id": "hipoacusia",
+        "label": "Diminuição da audição",
+        "aliases": ["surdez", "ouvir menos"],
+        "weights": 1
+      },
+      {
+        "id": "plenitude_auricular",
+        "label": "Sensação de ouvido tampado",
+        "aliases": ["pressão no ouvido", "entupido"],
+        "weights": 1
+      },
+      {
+        "id": "prurido_auricular",
+        "label": "Coceira no ouvido",
+        "aliases": ["coçando o ouvido"],
+        "weights": 1
+      },
+      {
+        "id": "zumbido",
+        "label": "Zumbido",
+        "aliases": ["apito no ouvido", "chiado no ouvido"],
+        "weights": 0.8
+      },
+      {
+        "id": "vertigem",
+        "label": "Tontura/vertigem",
+        "aliases": ["rotatória", "girando"],
+        "weights": 1
+      },
       { "id": "febre", "label": "Febre", "aliases": [], "weights": 0.8 },
-      { "id": "dor_trago_pavilhao", "label": "Dor à pressão no tragus ou ao tracionar a orelha", "aliases": ["dor no tragus", "dor ao puxar a orelha"], "weights": 1.2 },
-      { "id": "edema_conduto", "label": "Inchaço do conduto auditivo", "aliases": ["conduto inchado", "canal inchado"], "weights": 1.0 },
-      { "id": "hiperemia_mt", "label": "Vermelhidão da membrana timpânica", "aliases": ["tímpano vermelho"], "weights": 1.0 },
-      { "id": "perfuracao_mt", "label": "Perfuração no tímpano", "aliases": ["furo no tímpano"], "weights": 1.0 },
-      { "id": "natacao_recente", "label": "Natação/banho de piscina recente", "aliases": ["entrou na piscina", "mar/água"], "weights": 0.8 },
-      { "id": "voo_mergulho_recente", "label": "Voo ou mergulho recente", "aliases": ["pressão do avião", "mergulho"], "weights": 0.8 },
-      { "id": "diabetes_imunossupressao", "label": "Diabetes ou imunossupressão", "aliases": ["baixa imunidade", "imunodeficiência"], "weights": 0.8 },
-      { "id": "q_tip_uso", "label": "Uso de haste flexível / cotonete", "aliases": ["cotonete", "limpar o ouvido"], "weights": 0.6 },
-      { "id": "trauma_auricular", "label": "Trauma no ouvido", "aliases": ["pancada no ouvido", "corpo estranho"], "weights": 0.8 },
-      { "id": "cefaleia", "label": "Cefaleia", "aliases": ["dor de cabeça"], "weights": 0.6 },
-      { "id": "posicional", "label": "Vertigem desencadeada por posição", "aliases": ["piora ao deitar", "piora ao virar na cama"], "weights": 1.0 },
-      { "id": "dor_noturna_intensa", "label": "Dor noturna intensa", "aliases": [], "weights": 1.2 },
-      { "id": "paralisia_facial", "label": "Fraqueza/paralisia facial", "aliases": [], "weights": 1.5 },
-      { "id": "granulacao_conduto", "label": "Granulação no conduto", "aliases": [], "weights": 1.2 },
-      { "id": "sinais_neurologicos_focais", "label": "Sinais neurológicos focais", "aliases": [], "weights": 1.5 },
-      { "id": "surdidez_subita", "label": "Perda auditiva súbita", "aliases": [], "weights": 1.5 }
+      {
+        "id": "dor_trago_pavilhao",
+        "label": "Dor à pressão no tragus ou ao tracionar a orelha",
+        "aliases": ["dor no tragus", "dor ao puxar a orelha"],
+        "weights": 1.2
+      },
+      {
+        "id": "edema_conduto",
+        "label": "Inchaço do conduto auditivo",
+        "aliases": ["conduto inchado", "canal inchado"],
+        "weights": 1
+      },
+      {
+        "id": "hiperemia_mt",
+        "label": "Vermelhidão da membrana timpânica",
+        "aliases": ["tímpano vermelho"],
+        "weights": 1
+      },
+      {
+        "id": "perfuracao_mt",
+        "label": "Perfuração no tímpano",
+        "aliases": ["furo no tímpano"],
+        "weights": 1
+      },
+      {
+        "id": "natacao_recente",
+        "label": "Natação/banho de piscina recente",
+        "aliases": ["entrou na piscina", "mar/água"],
+        "weights": 0.8
+      },
+      {
+        "id": "voo_mergulho_recente",
+        "label": "Voo ou mergulho recente",
+        "aliases": ["pressão do avião", "mergulho"],
+        "weights": 0.8
+      },
+      {
+        "id": "diabetes_imunossupressao",
+        "label": "Diabetes ou imunossupressão",
+        "aliases": ["baixa imunidade", "imunodeficiência"],
+        "weights": 0.8
+      },
+      {
+        "id": "q_tip_uso",
+        "label": "Uso de haste flexível / cotonete",
+        "aliases": ["cotonete", "limpar o ouvido"],
+        "weights": 0.6
+      },
+      {
+        "id": "trauma_auricular",
+        "label": "Trauma no ouvido",
+        "aliases": ["pancada no ouvido", "corpo estranho"],
+        "weights": 0.8
+      },
+      {
+        "id": "cefaleia",
+        "label": "Cefaleia",
+        "aliases": ["dor de cabeça"],
+        "weights": 0.6
+      },
+      {
+        "id": "posicional",
+        "label": "Vertigem desencadeada por posição",
+        "aliases": ["piora ao deitar", "piora ao virar na cama"],
+        "weights": 1
+      },
+      {
+        "id": "dor_noturna_intensa",
+        "label": "Dor noturna intensa",
+        "aliases": [],
+        "weights": 1.2
+      },
+      {
+        "id": "paralisia_facial",
+        "label": "Fraqueza/paralisia facial",
+        "aliases": [],
+        "weights": 1.5
+      },
+      {
+        "id": "granulacao_conduto",
+        "label": "Granulação no conduto",
+        "aliases": [],
+        "weights": 1.2
+      },
+      {
+        "id": "sinais_neurologicos_focais",
+        "label": "Sinais neurológicos focais",
+        "aliases": [],
+        "weights": 1.5
+      },
+      {
+        "id": "surdidez_subita",
+        "label": "Perda auditiva súbita",
+        "aliases": [],
+        "weights": 1.5
+      }
     ],
     "modifiers": [
       { "id": "duracao_dias", "type": "number", "unit": "d" },
       { "id": "piora_48_72h", "type": "boolean" },
-      { "id": "laterality", "type": "categorical", "levels": ["dir", "esq", "bilateral"] },
-      { "id": "intensidade_dor", "type": "ordinal", "levels": ["leve", "moderada", "intensa"] }
+      {
+        "id": "laterality",
+        "type": "categorical",
+        "levels": ["dir", "esq", "bilateral"]
+      },
+      {
+        "id": "intensidade_dor",
+        "type": "ordinal",
+        "levels": ["leve", "moderada", "intensa"]
+      }
     ]
   },
   "dx": [
     {
-      "id": "otite_media_aguda",
-      "global_id": "otite_media_aguda",
-      "tags": ["ouvido"],
-      "label": "Otite Média Aguda",
-      "pretest": 0.12,
-      "criteria": [
-        { "if": ["otalgia"], "lr+": 4.0 },
-        { "if": ["febre"], "lr+": 1.6 },
-        { "if": ["hiperemia_mt"], "lr+": 2.0 },
-        { "if": ["piora_48_72h"], "weight": 1.2 }
-      ],
-      "heuristics": [],
-      "red_flags": ["mastoidite_suspeita"]
-    },
-    {
-      "id": "otite_media_com_efusao",
-      "global_id": "otite_media_com_efusao",
-      "tags": ["ouvido"],
-      "label": "Otite Média com Efusão (Sero-mucosa)",
-      "pretest": 0.08,
-      "criteria": [
-        { "if": ["plenitude_auricular"], "lr+": 2.0 },
-        { "if": ["hipoacusia"], "lr+": 1.5 },
-        { "if": ["febre"], "lr-": 0.6 }
-      ],
-      "heuristics": [
-        { "when": ["duracao_dias"], "boost": 1.1 }
-      ],
-      "red_flags": []
-    },
-    {
       "id": "otite_externa_aguda",
       "global_id": "otite_externa_aguda",
-      "tags": ["ouvido"],
       "label": "Otite Externa Aguda",
-      "pretest": 0.10,
+      "pretest": 0.12,
+      "tags": ["ouvido", "infeccioso", "agudo", "bacteriano"],
       "criteria": [
-        { "if": ["dor_trago_pavilhao"], "lr+": 3.5 },
-        { "if": ["edema_conduto"], "lr+": 3.0 },
-        { "if": ["natacao_recente"], "lr+": 1.5 },
-        { "if": ["otorreia"], "lr+": 1.4 }
+        { "if": ["otalgia", "dor_trago_pavilhao"], "lr+": 3.5 },
+        { "if": ["edema_conduto"], "lr+": 2.8 },
+        { "if": ["natacao_recente"], "weight": 1.5 },
+        { "if": ["prurido_auricular", "otorreia"], "lr+": 2.0 }
       ],
-      "heuristics": [
-        { "when": ["prurido_auricular"], "boost": 1.2 }
-      ],
-      "red_flags": []
-    },
-    {
-      "id": "otite_externa_maligna",
-      "global_id": "otite_externa_maligna",
-      "tags": ["ouvido"],
-      "label": "Otite Externa Maligna (Necrosante)",
-      "pretest": 0.005,
-      "criteria": [
-        { "if": ["dor_trago_pavilhao", "edema_conduto"], "lr+": 2.0 },
-        { "if": ["diabetes_imunossupressao"], "lr+": 3.0 },
-        { "if": ["dor_noturna_intensa"], "weight": 1.5 }
-      ],
-      "heuristics": [],
-      "red_flags": ["dor_noturna_intensa", "paralisia_facial", "granulacao_conduto"]
-    },
-    {
-      "id": "cerume_impactado",
-      "global_id": "cerume_impactado",
-      "tags": ["ouvido"],
-      "label": "Tampão de Cerume (Impactação)",
-      "pretest": 0.08,
-      "criteria": [
-        { "if": ["hipoacusia"], "lr+": 1.6 },
-        { "if": ["plenitude_auricular"], "lr+": 1.8 },
-        { "if": ["q_tip_uso"], "lr+": 1.3 },
-        { "if": ["prurido_auricular"], "lr+": 1.2 }
-      ],
-      "heuristics": [],
-      "red_flags": []
+      "heuristics": [{ "when": ["piora_48_72h"], "boost": 1.2 }],
+      "red_flags": [
+        "diabetes_imunossupressao",
+        "dor_noturna_intensa",
+        "paralisia_facial"
+      ]
     },
     {
       "id": "otomicose",
       "global_id": "otomicose",
-      "tags": ["ouvido"],
       "label": "Otomicose",
-      "pretest": 0.05,
+      "pretest": 0.03,
+      "tags": ["ouvido", "infeccioso", "agudo", "fungico"],
       "criteria": [
-        { "if": ["prurido_auricular"], "lr+": 2.0 },
-        { "if": ["otorreia"], "lr+": 1.4 },
-        { "if": ["natacao_recente"], "lr+": 1.3 }
+        { "if": ["prurido_auricular", "plenitude_auricular"], "lr+": 3.0 },
+        { "if": ["edema_conduto"], "weight": 1.4 },
+        { "if": ["diabetes_imunossupressao"], "weight": 1.5 },
+        { "if": ["otalgia"], "lr-": 0.6 }
+      ],
+      "heuristics": [],
+      "red_flags": ["diabetes_imunossupressao"]
+    },
+    {
+      "id": "otite_media_aguda",
+      "global_id": "otite_media_aguda",
+      "label": "Otite Média Aguda",
+      "pretest": 0.15,
+      "tags": [
+        "ouvido",
+        "infeccioso",
+        "agudo",
+        "bacteriano",
+        "viral",
+        "pediatrico"
+      ],
+      "criteria": [
+        { "if": ["otalgia", "febre", "hipoacusia"], "lr+": 3.2 },
+        { "if": ["hiperemia_mt"], "lr+": 3.8 },
+        { "if": ["plenitude_auricular"], "weight": 1.4 },
+        { "if": ["dor_trago_pavilhao"], "lr-": 0.4 }
+      ],
+      "heuristics": [],
+      "red_flags": [
+        "paralisia_facial",
+        "cefaleia",
+        "vertigem",
+        "sinais_neurologicos_focais"
+      ]
+    },
+    {
+      "id": "otite_media_com_efusao",
+      "global_id": "otite_media_com_efusao",
+      "label": "Otite Média com Efusão (Sero-mucosa)",
+      "pretest": 0.08,
+      "tags": ["ouvido", "inflamatorio", "cronico", "pediatrico"],
+      "criteria": [
+        { "if": ["hipoacusia", "plenitude_auricular"], "lr+": 3.5 },
+        { "if": ["zumbido"], "weight": 1.2 },
+        { "if": ["otalgia"], "lr-": 0.5 },
+        { "if": ["febre"], "lr-": 0.3 }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "cerume_impactado",
+      "global_id": "cerume_impactado",
+      "label": "Tampão de Cerume (Impactação)",
+      "pretest": 0.2,
+      "tags": ["ouvido", "benigno"],
+      "criteria": [
+        { "if": ["hipoacusia", "plenitude_auricular"], "lr+": 2.5 },
+        { "if": ["q_tip_uso"], "weight": 1.6 },
+        { "if": ["zumbido"], "weight": 1.2 },
+        { "if": ["otalgia"], "weight": 1.1 },
+        { "if": ["otorreia"], "lr-": 0.3 }
+      ],
+      "heuristics": [],
+      "red_flags": []
+    },
+    {
+      "id": "disfuncao_tuba_auditiva",
+      "global_id": "disfuncao_tuba_auditiva",
+      "label": "Disfunção da Tuba Auditiva",
+      "pretest": 0.09,
+      "tags": ["ouvido", "inflamatorio", "cronico"],
+      "criteria": [
+        { "if": ["plenitude_auricular", "hipoacusia"], "lr+": 2.8 },
+        { "if": ["voo_mergulho_recente"], "weight": 1.8 },
+        { "if": ["zumbido"], "weight": 1.3 },
+        { "if": ["vertigem"], "lr-": 0.7 }
       ],
       "heuristics": [],
       "red_flags": []
@@ -130,122 +269,200 @@
     {
       "id": "perfuracao_timpanica",
       "global_id": "perfuracao_timpanica",
-      "tags": ["ouvido"],
       "label": "Perfuração Timpânica",
-      "pretest": 0.03,
+      "pretest": 0.02,
+      "tags": ["ouvido", "trauma", "agudo"],
       "criteria": [
         { "if": ["perfuracao_mt"], "lr+": 4.0 },
-        { "if": ["otorreia"], "lr+": 1.6 },
-        { "if": ["trauma_auricular", "voo_mergulho_recente"], "lr+": 1.8 }
+        { "if": ["trauma_auricular", "hipoacusia"], "lr+": 3.0 },
+        { "if": ["otorreia"], "weight": 1.4 },
+        { "if": ["otalgia", "zumbido"], "weight": 1.2 }
       ],
       "heuristics": [],
-      "red_flags": []
+      "red_flags": ["trauma_auricular", "vertigem", "paralisia_facial"]
     },
     {
       "id": "barotrauma_otico",
       "global_id": "barotrauma_otico",
-      "tags": ["ouvido"],
       "label": "Barotrauma Ótico",
-      "pretest": 0.03,
-      "criteria": [
-        { "if": ["voo_mergulho_recente"], "lr+": 3.0 },
-        { "if": ["otalgia", "plenitude_auricular"], "lr+": 1.8 }
-      ],
-      "heuristics": [],
-      "red_flags": []
-    },
-    {
-      "id": "disfuncao_tubaria",
-      "global_id": "disfuncao_tuba_auditiva",
-      "tags": ["ouvido"],
-      "label": "Disfunção da Tuba Auditiva",
-      "pretest": 0.10,
-      "criteria": [
-        { "if": ["plenitude_auricular"], "lr+": 2.0 },
-        { "if": ["hipoacusia"], "lr+": 1.3 },
-        { "if": ["hiperemia_mt"], "lr-": 0.7 }
-      ],
-      "heuristics": [],
-      "red_flags": []
-    },
-    {
-      "id": "neurite_vestibular",
-      "global_id": "neurite_vestibular",
-      "tags": ["ouvido"],
-      "label": "Neurite Vestibular / Labirintite viral",
-      "pretest": 0.02,
-      "criteria": [
-        { "if": ["vertigem"], "lr+": 3.0 },
-        { "if": ["hipoacusia"], "lr-": 0.7 }
-      ],
-      "heuristics": [],
-      "red_flags": ["sinais_neurologicos_focais"]
-    },
-    {
-      "id": "dm_meniere",
-      "global_id": "doenca_meniere",
-      "tags": ["ouvido"],
-      "label": "Doença de Ménière",
-      "pretest": 0.01,
-      "criteria": [
-        { "if": ["vertigem", "zumbido", "hipoacusia", "plenitude_auricular"], "weight": 2.0 }
-      ],
-      "heuristics": [],
-      "red_flags": []
-    },
-    {
-      "id": "vppb",
-      "global_id": "vppb",
-      "tags": ["ouvido"],
-      "label": "Vertigem Posicional Paroxística Benigna (VPPB)",
       "pretest": 0.04,
+      "tags": ["ouvido", "trauma", "agudo"],
       "criteria": [
-        { "if": ["vertigem"], "lr+": 2.0 }
-      ],
-      "heuristics": [
-        { "when": ["posicional"], "boost": 1.5 }
-      ],
-      "red_flags": ["sinais_neurologicos_focais"]
-    },
-    {
-      "id": "surdidez_subita_neurossensorial",
-      "global_id": "surdidez_subita_neurossensorial",
-      "tags": ["ouvido"],
-      "label": "Perda Auditiva Súbita Neurossensorial",
-      "pretest": 0.005,
-      "criteria": [
-        { "if": ["hipoacusia"], "lr+": 3.0 },
-        { "if": ["zumbido"], "lr+": 1.5 },
-        { "if": ["duracao_dias"], "weight": 1.4 }
+        { "if": ["voo_mergulho_recente", "otalgia"], "lr+": 3.8 },
+        { "if": ["plenitude_auricular", "hipoacusia"], "lr+": 2.5 },
+        { "if": ["vertigem"], "weight": 1.3 }
       ],
       "heuristics": [],
-      "red_flags": ["surdidez_subita"]
+      "red_flags": ["surdidez_subita", "vertigem"]
+    },
+    {
+      "id": "otite_externa_maligna",
+      "global_id": "otite_externa_maligna",
+      "label": "Otite Externa Maligna (Necrosante)",
+      "pretest": 0.002,
+      "tags": ["ouvido", "infeccioso", "agudo", "bacteriano", "grave"],
+      "criteria": [
+        {
+          "if": ["otalgia", "dor_noturna_intensa", "diabetes_imunossupressao"],
+          "lr+": 4.0
+        },
+        { "if": ["granulacao_conduto", "otorreia"], "lr+": 3.8 },
+        { "if": ["paralisia_facial"], "weight": 2.0 },
+        { "if": ["cefaleia"], "weight": 1.5 }
+      ],
+      "heuristics": [],
+      "red_flags": [
+        "diabetes_imunossupressao",
+        "dor_noturna_intensa",
+        "paralisia_facial",
+        "granulacao_conduto",
+        "sinais_neurologicos_focais"
+      ]
     },
     {
       "id": "mastoidite_aguda",
       "global_id": "mastoidite_aguda",
-      "tags": ["ouvido"],
       "label": "Mastoidite Aguda",
       "pretest": 0.005,
+      "tags": [
+        "ouvido",
+        "infeccioso",
+        "agudo",
+        "bacteriano",
+        "grave",
+        "pediatrico"
+      ],
       "criteria": [
-        { "if": ["otalgia", "febre"], "lr+": 2.0 },
-        { "if": ["cefaleia"], "lr+": 1.3 }
+        { "if": ["dor_edema_retroauricular", "otalgia"], "lr+": 4.0 },
+        { "if": ["febre", "hipoacusia"], "lr+": 2.5 },
+        { "if": ["cefaleia"], "weight": 1.5 },
+        { "if": ["paralisia_facial"], "weight": 1.8 }
       ],
-      "heuristics": [
-        { "when": ["piora_48_72h"], "boost": 1.4 }
+      "heuristics": [],
+      "red_flags": [
+        "dor_edema_retroauricular",
+        "paralisia_facial",
+        "sinais_neurologicos_focais",
+        "cefaleia"
+      ]
+    },
+    {
+      "id": "vppb",
+      "global_id": "vppb",
+      "label": "Vertigem Posicional Paroxística Benigna (VPPB)",
+      "pretest": 0.1,
+      "tags": ["ouvido", "neurologico", "agudo", "benigno"],
+      "criteria": [
+        { "if": ["vertigem", "posicional"], "lr+": 4.0 },
+        { "if": ["hipoacusia"], "lr-": 0.3 },
+        { "if": ["zumbido"], "lr-": 0.4 },
+        { "if": ["sinais_neurologicos_focais"], "lr-": 0.2 }
       ],
-      "red_flags": ["mastoidite_suspeita"]
+      "heuristics": [],
+      "red_flags": ["sinais_neurologicos_focais", "cefaleia"]
+    },
+    {
+      "id": "neurite_vestibular",
+      "global_id": "neurite_vestibular",
+      "label": "Neurite Vestibular",
+      "pretest": 0.03,
+      "tags": ["ouvido", "neurologico", "agudo", "viral", "inflamatorio"],
+      "criteria": [
+        { "if": ["vertigem"], "lr+": 3.5 },
+        { "if": ["posicional"], "lr-": 0.6 },
+        { "if": ["hipoacusia"], "lr-": 0.2 },
+        { "if": ["sinais_neurologicos_focais"], "lr-": 0.3 }
+      ],
+      "heuristics": [],
+      "red_flags": ["sinais_neurologicos_focais", "surdidez_subita", "cefaleia"]
+    },
+    {
+      "id": "doenca_meniere",
+      "global_id": "doenca_meniere",
+      "label": "Doença de Ménière",
+      "pretest": 0.01,
+      "tags": ["ouvido", "neurologico", "cronico"],
+      "criteria": [
+        {
+          "if": ["vertigem", "hipoacusia", "zumbido", "plenitude_auricular"],
+          "lr+": 4.0
+        },
+        { "if": ["vertigem"], "weight": 1.5 },
+        { "if": ["hipoacusia"], "weight": 1.5 }
+      ],
+      "heuristics": [],
+      "red_flags": ["sinais_neurologicos_focais", "surdidez_subita"]
+    },
+    {
+      "id": "surdidez_subita_neurossensorial",
+      "global_id": "surdidez_subita_neurossensorial",
+      "label": "Perda Auditiva Súbita Neurossensorial",
+      "pretest": 0.003,
+      "tags": ["ouvido", "neurologico", "agudo", "grave"],
+      "criteria": [
+        { "if": ["surdidez_subita"], "lr+": 4.0 },
+        { "if": ["zumbido"], "weight": 1.4 },
+        { "if": ["vertigem"], "weight": 1.3 }
+      ],
+      "heuristics": [],
+      "red_flags": ["surdidez_subita", "sinais_neurologicos_focais"]
+    },
+    {
+      "id": "colesteatoma",
+      "global_id": "colesteatoma",
+      "label": "Colesteatoma",
+      "pretest": 0.008,
+      "tags": ["ouvido", "cronico", "infeccioso", "inflamatorio"],
+      "criteria": [
+        { "if": ["otorreia_fetida_cronica", "hipoacusia"], "lr+": 3.8 },
+        { "if": ["perfuracao_mt", "granulacao_conduto"], "lr+": 3.2 },
+        { "if": ["vertigem"], "weight": 1.5 }
+      ],
+      "heuristics": [{ "when": ["duracao_dias"], "boost": 1.4 }],
+      "red_flags": [
+        "paralisia_facial",
+        "sinais_neurologicos_focais",
+        "vertigem",
+        "granulacao_conduto",
+        "otorreia_fetida_cronica"
+      ]
+    },
+    {
+      "id": "zumbido_essencial",
+      "global_id": "zumbido_essencial",
+      "label": "Zumbido Essencial",
+      "pretest": 0.18,
+      "tags": ["ouvido", "cronico", "neurologico", "benigno"],
+      "criteria": [
+        { "if": ["zumbido"], "lr+": 3.0 },
+        { "if": ["hipoacusia"], "weight": 1.4 },
+        { "if": ["otalgia"], "lr-": 0.5 },
+        { "if": ["vertigem"], "lr-": 0.6 },
+        { "if": ["otorreia"], "lr-": 0.3 }
+      ],
+      "heuristics": [],
+      "red_flags": ["surdidez_subita", "sinais_neurologicos_focais"]
     }
   ],
   "profiles": {
-    "crianca": { "multipliers": { "otite_media_aguda": 1.25, "otite_externa_aguda": 0.9, "otite_media_com_efusao": 1.15 } },
-    "idoso": { "multipliers": { "otite_externa_maligna": 1.3 } }
+    "crianca": { "multipliers": {} },
+    "adulto": { "multipliers": {} },
+    "idoso": { "multipliers": {} }
   },
   "via_atendimento": {
-    "mastoidite_suspeita": "emergencia_especializada",
+    "mastoidite_suspeita": "emergencia_geral",
     "surdidez_subita": "emergencia_especializada",
     "sinais_neurologicos_focais": "emergencia_geral",
-    "paralisia_facial": "emergencia_especializada",
-    "granulacao_conduto": "ambulatorio_rotina"
+    "paralisia_facial": "emergencia_geral",
+    "granulacao_conduto": "ambulatorio_rotina",
+    "dor_noturna_intensa": "emergencia_especializada",
+    "diabetes_imunossupressao": "emergencia_geral",
+    "otomicose": "ambulatorio_rotina",
+    "cerume_impactado": "ambulatorio_rotina",
+    "vppb": "ambulatorio_rotina",
+    "perfuracao_timpanica": "ambulatorio_rotina",
+    "surdidez_subita_neurossensorial": "emergencia_especializada",
+    "otite_externa_maligna": "emergencia_geral",
+    "dor_edema_retroauricular": "emergencia_geral"
   }
 }

@@ -2,57 +2,670 @@
   "version": "1.0.0",
   "features": [
     { "id": "febre", "label": "Febre", "aliases": [] },
-    { "id": "odinofagia", "label": "Dor de garganta (odinofagia)", "aliases": ["garganta doendo", "dor ao engolir"] },
-    { "id": "rinorreia", "label": "Coriza/saída nasal (rinorreia)", "aliases": ["nariz escorrendo", "catarro nasal"] },
-    { "id": "obstrucao_nasal", "label": "Nariz entupido (obstrução nasal)", "aliases": ["congestão nasal", "nariz trancado"] },
-    { "id": "otalgia", "label": "Dor de ouvido", "aliases": ["dor no ouvido", "dor auricular"] },
-    { "id": "otorreia", "label": "Saída de secreção pelo ouvido", "aliases": ["pús no ouvido", "vazamento de ouvido"] },
-    { "id": "hipoacusia", "label": "Diminuição da audição", "aliases": ["surdez", "ouvir menos"] },
-    { "id": "plenitude_auricular", "label": "Sensação de ouvido tampado", "aliases": ["pressão no ouvido", "entupido"] },
-    { "id": "prurido_auricular", "label": "Coceira no ouvido", "aliases": ["coçando o ouvido"] },
-    { "id": "zumbido", "label": "Zumbido", "aliases": ["apito no ouvido", "chiado no ouvido"] },
-    { "id": "vertigem", "label": "Tontura/vertigem", "aliases": ["rotatória", "girando"] },
-    { "id": "dor_trago_pavilhao", "label": "Dor à pressão no tragus ou ao tracionar a orelha", "aliases": ["dor no tragus", "dor ao puxar a orelha"] },
-    { "id": "edema_conduto", "label": "Inchaço do conduto auditivo", "aliases": ["conduto inchado", "canal inchado"] },
-    { "id": "hiperemia_mt", "label": "Vermelhidão da membrana timpânica", "aliases": ["tímpano vermelho"] },
-    { "id": "perfuracao_mt", "label": "Perfuração no tímpano", "aliases": ["furo no tímpano"] },
-    { "id": "natacao_recente", "label": "Natação/banho de piscina recente", "aliases": ["entrou na piscina", "mar/água"] },
-    { "id": "voo_mergulho_recente", "label": "Voo ou mergulho recente", "aliases": ["pressão do avião", "mergulho"] },
-    { "id": "diabetes_imunossupressao", "label": "Diabetes ou imunossupressão", "aliases": ["baixa imunidade", "imunodeficiência"] },
-    { "id": "q_tip_uso", "label": "Uso de haste flexível / cotonete", "aliases": ["cotonete", "limpar o ouvido"] },
-    { "id": "trauma_auricular", "label": "Trauma no ouvido", "aliases": ["pancada no ouvido", "corpo estranho"] },
+    {
+      "id": "odinofagia",
+      "label": "Dor de garganta (odinofagia)",
+      "aliases": ["garganta doendo", "dor ao engolir"]
+    },
+    {
+      "id": "rinorreia",
+      "label": "Coriza/saída nasal (rinorreia)",
+      "aliases": ["nariz escorrendo", "catarro nasal"]
+    },
+    {
+      "id": "obstrucao_nasal",
+      "label": "Nariz entupido (obstrução nasal)",
+      "aliases": ["congestão nasal", "nariz trancado"]
+    },
+    {
+      "id": "otalgia",
+      "label": "Dor de ouvido",
+      "aliases": ["dor no ouvido", "dor auricular"]
+    },
+    {
+      "id": "otorreia",
+      "label": "Saída de secreção pelo ouvido",
+      "aliases": ["pús no ouvido", "vazamento de ouvido"]
+    },
+    {
+      "id": "hipoacusia",
+      "label": "Diminuição da audição",
+      "aliases": ["surdez", "ouvir menos"]
+    },
+    {
+      "id": "plenitude_auricular",
+      "label": "Sensação de ouvido tampado",
+      "aliases": ["pressão no ouvido", "entupido"]
+    },
+    {
+      "id": "prurido_auricular",
+      "label": "Coceira no ouvido",
+      "aliases": ["coçando o ouvido"]
+    },
+    {
+      "id": "zumbido",
+      "label": "Zumbido",
+      "aliases": ["apito no ouvido", "chiado no ouvido"]
+    },
+    {
+      "id": "vertigem",
+      "label": "Tontura/vertigem",
+      "aliases": ["rotatória", "girando"]
+    },
+    {
+      "id": "dor_trago_pavilhao",
+      "label": "Dor à pressão no tragus ou ao tracionar a orelha",
+      "aliases": ["dor no tragus", "dor ao puxar a orelha"]
+    },
+    {
+      "id": "edema_conduto",
+      "label": "Inchaço do conduto auditivo",
+      "aliases": ["conduto inchado", "canal inchado"]
+    },
+    {
+      "id": "hiperemia_mt",
+      "label": "Vermelhidão da membrana timpânica",
+      "aliases": ["tímpano vermelho"]
+    },
+    {
+      "id": "perfuracao_mt",
+      "label": "Perfuração no tímpano",
+      "aliases": ["furo no tímpano"]
+    },
+    {
+      "id": "natacao_recente",
+      "label": "Natação/banho de piscina recente",
+      "aliases": ["entrou na piscina", "mar/água"]
+    },
+    {
+      "id": "voo_mergulho_recente",
+      "label": "Voo ou mergulho recente",
+      "aliases": ["pressão do avião", "mergulho"]
+    },
+    {
+      "id": "diabetes_imunossupressao",
+      "label": "Diabetes ou imunossupressão",
+      "aliases": ["baixa imunidade", "imunodeficiência"]
+    },
+    {
+      "id": "q_tip_uso",
+      "label": "Uso de haste flexível / cotonete",
+      "aliases": ["cotonete", "limpar o ouvido"]
+    },
+    {
+      "id": "trauma_auricular",
+      "label": "Trauma no ouvido",
+      "aliases": ["pancada no ouvido", "corpo estranho"]
+    },
     { "id": "cefaleia", "label": "Cefaleia", "aliases": ["dor de cabeça"] },
-    { "id": "posicional", "label": "Vertigem desencadeada por posição", "aliases": ["piora ao deitar", "piora ao virar na cama"] },
-    { "id": "dor_noturna_intensa", "label": "Dor noturna intensa", "aliases": [] },
-    { "id": "paralisia_facial", "label": "Fraqueza/paralisia facial", "aliases": [] },
-    { "id": "granulacao_conduto", "label": "Granulação no conduto", "aliases": [] },
-    { "id": "sinais_neurologicos_focais", "label": "Sinais neurológicos focais", "aliases": [] },
-    { "id": "surdidez_subita", "label": "Perda auditiva súbita", "aliases": [] },
-    { "id": "disfagia", "label": "Dificuldade para engolir (disfagia)", "aliases": ["engasga para engolir", "passagem difícil"] },
+    {
+      "id": "posicional",
+      "label": "Vertigem desencadeada por posição",
+      "aliases": ["piora ao deitar", "piora ao virar na cama"]
+    },
+    {
+      "id": "dor_noturna_intensa",
+      "label": "Dor noturna intensa",
+      "aliases": []
+    },
+    {
+      "id": "paralisia_facial",
+      "label": "Fraqueza/paralisia facial",
+      "aliases": []
+    },
+    {
+      "id": "granulacao_conduto",
+      "label": "Granulação no conduto",
+      "aliases": []
+    },
+    {
+      "id": "sinais_neurologicos_focais",
+      "label": "Sinais neurológicos focais",
+      "aliases": []
+    },
+    {
+      "id": "surdidez_subita",
+      "label": "Perda auditiva súbita",
+      "aliases": []
+    },
+    {
+      "id": "disfagia",
+      "label": "Dificuldade para engolir (disfagia)",
+      "aliases": ["engasga para engolir", "passagem difícil"]
+    },
     { "id": "tosse", "label": "Tosse", "aliases": [] },
-    { "id": "ausencia_tosse", "label": "Ausência de tosse", "aliases": ["sem tosse"] },
-    { "id": "exsudato_tonsilar", "label": "Exsudato/amígdalas com placas", "aliases": ["placas na garganta"] },
-    { "id": "adenopatia_anterior_dolorosa", "label": "Linfonodos cervicais anteriores dolorosos", "aliases": ["ínguas doloridas na frente do pescoço"] },
+    {
+      "id": "ausencia_tosse",
+      "label": "Ausência de tosse",
+      "aliases": ["sem tosse"]
+    },
+    {
+      "id": "exsudato_tonsilar",
+      "label": "Exsudato/amígdalas com placas",
+      "aliases": ["placas na garganta"]
+    },
+    {
+      "id": "adenopatia_anterior_dolorosa",
+      "label": "Linfonodos cervicais anteriores dolorosos",
+      "aliases": ["ínguas doloridas na frente do pescoço"]
+    },
     { "id": "petequias_palato", "label": "Petéquias em palato", "aliases": [] },
     { "id": "halitose", "label": "Mau hálito", "aliases": [] },
-    { "id": "trismo", "label": "Dificuldade de abrir a boca (trismo)", "aliases": [] },
-    { "id": "voz_batata_quente", "label": "Voz de 'batata quente'", "aliases": ["voz abafada"] },
-    { "id": "sialorreia", "label": "Baba/sialorreia", "aliases": ["saliva caindo"] },
-    { "id": "estridor", "label": "Estridor/ruído ao respirar", "aliases": ["respiração ruidosa"] },
-    { "id": "rouquidao", "label": "Rouquidão (disfonia)", "aliases": ["voz rouca"] },
+    {
+      "id": "trismo",
+      "label": "Dificuldade de abrir a boca (trismo)",
+      "aliases": []
+    },
+    {
+      "id": "voz_batata_quente",
+      "label": "Voz de 'batata quente'",
+      "aliases": ["voz abafada"]
+    },
+    {
+      "id": "sialorreia",
+      "label": "Baba/sialorreia",
+      "aliases": ["saliva caindo"]
+    },
+    {
+      "id": "estridor",
+      "label": "Estridor/ruído ao respirar",
+      "aliases": ["respiração ruidosa"]
+    },
+    {
+      "id": "rouquidao",
+      "label": "Rouquidão (disfonia)",
+      "aliases": ["voz rouca"]
+    },
     { "id": "odinofagia_unilateral", "label": "Dor unilateral", "aliases": [] },
     { "id": "cansaco_mialgia", "label": "Cansaço/mialgia", "aliases": [] },
     { "id": "tosse_seca", "label": "Tosse seca", "aliases": [] },
-    { "id": "refluxo_pirose", "label": "Azia/refluxo", "aliases": ["queimação no peito", "ácido"] },
-    { "id": "globus", "label": "Sensação de bolo na garganta (globus)", "aliases": ["nó na garganta"] },
-    { "id": "rigidez_cervical", "label": "Rigidez/dor cervical", "aliases": ["pescoço duro"] },
-    { "id": "toxemia", "label": "Comprometimento sistêmico (toxemia)", "aliases": ["muito ruim/abatido"] },
-    { "id": "imunossupressao", "label": "Imunossupressão/uso de corticoide crônico", "aliases": [] },
-    { "id": "dispneia", "label": "Falta de ar/dispneia", "aliases": ["respiração difícil"] },
-    { "id": "espirros", "label": "Espíros repetidos", "aliases": ["espirrando muito"] },
-    { "id": "dor_face", "label": "Dor/pressão na face", "aliases": ["dor nos seios da face", "pressão facial"] },
-    { "id": "hiposmia", "label": "Redução do olfato (hiposmia)", "aliases": ["cheiro fraco", "sem olfato"] },
-    { "id": "dor_cervical", "label": "Dor cervical", "aliases": ["dor no pescoço"] },
-    { "id": "linfonodo_cervical_aumentado", "label": "Íngua / linfonodo aumentado", "aliases": ["caroço no pescoço"] }
+    {
+      "id": "refluxo_pirose",
+      "label": "Azia/refluxo",
+      "aliases": ["queimação no peito", "ácido"]
+    },
+    {
+      "id": "globus",
+      "label": "Sensação de bolo na garganta (globus)",
+      "aliases": ["nó na garganta"]
+    },
+    {
+      "id": "rigidez_cervical",
+      "label": "Rigidez/dor cervical",
+      "aliases": ["pescoço duro"]
+    },
+    {
+      "id": "toxemia",
+      "label": "Comprometimento sistêmico (toxemia)",
+      "aliases": ["muito ruim/abatido"]
+    },
+    {
+      "id": "imunossupressao",
+      "label": "Imunossupressão/uso de corticoide crônico",
+      "aliases": []
+    },
+    {
+      "id": "dispneia",
+      "label": "Falta de ar/dispneia",
+      "aliases": ["respiração difícil"]
+    },
+    {
+      "id": "espirros",
+      "label": "Espíros repetidos",
+      "aliases": ["espirrando muito", "espirros"]
+    },
+    {
+      "id": "dor_face",
+      "label": "Dor/pressão na face",
+      "aliases": ["dor nos seios da face", "pressão facial"]
+    },
+    {
+      "id": "hiposmia",
+      "label": "Redução do olfato (hiposmia)",
+      "aliases": ["cheiro fraco", "sem olfato"]
+    },
+    {
+      "id": "dor_cervical",
+      "label": "Dor cervical",
+      "aliases": ["dor no pescoço"]
+    },
+    {
+      "id": "linfonodo_cervical_aumentado",
+      "label": "Íngua / linfonodo aumentado",
+      "aliases": ["caroço no pescoço"]
+    },
+    {
+      "id": "rinorreia_purulenta",
+      "label": "Rinorreia purulenta (secreção amarelada/esverdeada)",
+      "aliases": [
+        "secreção nasal amarela",
+        "secreção nasal verde",
+        "catarro purulento"
+      ]
+    },
+    {
+      "id": "obstrucao_nasal_unilateral",
+      "label": "Obstrução nasal unilateral",
+      "aliases": ["nariz entupido de um lado", "narina entupida de um lado"]
+    },
+    {
+      "id": "rinorreia_purulenta_unilateral",
+      "label": "Rinorreia purulenta unilateral",
+      "aliases": [
+        "secreção amarela em uma narina",
+        "secreção fétida unilateral"
+      ]
+    },
+    { "id": "dor_nasal", "label": "Dor nasal", "aliases": ["dor no nariz"] },
+    {
+      "id": "edema_nasal",
+      "label": "Edema nasal",
+      "aliases": ["inchaço no nariz"]
+    },
+    {
+      "id": "deformidade_nasal",
+      "label": "Deformidade nasal",
+      "aliases": ["nariz torto", "deformação do nariz"]
+    },
+    {
+      "id": "rinorreia_liquida_clara",
+      "label": "Rinorreia líquida clara (suspeita de LCR)",
+      "aliases": [
+        "água saindo do nariz",
+        "secreção clara nasal",
+        "líquido claro pelo nariz"
+      ]
+    },
+    {
+      "id": "historia_trauma",
+      "label": "História de trauma facial/nasal",
+      "aliases": ["bateu o nariz", "trauma no rosto", "acidente facial"]
+    },
+    {
+      "id": "dor_face_severa",
+      "label": "Dor facial intensa",
+      "aliases": ["dor muito forte no rosto", "dor insuportável na face"]
+    },
+    {
+      "id": "necrose_tecidual",
+      "label": "Sinais de necrose tecidual (escara/tecido escuro)",
+      "aliases": ["tecido escuro no nariz", "necrose no nariz"]
+    },
+    {
+      "id": "polipose_nasal",
+      "label": "Polipose nasal",
+      "aliases": ["pólipos nasais", "pólipo nasal"]
+    },
+    {
+      "id": "obstrucao_nasal_inspiratoria",
+      "label": "Obstrução nasal predominante na inspiração",
+      "aliases": ["dificuldade para inspirar pelo nariz", "colapso ao inspirar"]
+    },
+    {
+      "id": "sibilo_nasal",
+      "label": "Ruído/assobio nasal (sibilo nasal)",
+      "aliases": ["assobio ao respirar pelo nariz", "barulho nasal"]
+    },
+    { "id": "ronco", "label": "Ronco", "aliases": ["roncar"] },
+    {
+      "id": "sinusite_recorrente",
+      "label": "Sinusites recorrentes",
+      "aliases": [
+        "sinusite de repetição",
+        "infecções frequentes nos seios da face"
+      ]
+    },
+    {
+      "id": "voz_hiponasal",
+      "label": "Voz hiponasal (anasalada/abafada)",
+      "aliases": ["voz anasalada", "voz abafada pelo nariz"]
+    },
+    {
+      "id": "rinorreia_sanguinolenta",
+      "label": "Rinorreia sanguinolenta",
+      "aliases": ["sangue misturado ao catarro nasal"]
+    },
+    {
+      "id": "ulceracoes_nasais",
+      "label": "Ulcerações nasais",
+      "aliases": ["feridas dentro do nariz", "úlceras no nariz"]
+    },
+    {
+      "id": "lesoes_granulomatosas",
+      "label": "Lesões granulomatosas nasais",
+      "aliases": ["lesões em grumos no nariz", "granulomas nasais"]
+    },
+    {
+      "id": "intolerancia_aspirina",
+      "label": "Intolerância à aspirina/AINEs",
+      "aliases": [
+        "piora com aspirina",
+        "alergia a AAS",
+        "sensibilidade a anti-inflamatórios"
+      ]
+    },
+    {
+      "id": "epistaxe",
+      "label": "Sangramento nasal (epistaxe)",
+      "aliases": ["nariz sangrando", "sangramento do nariz"]
+    },
+    {
+      "id": "trauma_local",
+      "label": "Trauma local nasal (manipulação)",
+      "aliases": ["cutucar o nariz", "manipulação nasal", "digitalização nasal"]
+    },
+    {
+      "id": "ressecamento_nasal",
+      "label": "Ressecamento nasal",
+      "aliases": ["nariz ressecado", "secura nasal"]
+    },
+    {
+      "id": "hemorragia_abundante",
+      "label": "Hemorragia nasal abundante",
+      "aliases": [
+        "sangramento forte pelo nariz",
+        "sangramento em grande volume"
+      ]
+    },
+    {
+      "id": "hipertensao",
+      "label": "Hipertensão arterial conhecida",
+      "aliases": ["pressão alta", "hipertenso"]
+    },
+    {
+      "id": "eritema_vestibular",
+      "label": "Eritema do vestíbulo nasal",
+      "aliases": ["vermelhidão no vestíbulo nasal"]
+    },
+    {
+      "id": "crosteas_nasais",
+      "label": "Crosteas nasais",
+      "aliases": ["crostas no nariz", "feridas com crosta no nariz"]
+    },
+    {
+      "id": "uso_descongestionante_topico",
+      "label": "Uso crônico de descongestionante nasal tópico",
+      "aliases": ["nafazolina", "oximetazolina", "spray descongestionante"]
+    },
+    {
+      "id": "duracao_dias",
+      "label": "Duração dos sintomas (dias)",
+      "aliases": ["há X dias", "tempo dos sintomas em dias"]
+    },
+    {
+      "id": "mastoidite_suspeita",
+      "label": "Suspeita de mastoidite",
+      "aliases": [
+        "dor atrás da orelha",
+        "edema retroauricular",
+        "vermelhidão atrás da orelha",
+        "pavilhão deslocado"
+      ]
+    },
+    {
+      "id": "piora_48_72h",
+      "label": "Piora após 48–72h / ausência de melhora",
+      "aliases": [
+        "piorou após 3 dias",
+        "sem melhora em 3 dias",
+        "piora depois de 2 dias"
+      ]
+    },
+    {
+      "id": "piora_48_72h",
+      "label": "Piora após 48–72h / ausência de melhora",
+      "aliases": [
+        "piorou após 3 dias",
+        "sem melhora em 3 dias",
+        "piora depois de 2 dias"
+      ]
+    },
+    {
+      "id": "dor_edema_retroauricular",
+      "label": "Dor ou inchaço atrás da orelha",
+      "aliases": [
+        "edema retroauricular",
+        "dor na mastoide",
+        "inchaço retroauricular"
+      ]
+    },
+    {
+      "id": "otorreia_fetida_cronica",
+      "label": "Secreção de ouvido crônica com mau cheiro",
+      "aliases": [
+        "otorreia com mau cheiro",
+        "pus fétido no ouvido",
+        "otorreia crônica purulenta"
+      ]
+    },
+    {
+      "id": "vesiculas_ulceras_orofaringe",
+      "label": "Vesículas ou úlceras na boca/garganta",
+      "aliases": ["bolhas na garganta", "feridas na boca", "aftas na garganta"]
+    },
+    {
+      "id": "edema_uvula_visivel",
+      "label": "Inchaço visível da úvula (campainha)",
+      "aliases": ["úvula inchada", "campainha inchada", "edema de úvula"]
+    },
+    {
+      "id": "historia_sexual_recente",
+      "label": "Contato sexual oral recente",
+      "aliases": ["sexo oral recente", "história de exposição sexual"]
+    },
+    {
+      "id": "caseos_amigdalianos",
+      "label": "Presença de cáseos amigdalianos",
+      "aliases": [
+        "bolinhas brancas nas amígdalas",
+        "tonsilólitos",
+        "pedras nas amígdalas"
+      ]
+    },
+    {
+      "id": "lesao_ulcerada_cronica",
+      "label": "Lesão/ferida na garganta que não cicatriza",
+      "aliases": ["úlcera crônica na garganta", "ferida persistente na boca"]
+    },
+    {
+      "id": "perda_peso_inexplicada",
+      "label": "Perda de peso inexplicada",
+      "aliases": ["emagrecimento sem motivo", "perda ponderal"]
+    },
+    {
+      "id": "tabagismo_etilismo_pesado",
+      "label": "História de tabagismo ou etilismo pesado",
+      "aliases": [
+        "fumante pesado",
+        "consumo alto de álcool",
+        "tabagista e etilista"
+      ]
+    },
+    {
+      "id": "adenopatia_cervical_endurecida",
+      "label": "Gânglio endurecido ou fixo no pescoço",
+      "aliases": [
+        "caroço duro no pescoço",
+        "linfonodo pétreo",
+        "adenopatia fixa"
+      ]
+    },
+    {
+      "id": "placas_pseudomembranosas",
+      "label": "Placas acinzentadas e aderentes na garganta",
+      "aliases": [
+        "pseudomembranas na garganta",
+        "placas que sangram ao remover"
+      ]
+    },
+    {
+      "id": "febre_recorrente_ciclica",
+      "label": "Episódios de febre recorrentes e cíclicos",
+      "aliases": ["febre em ciclos", "febre periódica"]
+    },
+    {
+      "id": "uso_corticoide_inalatorio",
+      "label": "Uso de corticoide inalatório",
+      "aliases": ["usa bombinha para asma", "corticoide para DPOC"]
+    },
+    {
+      "id": "abuso_vocal_recente_cronico",
+      "label": "História de abuso vocal recente ou crônico",
+      "aliases": ["usou muito a voz", "gritou muito", "esforço vocal"]
+    },
+    {
+      "id": "conjuntivite_associada",
+      "label": "Conjuntivite associada (olhos vermelhos)",
+      "aliases": ["olho vermelho junto", "febre faringoconjuntival"]
+    },
+    {
+      "id": "otomicose",
+      "label": "Otomicose",
+      "aliases": ["infecção fúngica do ouvido"]
+    },
+    {
+      "id": "cerume_impactado",
+      "label": "Tampão de cerume (impactação)",
+      "aliases": ["cera acumulada", "cera impactada"]
+    },
+    {
+      "id": "vppb",
+      "label": "Vertigem Posicional Paroxística Benigna (VPPB)",
+      "aliases": ["vertigem posicional", "tontura ao deitar"]
+    },
+    {
+      "id": "perfuracao_timpanica",
+      "label": "Perfuração timpânica",
+      "aliases": ["furo no tímpano", "perfuração no tímpano"]
+    },
+    {
+      "id": "surdidez_subita_neurossensorial",
+      "label": "Perda auditiva súbita neurossensorial",
+      "aliases": ["surdidez súbita", "perda auditiva aguda"]
+    },
+    {
+      "id": "otite_externa_maligna",
+      "label": "Otite Externa Maligna (Necrosante)",
+      "aliases": ["otite necrosante", "infecção grave do ouvido externo"]
+    },
+    {
+      "id": "idade_grupo",
+      "label": "Faixa etária relevante",
+      "aliases": ["grupo etário", "idade do paciente"]
+    },
+    {
+      "id": "edema_submandibular_lenhoso",
+      "label": "Inchaço endurecido (lenhoso) sob o queixo",
+      "aliases": [
+        "inchaço duro submandibular",
+        "piso da boca duro",
+        "edema lenhoso"
+      ]
+    },
+    {
+      "id": "elevacao_assoalho_bucal",
+      "label": "Elevação do assoalho da boca",
+      "aliases": [
+        "língua empurrada para cima",
+        "piso da boca elevado",
+        "assoalho bucal elevado"
+      ]
+    },
+    {
+      "id": "edema_parotideo_doloroso",
+      "label": "Inchaço doloroso na região da parótida (bochecha)",
+      "aliases": [
+        "inchaço na bochecha perto da orelha",
+        "papeira",
+        "dor na parótida"
+      ]
+    },
+    {
+      "id": "historia_vacinal_incompleta",
+      "label": "História vacinal para caxumba ausente ou incompleta",
+      "aliases": [
+        "não vacinado para caxumba",
+        "sem vacina tríplice viral",
+        "vacinação incompleta"
+      ]
+    },
+    {
+      "id": "pus_drenado_ducto_parotideo",
+      "label": "Drenagem de pus pelo ducto parotídeo (na boca)",
+      "aliases": [
+        "pus saindo na bochecha por dentro",
+        "drenagem purulenta do ducto de Stensen",
+        "pus pelo ducto parotídeo"
+      ]
+    },
+    {
+      "id": "dor_inchaco_submandibular_pos_prandial",
+      "label": "Dor/inchaço submandibular pós-prandial",
+      "aliases": [
+        "inchaço submandibular após comer",
+        "dor submandibular ao comer",
+        "edema submandibular pós-prandial"
+      ],
+      "weights": 1.2
+    },
+    {
+      "id": "massa_cervical_mediana_dolorosa",
+      "label": "Massa/nódulo doloroso na linha média do pescoço",
+      "aliases": [
+        "caroço dolorido no meio do pescoço",
+        "nódulo na linha média cervical",
+        "massa dolorosa central no pescoço"
+      ]
+    },
+    {
+      "id": "massa_cervical_lateral_dolorosa",
+      "label": "Massa/nódulo doloroso na lateral do pescoço",
+      "aliases": [
+        "caroço dolorido na lateral do pescoço",
+        "nódulo cervical lateral",
+        "massa dolorosa lateral no pescoço"
+      ]
+    },
+    {
+      "id": "abaulamento_parede_lateral_faringe",
+      "label": "Abaulamento da parede lateral da garganta",
+      "aliases": [
+        "inchaço na lateral da garganta",
+        "desvio de úvula",
+        "abaulamento faríngeo lateral"
+      ]
+    },
+    {
+      "id": "historia_faringite_recente",
+      "label": "História de dor de garganta recente",
+      "aliases": [
+        "teve faringite há poucos dias",
+        "infecção de garganta prévia",
+        "dor de garganta recente"
+      ]
+    },
+    {
+      "id": "dor_trajeto_jugular",
+      "label": "Dor ou sensibilidade no trajeto da veia jugular",
+      "aliases": [
+        "dor ao longo do pescoço",
+        "cordão doloroso no pescoço",
+        "trajeto jugular dolorido"
+      ]
+    },
+    {
+      "id": "linfonodo_cervical_cronico_indolor",
+      "label": "Linfonodo cervical aumentado cronicamente e indolor",
+      "aliases": [
+        "íngua crônica sem dor",
+        "linfonodo com meses de evolução",
+        "escrófula"
+      ]
+    },
+    {
+      "id": "sintomas_constitucionais_cronicos",
+      "label": "Sintomas constitucionais crônicos (febre baixa, suor noturno)",
+      "aliases": ["suores noturnos", "febre vespertina", "perda de peso"]
+    }
   ]
 }

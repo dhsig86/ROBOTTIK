@@ -3,65 +3,646 @@
   "area": "nariz",
   "intake": {
     "symptoms": [
-      { "id": "obstrucao_nasal", "label": "Nariz entupido (obstrução nasal)", "aliases": ["congestão nasal", "nariz trancado"], "weights": 1.0 },
-      { "id": "rinorreia", "label": "Coriza/saída nasal (rinorreia)", "aliases": ["nariz escorrendo", "catarro nasal"], "weights": 1.0 },
-      { "id": "espirros", "label": "Espíros repetidos", "aliases": ["espirrando muito"], "weights": 1.0 },
-      { "id": "dor_face", "label": "Dor/pressão na face", "aliases": ["dor nos seios da face", "pressão facial"], "weights": 1.0 },
-      { "id": "hiposmia", "label": "Redução do olfato (hiposmia)", "aliases": ["cheiro fraco", "sem olfato"], "weights": 0.8 },
-      { "id": "febre", "label": "Febre", "aliases": [], "weights": 0.8 },
-      { "id": "tosse", "label": "Tosse", "aliases": [], "weights": 0.8 },
-      { "id": "cefaleia", "label": "Cefaleia", "aliases": ["dor de cabeça"], "weights": 0.8 }
+      {
+        "id": "obstrucao_nasal",
+        "label": "Nariz entupido (obstrução nasal)",
+        "aliases": ["congestão nasal", "nariz trancado"],
+        "weights": 1
+      },
+      {
+        "id": "rinorreia",
+        "label": "Coriza/saída nasal (rinorreia)",
+        "aliases": ["nariz escorrendo", "catarro nasal"],
+        "weights": 1
+      },
+      {
+        "id": "espirros",
+        "label": "Espíros repetidos",
+        "aliases": ["espirrando muito"],
+        "weights": 1
+      },
+      {
+        "id": "dor_face",
+        "label": "Dor/pressão na face",
+        "aliases": ["dor nos seios da face", "pressão facial"],
+        "weights": 1
+      },
+      {
+        "id": "hiposmia",
+        "label": "Redução do olfato (hiposmia)",
+        "aliases": ["cheiro fraco", "sem olfato"],
+        "weights": 0.8
+      },
+      {
+        "id": "febre",
+        "label": "Febre",
+        "aliases": [],
+        "weights": 0.8
+      },
+      {
+        "id": "tosse",
+        "label": "Tosse",
+        "aliases": [],
+        "weights": 0.8
+      },
+      {
+        "id": "cefaleia",
+        "label": "Cefaleia",
+        "aliases": ["dor de cabeça"],
+        "weights": 0.8
+      }
     ],
     "modifiers": [
-      { "id": "duracao_dias", "type": "number", "unit": "d" }
+      {
+        "id": "duracao_dias",
+        "type": "number",
+        "unit": "d"
+      }
     ]
   },
   "dx": [
     {
-      "id": "rinite_viral",
+      "global_id": "adenoidite",
+      "label": "Adenoidite / Adenoidomegalia sintomática",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.8
+        },
+        {
+          "if": ["ronco"],
+          "lr+": 2.2
+        },
+        {
+          "if": ["voz_hiponasal"],
+          "lr+": 1.7
+        }
+      ],
+      "heuristics": [],
+      "tags": ["infeccioso", "agudo", "pediatrico"],
+      "id": "adenoidite",
+      "pretest": 0.03,
+      "red_flags": []
+    },
+    {
+      "global_id": "colapso_valva_nasal",
+      "label": "Colapso da válvula nasal",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal_inspiratoria"],
+          "lr+": 2.5
+        },
+        {
+          "if": ["sibilo_nasal"],
+          "lr+": 1.8
+        }
+      ],
+      "heuristics": [],
+      "tags": ["estrutural", "cronico"],
+      "id": "colapso_valva_nasal",
+      "pretest": 0.01,
+      "red_flags": []
+    },
+    {
+      "global_id": "corpo_estranho_nasal",
+      "label": "Corpo estranho nasal",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal_unilateral"],
+          "lr+": 3
+        },
+        {
+          "if": ["rinorreia_purulenta_unilateral"],
+          "lr+": 2.5
+        },
+        {
+          "if": ["dor_nasal"],
+          "lr+": 1.6
+        }
+      ],
+      "heuristics": [],
+      "tags": ["trauma", "agudo", "pediatrico"],
+      "id": "corpo_estranho_nasal",
+      "pretest": 0.01,
+      "red_flags": []
+    },
+    {
+      "global_id": "desvio_septo_sintomatico",
+      "label": "Desvio septal sintomático",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal_unilateral"],
+          "lr+": 2.8
+        },
+        {
+          "if": ["ronco"],
+          "lr+": 1.5
+        },
+        {
+          "if": ["sinusite_recorrente"],
+          "lr+": 1.6
+        }
+      ],
+      "heuristics": [],
+      "tags": ["estrutural", "cronico"],
+      "id": "desvio_septo_sintomatico",
+      "pretest": 0.05,
+      "red_flags": []
+    },
+    {
+      "global_id": "aerd",
+      "label": "Doença exacerbada por aspirina (DEA/ tríade de Samter)",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.6
+        },
+        {
+          "if": ["hiposmia"],
+          "lr+": 1.7
+        },
+        {
+          "if": ["polipose_nasal"],
+          "lr+": 2
+        },
+        {
+          "if": ["intolerancia_aspirina"],
+          "lr+": 4
+        }
+      ],
+      "heuristics": [],
+      "tags": ["alergico", "cronico", "asma"],
+      "id": "aerd",
+      "pretest": 0.005,
+      "red_flags": []
+    },
+    {
+      "global_id": "epistaxe_anterior",
+      "label": "Epistaxe anterior",
+      "criteria": [
+        {
+          "if": ["epistaxe"],
+          "lr+": 3
+        },
+        {
+          "if": ["trauma_local"],
+          "lr+": 1.8
+        },
+        {
+          "if": ["ressecamento_nasal"],
+          "lr+": 1.6
+        }
+      ],
+      "heuristics": [],
+      "tags": ["sangramento", "agudo"],
+      "id": "epistaxe_anterior",
+      "pretest": 0.02,
+      "red_flags": []
+    },
+    {
+      "global_id": "epistaxe_posterior",
+      "label": "Epistaxe posterior",
+      "criteria": [
+        {
+          "if": ["epistaxe"],
+          "lr+": 3.5
+        },
+        {
+          "if": ["hemorragia_abundante"],
+          "lr+": 2.8
+        },
+        {
+          "if": ["cefaleia"],
+          "lr+": 1.3
+        },
+        {
+          "if": ["hipertensao"],
+          "lr+": 1.7
+        }
+      ],
+      "heuristics": [],
+      "tags": ["sangramento", "agudo", "grave"],
+      "id": "epistaxe_posterior",
+      "pretest": 0.01,
+      "red_flags": []
+    },
+    {
+      "global_id": "fratura_nasal",
+      "label": "Fratura nasal",
+      "criteria": [
+        {
+          "if": ["dor_nasal"],
+          "lr+": 2.5
+        },
+        {
+          "if": ["edema_nasal"],
+          "lr+": 2.2
+        },
+        {
+          "if": ["deformidade_nasal"],
+          "lr+": 3
+        }
+      ],
+      "heuristics": [],
+      "tags": ["trauma", "agudo"],
+      "id": "fratura_nasal",
+      "pretest": 0.01,
+      "red_flags": []
+    },
+    {
+      "global_id": "granulomatose_com_poliangiite_sinonasal",
+      "label": "Granulomatose com poliangiíte (síndrome sino-nasal)",
+      "criteria": [
+        {
+          "if": ["rinorreia_sanguinolenta"],
+          "lr+": 2.8
+        },
+        {
+          "if": ["ulceracoes_nasais"],
+          "lr+": 3
+        },
+        {
+          "if": ["dor_face"],
+          "lr+": 1.6
+        }
+      ],
+      "heuristics": [],
+      "tags": ["autoimune", "cronico", "grave"],
+      "id": "granulomatose_com_poliangiite_sinonasal",
+      "pretest": 0.002,
+      "red_flags": []
+    },
+    {
+      "global_id": "hipertrofia_conchas_inferiores",
+      "label": "Hipertrofia de conchas inferiores",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.8
+        },
+        {
+          "if": ["rinorreia"],
+          "weight": 1.3
+        }
+      ],
+      "heuristics": [],
+      "tags": ["estrutural", "cronico", "alergico"],
+      "id": "hipertrofia_conchas_inferiores",
+      "pretest": 0.04,
+      "red_flags": []
+    },
+    {
+      "global_id": "polipo_invertido",
+      "label": "Papiloma invertido sinonasal",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal_unilateral"],
+          "lr+": 2.8
+        },
+        {
+          "if": ["epistaxe"],
+          "lr+": 1.7
+        },
+        {
+          "if": ["hiposmia"],
+          "lr+": 1.5
+        }
+      ],
+      "heuristics": [],
+      "tags": ["neoplasico", "benigno", "cronico"],
+      "id": "polipo_invertido",
+      "pretest": 0.005,
+      "red_flags": []
+    },
+    {
+      "global_id": "rinite_alergica",
+      "tags": ["nariz"],
+      "label": "Rinite alérgica",
+      "criteria": [
+        {
+          "if": ["espirros", "rinorreia", "obstrucao_nasal"],
+          "weight": 2
+        },
+        {
+          "if": ["hiposmia"],
+          "lr-": 0.7
+        }
+      ],
+      "heuristics": [],
+      "red_flags": [],
+      "id": "rinite_alergica",
+      "pretest": 0.2
+    },
+    {
+      "global_id": "rinite_medicamentosa",
+      "label": "Rinite medicamentosa (rebote por vasoconstritor)",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.7
+        },
+        {
+          "if": ["rinorreia"],
+          "weight": 1.1
+        },
+        {
+          "if": ["duracao_dias"],
+          "weight": 1.3
+        },
+        {
+          "if": ["uso_descongestionante_topico"],
+          "lr+": 3
+        }
+      ],
+      "heuristics": [],
+      "tags": ["medicamentosa", "cronico"],
+      "id": "rinite_medicamentosa",
+      "pretest": 0.02,
+      "red_flags": []
+    },
+    {
+      "global_id": "rinite_nao_alergica_nao_infecciosa",
+      "label": "Rinite não alérgica não infecciosa (vasomotora)",
+      "criteria": [
+        {
+          "if": ["rinorreia"],
+          "weight": 1.3
+        },
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.2
+        },
+        {
+          "if": ["espirros"],
+          "lr-": 0.8
+        },
+        {
+          "if": ["duracao_dias"],
+          "weight": 1.2
+        }
+      ],
+      "heuristics": [],
+      "tags": ["vasomotora", "cronico"],
+      "id": "rinite_nao_alergica_nao_infecciosa",
+      "pretest": 0.03,
+      "red_flags": []
+    },
+    {
       "global_id": "uri_nasofaringite",
       "tags": ["nariz", "garganta", "ouvido", "pescoco"],
       "label": "Rinite viral / Nasofaringite",
       "pretest": 0.22,
       "criteria": [
-        { "if": ["rinorreia", "obstrucao_nasal"], "weight": 1.7 },
-        { "if": ["tosse"], "lr+": 1.3 },
-        { "if": ["febre"], "lr+": 1.2 }
+        {
+          "if": ["rinorreia", "obstrucao_nasal"],
+          "weight": 1.7
+        },
+        {
+          "if": ["tosse"],
+          "lr+": 1.3
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.2
+        }
       ],
       "heuristics": [
-        { "when": ["duracao_dias"], "boost": 1.0 }
+        {
+          "when": ["duracao_dias"],
+          "boost": 1
+        }
       ],
-      "red_flags": []
+      "red_flags": [],
+      "id": "uri_nasofaringite"
     },
     {
-      "id": "rinite_alergica",
-      "global_id": "rinite_alergica",
-      "tags": ["nariz"],
-      "label": "Rinite alérgica",
-      "pretest": 0.20,
+      "global_id": "rinoliquorreia",
+      "label": "Rinoliquorreia (fístula LCR)",
       "criteria": [
-        { "if": ["espirros", "rinorreia", "obstrucao_nasal"], "weight": 2.0 },
-        { "if": ["hiposmia"], "lr-": 0.7 }
+        {
+          "if": ["rinorreia_liquida_clara"],
+          "lr+": 3
+        },
+        {
+          "if": ["cefaleia"],
+          "lr+": 1.5
+        },
+        {
+          "if": ["historia_trauma"],
+          "lr+": 2.8
+        }
       ],
       "heuristics": [],
+      "tags": ["trauma", "cronico", "neurologico"],
+      "id": "rinoliquorreia",
+      "pretest": 0.005,
       "red_flags": []
     },
     {
-      "id": "sinusite_aguda_nao_complicada",
+      "global_id": "rinossinusite_aguda_bacteriana",
+      "label": "Rinossinusite aguda bacteriana",
+      "criteria": [
+        {
+          "if": ["dor_face"],
+          "lr+": 2
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.3
+        },
+        {
+          "if": ["cefaleia"],
+          "lr+": 1.2
+        },
+        {
+          "if": ["rinorreia"],
+          "weight": 1.1
+        },
+        {
+          "if": ["duracao_dias"],
+          "weight": 1.2
+        },
+        {
+          "if": ["rinorreia_purulenta"],
+          "lr+": 2.2
+        }
+      ],
+      "heuristics": [],
+      "tags": ["bacteriano", "agudo", "infeccioso"],
+      "id": "rinossinusite_aguda_bacteriana",
+      "pretest": 0.08,
+      "red_flags": []
+    },
+    {
+      "global_id": "rinossinusite_cronica_com_polipose",
+      "label": "Rinossinusite crônica com polipose",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 2
+        },
+        {
+          "if": ["hiposmia"],
+          "lr+": 1.8
+        },
+        {
+          "if": ["rinorreia"],
+          "weight": 1.3
+        },
+        {
+          "if": ["duracao_dias"],
+          "weight": 1.4
+        },
+        {
+          "if": ["polipose_nasal"],
+          "lr+": 2
+        }
+      ],
+      "heuristics": [],
+      "tags": ["cronico", "polipose", "alergico"],
+      "id": "rinossinusite_cronica_com_polipose",
+      "pretest": 0.03,
+      "red_flags": []
+    },
+    {
+      "global_id": "rinossinusite_cronica_sem_polipose",
+      "label": "Rinossinusite crônica sem polipose",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.8
+        },
+        {
+          "if": ["rinorreia"],
+          "weight": 1.3
+        },
+        {
+          "if": ["hiposmia"],
+          "lr+": 1.4
+        },
+        {
+          "if": ["duracao_dias"],
+          "weight": 1.4
+        }
+      ],
+      "heuristics": [],
+      "tags": ["cronico", "inflamatorio"],
+      "id": "rinossinusite_cronica_sem_polipose",
+      "pretest": 0.05,
+      "red_flags": []
+    },
+    {
+      "global_id": "sarcoidose_sinonasal",
+      "label": "Sarcoidose sinonasal",
+      "criteria": [
+        {
+          "if": ["obstrucao_nasal"],
+          "weight": 1.6
+        },
+        {
+          "if": ["rinorreia"],
+          "weight": 1.3
+        },
+        {
+          "if": ["lesoes_granulomatosas"],
+          "lr+": 3
+        }
+      ],
+      "heuristics": [],
+      "tags": ["autoimune", "cronico"],
+      "id": "sarcoidose_sinonasal",
+      "pretest": 0.002,
+      "red_flags": []
+    },
+    {
       "global_id": "rinossinusite_aguda",
       "tags": ["nariz"],
       "label": "Sinusite aguda não complicada",
-      "pretest": 0.08,
       "criteria": [
-        { "if": ["dor_face"], "lr+": 2.0 },
-        { "if": ["febre"], "lr+": 1.3 },
-        { "if": ["cefaleia"], "lr+": 1.2 },
-        { "if": ["duracao_dias"], "weight": 1.1 }
+        {
+          "if": ["dor_face"],
+          "lr+": 2
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.3
+        },
+        {
+          "if": ["cefaleia"],
+          "lr+": 1.2
+        },
+        {
+          "if": ["duracao_dias"],
+          "weight": 1.1
+        }
       ],
       "heuristics": [],
+      "red_flags": [],
+      "id": "rinossinusite_aguda",
+      "pretest": 0.08
+    },
+    {
+      "global_id": "sinusite_fungica_invasiva_aguda",
+      "label": "Sinusite fúngica invasiva aguda",
+      "criteria": [
+        {
+          "if": ["dor_face_severa"],
+          "lr+": 2.5
+        },
+        {
+          "if": ["febre"],
+          "lr+": 1.6
+        },
+        {
+          "if": ["necrose_tecidual"],
+          "lr+": 3.5
+        }
+      ],
+      "heuristics": [],
+      "tags": ["fungico", "agudo", "grave", "imunossupressao"],
+      "id": "sinusite_fungica_invasiva_aguda",
+      "pretest": 0.003,
+      "red_flags": []
+    },
+    {
+      "global_id": "vestibulite_nasal",
+      "label": "Vestibulite nasal / Furunculose",
+      "criteria": [
+        {
+          "if": ["dor_nasal"],
+          "lr+": 2.5
+        },
+        {
+          "if": ["eritema_vestibular"],
+          "lr+": 3
+        },
+        {
+          "if": ["crosteas_nasais"],
+          "lr+": 1.6
+        }
+      ],
+      "heuristics": [],
+      "tags": ["inflamatorio", "agudo"],
+      "id": "vestibulite_nasal",
+      "pretest": 0.01,
       "red_flags": []
     }
   ],
   "profiles": {},
-  "via_atendimento": {}
+  "via_atendimento": {
+    "rinorreia_liquida_clara": "emergencia_geral",
+    "epistaxe": "emergencia_geral",
+    "necrose_tecidual": "emergencia_especializada",
+    "hemorragia_abundante": "emergencia_geral",
+    "historia_trauma": "emergencia_geral",
+    "deformidade_nasal": "emergencia_especializada",
+    "obstrucao_nasal_unilateral": "emergencia_especializada",
+    "rinorreia_purulenta_unilateral": "emergencia_especializada",
+    "ulceracoes_nasais": "emergencia_especializada",
+    "lesoes_granulomatosas": "emergencia_especializada",
+    "obstrucao_nasal_inspiratoria": "telemedicina",
+    "polipose_nasal": "ambulatorio_rotina",
+    "intolerancia_aspirina": "ambulatorio_rotina",
+    "uso_descongestionante_topico": "ambulatorio_rotina"
+  }
 }

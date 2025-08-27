@@ -1,8 +1,9 @@
 # Configuração de Ambiente (`src/config/`)
 
-Gerado em 2025-08-23. Apenas *configuração*, sem código de app.
+Gerado em 2025-08-23. Apenas _configuração_, sem código de app.
 
 ## Como usar
+
 1. Copie `src/config/env.example.json` → `src/config/env.json`.
 2. Em dev local, mantenha:
    - `"LLM_PROVIDER": "off"`

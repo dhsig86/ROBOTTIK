@@ -3,12 +3,7 @@
   "$id": "https://robotto.local/schemas/outputs.contract.json",
   "title": "Contrato de saída (4 outputs)",
   "type": "object",
-  "required": [
-    "resumo",
-    "sinaisAlarme",
-    "cuidados",
-    "viaAtendimento"
-  ],
+  "required": ["resumo", "sinaisAlarme", "cuidados", "viaAtendimento"],
   "properties": {
     "resumo": {
       "type": "string"
