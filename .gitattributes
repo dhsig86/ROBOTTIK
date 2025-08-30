@@ -1,0 +1,6 @@
+# Força LF em JSON/YAML e scripts
+*.json text eol=lf
+*.yml  text eol=lf
+*.yaml text eol=lf
+*.mjs  text eol=lf
+*.js   text eol=lf
