@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" href="./assets/otto-256.png" />
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css" />
-
+      
     <style>
       :root{
         /* Paleta com contraste AA/AAA */
@@ -118,6 +118,49 @@
       .ok{ color:var(--ok); } .warn{ color:var(--warn); } .danger{ color:var(--danger); }
 
       .footer{ margin-top: 18px; font-size: 12px; color: var(--muted); text-align:center; }
+      
+      /* === MVP TUNING (contraste/legibilidade/respiração) === */
+:root{
+  --muted: #aab4c8;
+  --text: #f1f5ff;
+}
+body{
+  font: 15px/1.55 system-ui, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% -5%, #16213e 0%, transparent 60%),
+              radial-gradient(1200px 700px at 110% 10%, #102034 0%, transparent 65%),
+              #0a0f1c;
+}
+.grid{ grid-template-columns: 420px 1fr; gap: 18px; }
+.card{
+  background: linear-gradient(180deg, #111a31 0%, #0f1830 100%);
+  border: 1px solid rgba(170,180,200,.25);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(0,0,0,.35);
+}
+.card .hd{ padding: 14px 16px; border-bottom: 1px solid rgba(170,180,200,.2); }
+.card .bd{ padding: 16px; }
+
+input[type="text"], input[type="number"], select, textarea{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(170,180,200,.35);
+  background:#0e1732;
+  color:var(--text);
+}
+input::placeholder, textarea::placeholder{ color:#c7d2fe; opacity:.6; }
+textarea{ min-height:96px; }
+
+.pill{
+  padding:8px 12px; border-radius:999px;
+  border:1px solid rgba(170,180,200,.35); background:#0c1630; color:#e4ecff;
+}
+.kpi .box{
+  background:#0b152f; border:1px solid rgba(170,180,200,.28); border-radius:12px; padding:10px 12px;
+}
+button{ padding:11px 16px; border-radius:12px; }
+
+    
+    
     </style>
   </head>
   <body>

@@ -31,7 +31,7 @@ const state = {
   selectedSymptoms: new Set(), // ids dos chips marcados
 };
 
-const AUTO_MARK_CHIPS = false; // se true, marca visualmente sintomas extraídos do texto
+const AUTO_MARK_CHIPS = true; // se true, marca visualmente sintomas extraídos do texto
 
 /* --------------------------
    Catálogo de sintomas (MVP)
@@ -81,6 +81,8 @@ const SYMPTOMS = {
     { id: "trauma", label: "Trauma/infecção recente" },
   ],
 };
+
+
 
 /* Índices auxiliares */
 const SYMPTOM_AREA = (() => {
@@ -454,13 +456,39 @@ function buildPayloadFromForm(){
 
 let lastResult = null;
 
+// === onTriar com texto-livre → sintomas “por trás dos panos” ===
 async function onTriar(){
+  // payload básico do formulário
   const payload = buildPayloadFromForm();
+
+  // 1) extrai sintomas do texto (HPI)
+  const auto = extractSymptomsFromText(payload.hpi);
+
+  // 2) une com os chips marcados (sem exigir marcação manual)
+  payload.symptoms = Array.from(new Set([...(payload.symptoms || []), ...auto]));
+
+  // 3) se nenhuma área foi marcada, inferir pelas features detectadas
+  if (!payload.areas || payload.areas.length === 0) {
+    payload.areas = inferAreasFromSymptoms(payload.symptoms);
+  }
+
+  // 4) (opcional) refletir na UI os sintomas/áreas detectados automaticamente
+  if (AUTO_MARK_CHIPS) {
+    state.selectedSymptoms = new Set(payload.symptoms);
+    state.areas = new Set(payload.areas);
+    renderAreas();
+    renderSymptoms();
+  }
+
+  // 5) mantém seu pipeline atual (pode ser local ou híbrido)
   const out = await triageHybrid(payload);
+
+  // 6) render e persistência em memória
   lastResult = { payload, out };
   renderOutputs(out);
   toast("Triagem concluída.");
 }
+
 
 function onLimpar(){
   el.nome.value = ""; el.idade.value = ""; el.sexo.value = ""; el.hpi.value = "";
