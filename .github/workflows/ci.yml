@@ -2,11 +2,20 @@ name: CI
 
 on:
   push:
+    branches: ["**"]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build-test:
+  build-and-smoke:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -14,21 +23,26 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "20.x"
 
-      - name: Install deps
+      - name: Detect package.json
+        id: detect
+        run: |
+          if [ -f package.json ]; then
+            echo "has_npm=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_npm=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: npm ci (optional)
+        if: steps.detect.outputs.has_npm == 'true'
         run: npm ci
 
-      - name: Validate JSON rules
-        run: npm run validate:rules
-
-      - name: Consistency check
-        run: npm run check
-
-      - name: Start static server
-        run: npx http-server -p 5500 -c-1 &
-
-      - name: Smoke
+      - name: Smoke tests (front + engine + optional backend contract)
         env:
-          BASE_URL: http://127.0.0.1:5500
-        run: node scripts/smoke.mjs
+          PORT: 4173
+          BASE_URL: http://127.0.0.1:4173
+          BACKEND_URL: ${{ secrets.BACKEND_URL }}
+          TEST_ORIGIN: http://127.0.0.1:4173
+          CHECK_CORS: "1"   # coloque "0" se não quiser validar CORS do backend
+        run: node scripts/smoke.mjs --always

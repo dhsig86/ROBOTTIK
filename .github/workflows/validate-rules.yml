@@ -1,17 +1,61 @@
 name: Validate Clinical Rules
+
 on:
   pull_request:
     paths:
       - "src/engines/**"
       - "src/schemas/**"
-      - "src/data/lexicons/**"
-      - "scripts/validate_rules.js"
+      - "scripts/**"
+  push:
+    paths:
+      - "src/engines/**"
+      - "src/schemas/**"
+      - "scripts/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-rules-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   validate:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: "20.x" }
-      - run: npm i -D ajv ajv-formats
-      - run: node scripts/validate_rules.js
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+
+      - name: Detect package.json
+        id: detect
+        run: |
+          if [ -f package.json ]; then
+            echo "has_npm=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_npm=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Install deps
+        if: steps.detect.outputs.has_npm == 'true'
+        run: npm ci
+
+      - name: Schema validation (Ajv via scripts/validate_rules.mjs)
+        if: steps.detect.outputs.has_npm == 'true'
+        run: node scripts/validate_rules.mjs
+
+      - name: Consistency checks
+        if: steps.detect.outputs.has_npm == 'true'
+        run: node scripts/check_consistency.mjs
+
+      - name: Fallback — JSON sanity (no Ajv)
+        if: steps.detect.outputs.has_npm != 'true'
+        run: |
+          echo "No package.json — running lightweight JSON parse checks."
+          node -e "import {readdirSync,readFileSync} from 'fs';import {join} from 'path';function walk(d,a=[]){for(const e of readdirSync(d,{withFileTypes:true})){const p=join(d,e.name);if(e.isDirectory())walk(p,a);else if(e.isFile()&&e.name.endsWith('.json'))a.push(p)}return a}const files=[...walk('src/engines'),...walk('src/schemas')];let ok=0;for(const f of files){try{JSON.parse(readFileSync(f,'utf8'));ok++}catch(e){console.error('JSON parse error in',f,'\\n',e);process.exit(1)}}console.log('Parsed',ok,'JSON files OK');"
