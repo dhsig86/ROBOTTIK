@@ -1,0 +1,172 @@
+/* src/styles/theme.css
+   Design tokens + temas claro/escuro com contraste AA.
+   ---------------------------------------------------------------------------- */
+
+:root {
+  /* Core palette (OKLCH aproxima legibilidade, mas mantemos HEX fallbacks) */
+  --bg: #0b0c0f;            /* base dark (fallback para prefers-color-scheme) */
+  --fg: #f5f7fa;
+  --muted: #b5beca;
+
+  /* Brand OTTO */
+  --brand: #1463ff;         /* azul "clinical" */
+  --brand-strong: #0e46b6;
+  --brand-weak: #e6efff;
+
+  /* Semantic */
+  --ok: #1f9d55;
+  --warn: #b7791f;
+  --danger: #e02424;
+
+  /* Surfaces */
+  --surface-0: #0f1115;     /* page bg */
+  --surface-1: #151922;     /* cards/chat bubbles (bot) */
+  --surface-2: #0b6bff14;   /* brand tinted surface */
+  --surface-3: #0b6bff0d;
+
+  /* Borders & shadows */
+  --bd: #2a3240;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --shadow-1: 0 2px 8px rgba(0,0,0,0.20);
+  --shadow-2: 0 8px 28px rgba(0,0,0,0.30);
+
+  /* Type scale */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji","Segoe UI Emoji";
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-24: 24px;
+
+  /* Spacing */
+  --sp-4: 4px;
+  --sp-6: 6px;
+  --sp-8: 8px;
+  --sp-10: 10px;
+  --sp-12: 12px;
+  --sp-16: 16px;
+  --sp-20: 20px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+
+  /* Inputs */
+  --input-bg: #11151d;
+  --input-bd: #2a3240;
+  --input-fg: #eef2f7;
+  --input-ph: #97a3b6;
+  --focus: #7fb1ff;
+}
+
+/* Light theme tokens -------------------------------------------------------- */
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #4b5563;
+
+  --surface-0: #f8fafc;
+  --surface-1: #ffffff;
+  --surface-2: #1463ff0f;
+  --surface-3: #1463ff08;
+
+  --bd: #e5e7eb;
+
+  --input-bg: #ffffff;
+  --input-bd: #cbd5e1;
+  --input-fg: #0f172a;
+  --input-ph: #64748b;
+}
+
+/* System preference as default --------------------------------------------- */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    color-scheme: light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+  }
+}
+
+/* Base reset ---------------------------------------------------------------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--surface-0);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  font-size: var(--fs-16);
+  line-height: 1.5;
+}
+
+/* Utility helpers ----------------------------------------------------------- */
+.container { width: min(1200px, 100%); margin-inline: auto; padding: 0 var(--sp-16); }
+.hidden { display: none !important; }
+.mono { font-family: var(--font-mono); }
+.muted { color: var(--muted); }
+.badge { display:inline-block; padding: 2px 8px; border-radius: 999px; font-size: var(--fs-12); }
+
+.badge.ok { background: color-mix(in srgb, var(--ok) 16%, transparent); color: var(--ok); }
+.badge.warn { background: color-mix(in srgb, var(--warn) 16%, transparent); color: var(--warn); }
+.badge.danger { background: color-mix(in srgb, var(--danger) 16%, transparent); color: var(--danger); }
+
+/* Focus visible (WCAG) */
+:where(a, button, input, textarea, select, [tabindex]) :focus,
+:where(a, button, input, textarea, select, [tabindex]):focus { outline: none; }
+
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Buttons ------------------------------------------------------------------- */
+.button {
+  appearance: none;
+  border: 1px solid var(--bd);
+  background: var(--brand);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-1);
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
+}
+.button:hover { background: var(--brand-strong); box-shadow: var(--shadow-2); }
+.button:active { transform: translateY(1px) scale(0.99); }
+.button.ghost {
+  background: transparent; color: var(--fg);
+  border-color: var(--bd);
+}
+
+/* Inputs -------------------------------------------------------------------- */
+.input, textarea {
+  width: 100%;
+  background: var(--input-bg);
+  color: var(--input-fg);
+  border: 1px solid var(--input-bd);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+}
+.input::placeholder, textarea::placeholder { color: var(--input-ph); }
+
+/* === Footer comum (landing + chat) ========================================= */
+.site-footer {
+  padding: 16px;
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  border-top: 1px solid var(--bd);
+  background: var(--surface-0);
+}
+.site-footer strong { color: var(--fg); font-weight: 700; }

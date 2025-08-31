@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>ROBOTTO – Triagem (Chat)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/otto-256.png" />
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css" />
+  <link rel="preload" href="../styles/theme.css" as="style">
+  <link rel="stylesheet" href="../styles/theme.css">
+  <link rel="preload" href="../styles/chat.css" as="style">
+  <link rel="stylesheet" href="../styles/chat.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="../assets/otto-256.png" alt="Otto" />
+      <h1>ROBOTTO – Triagem Otorrino </h1>
+      <div class="muted">Chat</div>
+    </header>
+
+    <div class="chat-grid">
+      <!-- Coluna: Chat -->
+      <section class="card chat">
+        <div class="hd">Conversa</div>
+        <div id="messages" class="bd messages"></div>
+
+        <div class="composer">
+          <!-- o componente preenche aqui -->
+        </div>
+      </section>
+
+      <!-- Coluna: Resultados -->
+      <aside class="card results">
+        <div class="hd">Resultados</div>
+        <div id="resultPane" class="bd"></div>
+        <div class="bd" style="border-top:1px solid rgba(170,180,200,.2)">
+          <button id="btnExportar" class="warn">Exportar relatório (MD)</button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="footer muted">© ROBOTTO</div>
+  </div>
+
+  <script type="module" src="../src/pages/triageChat.js"></script>
+</body>
+<footer class="site-footer">
+  <div class="container">
+    <div>© <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.</div>
+    <div><strong>Criado por Dr. Dario Hart — Apoio OTOSIG — Telemedicina</strong></div>
+  </div>
+</footer>
+</html>
