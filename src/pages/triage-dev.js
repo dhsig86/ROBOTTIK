@@ -165,7 +165,12 @@ async function startTriage() {
   await buildSymptomsUI(registry);
 
   // --- inicia triagem
-  const initial = triage(registry, null, getSelectedSymptoms());
+  const initial = await triage({
+  idade: Number(el("idade")?.value) || null,
+  sexo: el("sexo")?.value || null,
+  hpi: el("hpi")?.value || "",
+  symptoms: getSelectedSymptoms(),
+}, { mode: "gated" });
   renderNBQ(initial.nextQuestions);
 
   // --- explica primeira pergunta

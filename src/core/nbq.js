@@ -154,4 +154,3 @@ function makeRationale({ fid, targets, redSet, score, reg }) {
 function round(x) { return Math.round(x * 1000) / 1000; }
 
 export default { suggestNBQ };
-// ROBOTTO — client LLM triage (chama backend /api/triage se disponível)
