@@ -82,8 +82,6 @@ const SYMPTOMS = {
   ],
 };
 
-
-
 /* Índices auxiliares */
 const SYMPTOM_AREA = (() => {
   const m = new Map();
@@ -174,17 +172,19 @@ const REDFLAGS = [
   {
     id: "celulite_orb",
     label: "Edema palpebral, dor ocular, proptose (celulite orbitária)",
-    match: (s, h) => (s.has("rinorreia_purulenta") || s.has("dor_facial")) && /orb(i|í)ta|proptose|olho inchado/i.test(h),
+    match: (s, h) =>
+      (s.has("rinorreia_purulenta") || s.has("dor_facial")) &&
+      /orb(i|í)ta|proptose|olho inchado|edema palpebral|diplopia/i.test(h),
   },
   {
     id: "sangramento_grave",
     label: "Epistaxe abundante/inescapável",
-    match: (s, h) => s.has("epistaxe") && /(abundante|sem parar|grande volume)/i.test(h),
+    match: (s, h) => s.has("epistaxe") && /(abundante|sem parar|grande volume|co[aâ]gulos|> ?10 ?min)/i.test(h),
   },
   {
     id: "abscesso_garganta",
     label: "Sialorreia, trismo, voz abafada (abscesso peri/para-faríngeo)",
-    match: (s, h) => s.has("sialorreia") || /voz de batata|trismo/i.test(h),
+    match: (s, h) => s.has("sialorreia") || /voz de batata|trismo|desvio (?:da )?úvula/i.test(h),
   },
 ];
 
@@ -314,7 +314,7 @@ const WATCHOUTS_BY_DX = {
     {
       text: "Mastoidite: dor/edema retroauricular, pavilhão protruso, febre persistente.",
       escalate: "emergencia_geral"
-    ]
+    }
   ],
   otite_externa: [
     {
@@ -334,7 +334,7 @@ const WATCHOUTS_BY_DX = {
     {
       text: "Abscesso peritonsilar: trismo, voz abafada, desvio de úvula, sialorreia.",
       escalate: "emergencia_geral"
-    ]
+    }
   ],
 
   // PESCOÇO
@@ -354,7 +354,6 @@ function levelLabel(code) {
     default:                        return "Atenção";
   }
 }
-
 
 /* --------------------------
    Renderização Áreas / Sintomas
@@ -433,12 +432,8 @@ function triageLocal(payload){
   const s = allSymptoms;
   const h = (payload.hpi||"").trim();
 
-  // Red flags
+  // Red flags (presentes AGORA)
   const alarmes = REDFLAGS.filter(r => r.match(s, h)).map(r => r.label);
-
-  // 6) Vigilância/Red flags POTENCIAIS associadas às hipóteses (top-3)
-  const vigilancia = ranked.slice(0, 3)
-    .flatMap(r => WATCHOUTS_BY_DX[r.id] || []);
 
   // Escore
   const scored = RULES.map(r=>({ id:r.id, name:r.name, domain:r.domain, score:r.score(s,h) }))
@@ -446,6 +441,9 @@ function triageLocal(payload){
   scored.sort((a,b)=>b.score-a.score);
   const total = scored.reduce((acc,r)=>acc+r.score,0) || 1;
   const ranked = scored.map(r=>({ id:r.id, name:r.name, p: Math.round(r.score/total*100) }));
+
+  // Watchouts POTENCIAIS baseados nas top-3 hipóteses
+  const vigilancia = ranked.slice(0, 3).flatMap(r => WATCHOUTS_BY_DX[r.id] || []);
 
   // Via
   let via = "Ambulatorial", via_reason = "Quadro sem sinais de emergência aparentes.";
@@ -506,7 +504,7 @@ function renderOutputs(out){
 
       <!-- Identificados AGORA -->
       ${out.alarmes?.length
-        ? `<ul class="alarmes">${out.alarmes.map(a => `<li>⚠️ ${sanitize(a)}</li>`).join("")}</ul>`
+        ? `<ul class="alarmes">${out.alarmes.map(a => `<li>⚠️ ${escapeHTML(a)}</li>`).join("")}</ul>`
         : `<div class="muted">Nenhum identificado no momento.</div>`
       }
 
@@ -518,7 +516,7 @@ function renderOutputs(out){
           </div>
           <ul class="alarmes">
             ${out.vigilancia.map(v =>
-              `<li>⚠️ ${sanitize(v.text)} <span class="tag">${sanitize(levelLabel(v.escalate))}</span></li>`
+              `<li>⚠️ ${escapeHTML(v.text)} <span class="tag">${escapeHTML(levelLabel(v.escalate))}</span></li>`
             ).join("")}
           </ul>
         `
@@ -582,7 +580,6 @@ async function onTriar(){
   renderOutputs(out);
   toast("Triagem concluída.");
 }
-
 
 function onLimpar(){
   el.nome.value = ""; el.idade.value = ""; el.sexo.value = ""; el.hpi.value = "";
