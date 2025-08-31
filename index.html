@@ -1,273 +1,161 @@
 <!doctype html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <title>ROBOTTO – Triagem Otorrino</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="./assets/otto-256.png" />
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css" />
-      
-    <style>
-      :root{
-        /* Paleta com contraste AA/AAA */
-        --bg-outer: #0a0f1c;
-        --bg: #0d1426;
-        --panel: #111a31;
-        --panel-2: #0f1830;
-        --muted: #aab4c8;
-        --text: #f1f5ff;
-        --accent: #22d3ee;
-        --ok: #34d399;
-        --warn: #f59e0b;
-        --danger: #ef4444;
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ROBOTTO • Triagem Otorrino</title>
 
-        --radius: 14px;
-        --border: 1px solid rgba(170,180,200,.25);
-        --shadow: 0 10px 28px rgba(0,0,0,.35);
-      }
+  <!-- Tema global (A1) -->
+  <link rel="preload" href="src/styles/theme.css" as="style">
+  <link rel="stylesheet" href="src/styles/theme.css">
 
-      html, body { height: 100%; }
-      body{
-        margin:0;
-        background: radial-gradient(1200px 600px at 20% -5%, #16213e 0%, transparent 60%),
-                    radial-gradient(1200px 700px at 110% 10%, #102034 0%, transparent 65%),
-                    var(--bg-outer);
-        color: var(--text);
-        font: 15px/1.55 system-ui, Segoe UI, Roboto, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
+  <!-- Prefetch da página do chat para navegação mais rápida -->
+  <link rel="prefetch" href="src/pages/triageChat.html">
 
-      .wrap{ max-width: 1280px; margin:0 auto; padding: 28px 20px; }
-      header{
-        display:flex; align-items:center; gap:12px; margin-bottom:18px;
-      }
-      header img{ width:44px; height:44px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.4)); }
-      header h1{ font-size:20px; margin:0; font-weight:700; letter-spacing:.2px; }
-      .muted{ color: var(--muted); }
+  <style>
+    /* Estilo mínimo só da landing (mantém consistência com theme.css) */
+    .wrap { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
+    header { position: sticky; top:0; background: var(--surface-0); border-bottom: 1px solid var(--bd); }
+    header .inner { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display:flex; align-items:center; gap:10px; }
+    .brand img { width: 36px; height: 36px; border-radius: 10px; }
+    .title { font-weight: 800; letter-spacing: .2px; }
 
-      .grid{
-        display:grid; grid-template-columns: 420px 1fr; gap:18px;
-      }
-      @media (max-width: 980px){ .grid{ grid-template-columns: 1fr; } }
+    main { display: grid; place-items: center; padding: 32px 16px; }
+    .card {
+      width: min(920px, 100%);
+      background: var(--surface-1);
+      border: 1px solid var(--bd);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-1);
+    }
+    .card h1 { margin: 0 0 8px; font-size: 28px; }
+    .card p.lead { margin: 0 0 16px; color: var(--muted); }
+    .terms {
+      margin-top: 12px;
+      border: 1px solid var(--bd);
+      border-radius: var(--radius-md);
+      background: var(--surface-0);
+      padding: 14px;
+    }
+    .terms .scroll {
+      max-height: 220px;
+      overflow: auto;
+      padding-right: 6px;
+      font-size: var(--fs-14);
+      line-height: 1.55;
+      color: var(--fg);
+    }
+    .accept {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-top: 12px; font-size: var(--fs-14);
+    }
+    .actions { display:flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    .button { appearance:none; border:1px solid var(--bd); background: var(--brand); color:#fff; padding:12px 18px; border-radius:14px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:8px; cursor: pointer; }
+    .button:hover { background: var(--brand-strong); box-shadow: var(--shadow-2); }
+    .button.ghost { background:transparent; color:var(--fg); }
+    .button[disabled] { opacity: .6; cursor: not-allowed; }
+    .note { margin-top: 8px; font-size: 14px; color: var(--muted); }
 
-      .card{
-        background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
-        border: var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-      }
-      .card .hd{
-        padding: 14px 16px;
-        border-bottom: 1px solid rgba(170,180,200,.2);
-        font-weight: 700; letter-spacing:.2px;
-      }
-      .card .bd{ padding: 16px; }
+    footer { padding: 16px; color: var(--muted); font-size: 14px; text-align: center; border-top: 1px solid var(--bd); }
 
-      fieldset{ border:0; margin:0 0 14px 0; padding:0; }
-      .row{ display:flex; gap:10px; margin-bottom:10px; }
-      .row>*{ flex:1; }
+    /* Splash full-screen ---------------------------------------------------- */
+    .splash {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(1200px 1200px at 50% 10%, color-mix(in srgb, var(--brand) 14%, var(--surface-0)) 0%, var(--surface-0) 45%);
+      z-index: 50;
+      opacity: 0; pointer-events: none;
+      transition: opacity .25s ease;
+    }
+    .splash.active { opacity: 1; pointer-events: auto; }
+    .splash .inner {
+      text-align: center;
+      padding: 24px;
+      border: 1px solid var(--bd);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--surface-1) 92%, transparent);
+      box-shadow: var(--shadow-2);
+      width: min(360px, 90vw);
+    }
+    .splash img { width: 96px; height: 96px; border-radius: 20px; }
+    .splash h2 { margin: 12px 0 6px; font-size: 22px; }
+    .typing { display: inline-flex; gap: 8px; align-items: center; color: var(--muted); font-size: 14px; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite both; }
+    .dot:nth-child(2){ animation-delay: .2s; } .dot:nth-child(3){ animation-delay: .4s; }
+    @keyframes blink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
 
-      label{ display:block; font-size:13px; color:var(--muted); margin:0 0 6px 0; }
-
-      input[type="text"], input[type="number"], select, textarea{
-        width:100%;
-        padding:12px 14px;
-        border-radius: 12px;
-        border: 1px solid rgba(170,180,200,.35);
-        background: #0e1732;
-        color: var(--text);
-        outline: none;
-      }
-      input::placeholder, textarea::placeholder{ color:#c7d2fe; opacity:.6; }
-      textarea{ min-height: 96px; resize: vertical; }
-
-      .pill{
-        display:inline-flex; align-items:center; gap:8px;
-        padding:8px 12px; border: 1px solid rgba(170,180,200,.35);
-        background:#0c1630; color:#e4ecff;
-        border-radius: 999px; margin: 6px 8px 0 0; cursor:pointer;
-        transition: transform .05s ease-in-out;
-      }
-      .pill:active{ transform: translateY(1px); }
-      .pill input{ accent-color: var(--accent); width:18px; height:18px; }
-
-      .actions{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
-      button{
-        border: 1px solid rgba(94,234,212,.18);
-        border-radius: 12px;
-        padding: 11px 16px; cursor:pointer;
-        background: #132043; color:#e5f1ff;
-      }
-      button.primary{ background:#0f766e; border-color: rgba(16,185,129,.3); }
-      button.warn{ background:#7c2d12; border-color: rgba(245,158,11,.3); }
-
-      .kpi{ display:flex; gap:10px; flex-wrap:wrap; margin: 8px 0 14px; }
-      .kpi .box{
-        background:#0b152f; border:1px solid rgba(170,180,200,.28);
-        border-radius:12px; padding:10px 12px;
-      }
-      .tag{
-        font-size:13px; padding:6px 10px; border-radius:999px;
-        background:#0b152f; border:1px solid rgba(170,180,200,.28); color:#dce7ff;
-      }
-      .rank li{ margin-bottom:6px; }
-      .alarmes li{ margin-bottom:6px; }
-
-      .via{ font-weight:700; }
-      .ok{ color:var(--ok); } .warn{ color:var(--warn); } .danger{ color:var(--danger); }
-
-      .footer{ margin-top: 18px; font-size: 12px; color: var(--muted); text-align:center; }
-      
-      /* === MVP TUNING (contraste/legibilidade/respiração) === */
-:root{
-  --muted: #aab4c8;
-  --text: #f1f5ff;
-}
-body{
-  font: 15px/1.55 system-ui, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(1200px 600px at 20% -5%, #16213e 0%, transparent 60%),
-              radial-gradient(1200px 700px at 110% 10%, #102034 0%, transparent 65%),
-              #0a0f1c;
-}
-.grid{ grid-template-columns: 420px 1fr; gap: 18px; }
-.card{
-  background: linear-gradient(180deg, #111a31 0%, #0f1830 100%);
-  border: 1px solid rgba(170,180,200,.25);
-  border-radius: 14px;
-  box-shadow: 0 10px 28px rgba(0,0,0,.35);
-}
-.card .hd{ padding: 14px 16px; border-bottom: 1px solid rgba(170,180,200,.2); }
-.card .bd{ padding: 16px; }
-
-input[type="text"], input[type="number"], select, textarea{
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(170,180,200,.35);
-  background:#0e1732;
-  color:var(--text);
-}
-input::placeholder, textarea::placeholder{ color:#c7d2fe; opacity:.6; }
-textarea{ min-height:96px; }
-
-.pill{
-  padding:8px 12px; border-radius:999px;
-  border:1px solid rgba(170,180,200,.35); background:#0c1630; color:#e4ecff;
-}
-.kpi .box{
-  background:#0b152f; border:1px solid rgba(170,180,200,.28); border-radius:12px; padding:10px 12px;
-}
-button{ padding:11px 16px; border-radius:12px; }
-/* === FIX CONTRASTE EM TÍTULOS/LISTAS (override do Pico) === */
-
-/* Títulos dos cards */
-.card .hd {
-  color: var(--text) !important;
-  font-weight: 700;
-}
-
-/* Pane de resultados – garantir texto forte por padrão */
-#resultPane,
-#resultPane p,
-#resultPane div,
-#resultPane ol,
-#resultPane ul,
-#resultPane li {
-  color: var(--text) !important;
-  opacity: 1 !important;      /* evita “cinza translúcido” em alguns resets */
-}
-
-/* Mantém apenas subtítulos em cinza suave */
-#resultPane .muted {
-  color: var(--muted) !important;
-  opacity: 1 !important;
-}
-
-/* Itens de listas específicas */
-#resultPane .rank li,
-#resultPane .alarmes li {
-  color: var(--text) !important;
-  opacity: 1 !important;
-}
-
-/* Pills “Via / Motivo” permanecem com as cores sem perder contraste */
-.via.ok    { color: var(--ok)    !important; }
-.via.warn  { color: var(--warn)  !important; }
-.via.danger{ color: var(--danger)!important; }
-
-    
-    
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <header>
-        <img src="./assets/otto-256.png" alt="Otto" />
-        <h1>ROBOTTO – Triagem Otorrino</h1>
-        <div class="muted">MVP</div>
-      </header>
-
-      <div class="grid">
-        <div class="card">
-          <div class="hd">Entrada</div>
-          <div class="bd">
-            <fieldset>
-              <div class="row">
-                <div>
-                  <label>Nome</label>
-                  <input id="in_nome" type="text" placeholder="Opcional" />
-                </div>
-                <div>
-                  <label>Idade</label>
-                  <input id="in_idade" type="number" min="0" max="120" placeholder="anos" />
-                </div>
-                <div>
-                  <label>Sexo</label>
-                  <select id="in_sexo">
-                    <option value="">—</option>
-                    <option value="F">F</option>
-                    <option value="M">M</option>
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <label>Áreas (impacta os sintomas sugeridos)</label>
-              <div id="areaPills"></div>
-            </fieldset>
-
-            <fieldset>
-              <label>Sintomas sugeridos (por áreas selecionadas)</label>
-              <div id="symptomsBox"></div>
-            </fieldset>
-
-            <fieldset>
-              <label>Texto livre (queixa / HPI)</label>
-              <textarea id="in_text" placeholder="Ex.: Há 3 dias: ouvido tampado e dor de ouvido; coriza hialina."></textarea>
-            </fieldset>
-
-            <div class="actions">
-              <button id="btnTriar" class="primary">Triar</button>
-              <button id="btnLimpar">Limpar</button>
-              <button id="btnSalvar">Salvar caso</button>
-              <button id="btnExportar" class="warn">Exportar relatório (MD)</button>
-            </div>
-            <div id="toast" class="footer" style="text-align:left"></div>
-          </div>
+    /* Acessibilidade */
+    .visually-hidden {
+      position: absolute !important; clip: rect(1px, 1px, 1px, 1px);
+      width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="container inner">
+        <div class="brand">
+          <img src="assets/otto-256.png" alt="OTTO" />
+          <span class="title">ROBOTTO</span>
         </div>
-
-        <div class="card">
-          <div class="hd">Resultados</div>
-          <div class="bd" id="resultPane">
-            <div class="muted">Preencha os campos e clique em <b>Triar</b>.</div>
-          </div>
-        </div>
+        <nav class="muted">v<span id="appVersion">0.0.0</span></nav>
       </div>
+    </header>
 
-      <div class="footer">© ROBOTTO</div>
+    <main>
+      <section class="card" aria-labelledby="title">
+        <h1 id="title">Assistente de Triagem em Otorrinolaringologia</h1>
+        <p class="lead">Para iniciar, leia e aceite os termos abaixo. Em seguida, você poderá prosseguir para o chat de triagem.</p>
+
+        <div class="terms" aria-labelledby="termsTitle">
+          <strong id="termsTitle">Termos de Uso e Privacidade — Teletriagem</strong>
+          <div class="scroll" id="termsText" tabindex="0" aria-label="Texto dos termos (rolável)">
+            <p><strong>Natureza do serviço:</strong> esta aplicação realiza <em>triagem</em> e orientação inicial, não substituindo consulta médica presencial, exame físico ou exames complementares.</p>
+            <p><strong>Urgências:</strong> se houver sinais de emergência (por exemplo: dificuldade respiratória, sangramento volumoso, dor incapacitante, desmaio, alteração neurológica súbita), procure atendimento presencial imediatamente.</p>
+            <p><strong>Privacidade e dados:</strong> as informações fornecidas serão usadas para gerar um relatório de triagem e podem ser armazenadas localmente no seu dispositivo para continuidade do atendimento. Não compartilhe dados sensíveis que não sejam necessários.</p>
+            <p><strong>Consentimento:</strong> ao aceitar, você autoriza o uso dos dados informados para fins de triagem, conforme a finalidade acima. Você poderá revogar o consentimento a qualquer momento.</p>
+            <p><strong>Limitações:</strong> respostas automáticas podem apresentar imprecisões. Sempre siga orientações do seu médico.</p>
+          </div>
+
+          <label class="accept">
+            <input type="checkbox" id="agree" />
+            <span>Li e concordo com os <strong>Termos de Uso e Privacidade</strong> para prosseguir.</span>
+          </label>
+
+          <div class="actions">
+            <button id="btnStart" class="button" disabled>Prosseguir para o chat</button>
+            <a class="button ghost" href="src/docs/OUTPUTS_GUIDE.md" target="_blank" rel="noopener">Guia dos 4 outputs</a>
+          </div>
+          <p class="note">Em caso de emergência, procure um serviço de urgência imediatamente.</p>
+        </div>
+
+        <noscript>
+          <p class="note">JavaScript está desativado. Ative-o para continuar. Caso não seja possível, você pode tentar abrir diretamente o chat: <a href="src/pages/triageChat.html">src/pages/triageChat.html</a>.</p>
+        </noscript>
+      </section>
+    </main>
+
+    <footer>
+      © <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.
+    </footer>
+  </div>
+
+  <!-- Splash / Loading (controlado por src/main.js) -->
+  <div id="splash" class="splash" aria-hidden="true" aria-live="polite">
+    <div class="inner">
+      <img src="assets/otto-256.png" alt="" />
+      <h2>Iniciando o chat de triagem…</h2>
+      <div class="typing" aria-label="Carregando">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
     </div>
+  </div>
 
-    <script type="module" src="./main.js"></script>
-  </body>
+  <script type="module" src="main.js"></script>
+</body>
 </html>
