@@ -4,7 +4,9 @@ npm-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 package-lock.json
-.backend/
+
+# Backend
+backend/
 
 # Build/output
 dist/
