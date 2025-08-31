@@ -286,6 +286,76 @@ const SUGGESTIONS = {
   ],
 };
 
+/* ============================
+   Red flags POTENCIAIS por hipótese (vigilância)
+   — aparecem mesmo que não estejam presentes no momento
+   ============================ */
+const WATCHOUTS_BY_DX = {
+  // NARIZ
+  rsa: [
+    {
+      text: "Complicações orbitárias: dor ocular, edema palpebral progressivo, diplopia, proptose, queda da visão.",
+      escalate: "emergencia_especializada"
+    },
+    {
+      text: "Complicações intracranianas: cefaleia intensa, rigidez de nuca, vômitos, rebaixamento do nível de consciência.",
+      escalate: "emergencia_geral"
+    }
+  ],
+  rsc: [
+    {
+      text: "Piora acentuada com febre alta, secreção purulenta fétida ou edema orbitário.",
+      escalate: "preferencial"
+    }
+  ],
+
+  // OUVIDO
+  otite_media_aguda: [
+    {
+      text: "Mastoidite: dor/edema retroauricular, pavilhão protruso, febre persistente.",
+      escalate: "emergencia_geral"
+    ]
+  ],
+  otite_externa: [
+    {
+      text: "Otite externa maligna (DM/imunossuprimidos): dor intensa desproporcional, granulação no conduto.",
+      escalate: "emergencia_especializada"
+    }
+  ],
+  labirintite_bppv: [
+    {
+      text: "Sinais neurológicos associados (diplopia, disartria, ataxia, déficit focal) → considerar AVC posterior.",
+      escalate: "emergencia_geral"
+    }
+  ],
+
+  // GARGANTA
+  faringoamigdalite_aguda: [
+    {
+      text: "Abscesso peritonsilar: trismo, voz abafada, desvio de úvula, sialorreia.",
+      escalate: "emergencia_geral"
+    ]
+  ],
+
+  // PESCOÇO
+  cervical_linfadenite: [
+    {
+      text: "Flutuação/abscesso cervical, toxemia, odinofagia grave com dispneia.",
+      escalate: "emergencia_geral"
+    }
+  ]
+};
+
+function levelLabel(code) {
+  switch (String(code || "")) {
+    case "emergencia_especializada": return "Emergência especializada";
+    case "emergencia_geral":        return "Emergência";
+    case "preferencial":            return "Avaliação preferencial";
+    default:                        return "Atenção";
+  }
+}
+
+
 /* --------------------------
    Renderização Áreas / Sintomas
 -------------------------- */
@@ -366,6 +436,10 @@ function triageLocal(payload){
   // Red flags
   const alarmes = REDFLAGS.filter(r => r.match(s, h)).map(r => r.label);
 
+  // 6) Vigilância/Red flags POTENCIAIS associadas às hipóteses (top-3)
+  const vigilancia = ranked.slice(0, 3)
+    .flatMap(r => WATCHOUTS_BY_DX[r.id] || []);
+
   // Escore
   const scored = RULES.map(r=>({ id:r.id, name:r.name, domain:r.domain, score:r.score(s,h) }))
                       .filter(r=>r.score>0);
@@ -385,7 +459,7 @@ function triageLocal(payload){
     "Reavaliação clínica se piora",
   ];
 
-  return { via, via_reason, alarmes, provaveis: ranked.slice(0,3), potenciais, condutas };
+  return { via, via_reason, alarmes, provaveis: ranked.slice(0,3), vigilancia, potenciais, condutas };
 }
 
 /* --------------------------
@@ -429,7 +503,27 @@ function renderOutputs(out){
 
     <div style="margin:12px 0;">
       <div class="muted" style="margin-bottom:6px;">Sinais de Alerta</div>
-      ${out.alarmes?.length ? `<ul class="alarmes">${out.alarmes.map(a=>`<li>⚠️ ${escapeHTML(a)}</li>`).join("")}</ul>` : `<div class="muted">Nenhum identificado no momento.</div>`}
+
+      <!-- Identificados AGORA -->
+      ${out.alarmes?.length
+        ? `<ul class="alarmes">${out.alarmes.map(a => `<li>⚠️ ${sanitize(a)}</li>`).join("")}</ul>`
+        : `<div class="muted">Nenhum identificado no momento.</div>`
+      }
+
+      <!-- POTENCIAIS associados às hipóteses -->
+      ${out.vigilancia?.length
+        ? `
+          <div class="muted" style="margin:10px 0 6px;">
+            Potenciais (associados às hipóteses) — se surgirem, elevar o nível de assistência:
+          </div>
+          <ul class="alarmes">
+            ${out.vigilancia.map(v =>
+              `<li>⚠️ ${sanitize(v.text)} <span class="tag">${sanitize(levelLabel(v.escalate))}</span></li>`
+            ).join("")}
+          </ul>
+        `
+        : ``
+      }
     </div>
 
     <div style="margin:12px 0;">
