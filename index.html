@@ -158,6 +158,42 @@ textarea{ min-height:96px; }
   background:#0b152f; border:1px solid rgba(170,180,200,.28); border-radius:12px; padding:10px 12px;
 }
 button{ padding:11px 16px; border-radius:12px; }
+/* === FIX CONTRASTE EM TÍTULOS/LISTAS (override do Pico) === */
+
+/* Títulos dos cards */
+.card .hd {
+  color: var(--text) !important;
+  font-weight: 700;
+}
+
+/* Pane de resultados – garantir texto forte por padrão */
+#resultPane,
+#resultPane p,
+#resultPane div,
+#resultPane ol,
+#resultPane ul,
+#resultPane li {
+  color: var(--text) !important;
+  opacity: 1 !important;      /* evita “cinza translúcido” em alguns resets */
+}
+
+/* Mantém apenas subtítulos em cinza suave */
+#resultPane .muted {
+  color: var(--muted) !important;
+  opacity: 1 !important;
+}
+
+/* Itens de listas específicas */
+#resultPane .rank li,
+#resultPane .alarmes li {
+  color: var(--text) !important;
+  opacity: 1 !important;
+}
+
+/* Pills “Via / Motivo” permanecem com as cores sem perder contraste */
+.via.ok    { color: var(--ok)    !important; }
+.via.warn  { color: var(--warn)  !important; }
+.via.danger{ color: var(--danger)!important; }
 
     
     
