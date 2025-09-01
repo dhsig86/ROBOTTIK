@@ -161,6 +161,86 @@ async function run(){
     }
   }
 
+  // --- Micro-test 3: NBQ desambigua emergência a partir de dispneia ---------
+  {
+    // Mandamos sentinelas de resp: use ambas para robustez (se uma das duas existir no registry já é suficiente)
+    const raw3 = { symptoms: ["falta_de_ar", "dispneia"], idade: 35, sexo: "F" };
+    const r3 = await triage(raw3, { mode: ROUTER_MODE });
+    const nbq3 = getNBQ(r3);
+
+    if (!Array.isArray(nbq3) || nbq3.length === 0) {
+      throw new Error("NBQ esperado para dispneia/falta_de_ar (precisamos de perguntas confirmatórias).");
+    } else {
+      // deve sugerir pelo menos uma confirmação de gravidade respiratória
+      const targets3 = nbq3.flatMap(q => q?.targets || (q?.featureId ? [q.featureId] : [])).filter(Boolean);
+      const expectSet = new Set(["estridor", "ruido_respiratorio_alto", "tiragem_intercostal", "cianose", "uso_musculos_acessorios"]);
+      const hasRespConfirm = targets3.some(t => expectSet.has(String(t)));
+      if (!hasRespConfirm) {
+        console.warn("⚠ NBQ presente, mas não vimos alvo clássico de gravidade respiratória (ok, mas ideal melhorar seeds).");
+      } else {
+        console.log("✔ NBQ sugeriu confirmação de gravidade respiratória.");
+      }
+    }
+
+    // Simula resposta "sim": adiciona 'estridor' e espera emergência
+    const r3b = await triage({ symptoms: ["falta_de_ar", "dispneia", "estridor"], idade: 35, sexo: "F" }, { mode: ROUTER_MODE });
+    const via3 = getVia(r3b?.outputs || {});
+    if (via3 !== "emergencia_geral" && via3 !== "emergencia_especializada") {
+      throw new Error(`Via esperada emergência após estridor confirmado; obtido: ${via3}`);
+    } else {
+      console.log("✔ NBQ/confirm: escalou para emergência após 'estridor'.");
+    }
+  }
+
+   // --- Micro-test 4: Epistaxe → NBQ sugere hemorragia_abundante; se "sim", emergência
+  {
+    const r4 = await triage({ symptoms: ["epistaxe"], idade: 45, sexo: "M" }, { mode: ROUTER_MODE });
+    const nbq4 = getNBQ(r4);
+    if (!Array.isArray(nbq4) || nbq4.length === 0) {
+      throw new Error("NBQ esperado para epistaxe (confirmar gravidade).");
+    }
+    const hasHemAbund = nbq4.some(q => q.featureId === "hemorragia_abundante" || (q.targets||[]).includes("hemorragia_abundante"));
+    if (!hasHemAbund) {
+      console.warn("⚠ NBQ presente, mas não sugeriu 'hemorragia_abundante' explicitamente.");
+    } else {
+      console.log("✔ NBQ epistaxe → perguntou sobre 'hemorragia_abundante'.");
+    }
+
+    // Simula resposta 'sim' → espera via de emergência
+    const r4b = await triage({ symptoms: ["epistaxe", "hemorragia_abundante"], idade: 45, sexo: "M" }, { mode: ROUTER_MODE });
+    const via4 = getVia(r4b?.outputs || {});
+    if (via4 !== "emergencia_geral" && via4 !== "emergencia_especializada") {
+      throw new Error(`Epistaxe grave: esperado emergência; obtido: ${via4}`);
+    } else {
+      console.log("✔ Epistaxe grave → escalou para emergência.");
+    }
+  }
+
+  // --- Micro-test 5: Paralisia facial → NBQ sugere sinais_neurologicos_focais; se "sim", emergência
+  {
+    const r5 = await triage({ symptoms: ["paralisia_facial"], idade: 58, sexo: "F" }, { mode: ROUTER_MODE });
+    const nbq5 = getNBQ(r5);
+    if (!Array.isArray(nbq5) || nbq5.length === 0) {
+      throw new Error("NBQ esperado para paralisia facial (rastrear neurológico).");
+    }
+    const hasNeuro = nbq5.some(q => q.featureId === "sinais_neurologicos_focais" || (q.targets||[]).includes("sinais_neurologicos_focais"));
+    if (!hasNeuro) {
+      console.warn("⚠ NBQ presente, mas não sugeriu 'sinais_neurologicos_focais' explicitamente.");
+    } else {
+      console.log("✔ NBQ paralisia facial → perguntou sobre 'sinais_neurologicos_focais'.");
+    }
+
+    // Simula 'sim' para sinais neurológicos → emergência
+    const r5b = await triage({ symptoms: ["paralisia_facial", "sinais_neurologicos_focais"], idade: 58, sexo: "F" }, { mode: ROUTER_MODE });
+    const via5 = getVia(r5b?.outputs || {});
+    if (via5 !== "emergencia_geral" && via5 !== "emergencia_especializada") {
+      throw new Error(`Paralisia facial + sinais neurológicos: esperado emergência; obtido: ${via5}`);
+    } else {
+      console.log("✔ Paralisia facial com sinais neurológicos → emergência.");
+    }
+  }
+
+
   // 3) Backend (opcional): contrato e CORS
   if (BACKEND_URL) {
     console.log(`[backend] Checking contract at ${BACKEND_URL}`);
