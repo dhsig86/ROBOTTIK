@@ -16,7 +16,7 @@ import { loadRegistry } from "./conditionRegistry.js";
 export async function suggestNBQ(state = {}, opts = {}) {
   const topK = Number(opts.topK ?? 3);
   const cap = Number(opts.cap ?? 3);
-
+  
   const reg = await loadRegistry();
   const featuresMap = reg.featuresMap || reg.byFeatureId || {};
   const redflags = reg.redflags || reg.redflagsByFeatureId || {};
@@ -152,5 +152,10 @@ function makeRationale({ fid, targets, redSet, score, reg }) {
   return `${label} discrimina ${tg}; ganho≈${round(score)} bits${rf}`;
 }
 function round(x) { return Math.round(x * 1000) / 1000; }
+
+// --- Back-compat ------------------------------------------------------------
+// Algumas versões do triageEngine importam 'suggestNextQuestions'.
+// Mantemos um alias apontando para 'suggestNBQ' para não quebrar.
+export const suggestNextQuestions = suggestNBQ;
 
 export default { suggestNBQ };
