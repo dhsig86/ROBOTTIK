@@ -4,29 +4,47 @@
   <meta charset="utf-8" />
   <title>ROBOTTO – Triagem (Chat)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="../assets/otto-256.png" />
+  <!-- Se assets/ está na raiz do projeto, de src/pages/ volte 2 níveis -->
+  <link rel="icon" href="../../assets/otto-256.png" />
   <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.min.css" />
-  <link rel="preload" href="../styles/theme.css" as="style">
-  <link rel="stylesheet" href="../styles/theme.css">
-  <link rel="preload" href="../styles/chat.css" as="style">
-  <link rel="stylesheet" href="../styles/chat.css">
+  <link rel="preload" href="../styles/theme.css" as="style" />
+  <link rel="stylesheet" href="../styles/theme.css" />
+  <link rel="preload" href="../styles/chat.css" as="style" />
+  <link rel="stylesheet" href="../styles/chat.css" />
 </head>
 <body>
   <div class="wrap">
-    <header>
-      <img src="../assets/otto-256.png" alt="Otto" />
-      <h1>ROBOTTO – Triagem Otorrino </h1>
-      <div class="muted">Chat</div>
+    <header class="header-bar">
+      <div class="brand">
+        <img src="../../assets/otto-256.png" alt="Otto" width="40" height="40" />
+        <div>
+          <h1>ROBOTTO – Triagem Otorrino</h1>
+          <div class="muted">Chat</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="themeToggle" class="secondary outline" title="Alternar tema">Tema</button>
+      </div>
     </header>
 
     <div class="chat-grid">
       <!-- Coluna: Chat -->
       <section class="card chat">
         <div class="hd">Conversa</div>
-        <div id="messages" class="bd messages"></div>
 
+        <!-- Resumo (opcional, usado pelo UI) -->
+        <div id="summary" class="bd summary-block" aria-live="polite"></div>
+
+        <!-- Histórico de mensagens -->
+        <div id="messages" class="bd messages" aria-live="polite" aria-relevant="additions"></div>
+
+        <!-- Quick actions (NBQ) -->
+        <div id="quick" class="bd quick-actions"></div>
+
+        <!-- Composer com input e send (IDs exigidos pela UI) -->
         <div class="composer">
-          <!-- o componente preenche aqui -->
+          <input id="input" type="text" placeholder="Descreva sua queixa..." aria-label="Mensagem para o assistente" />
+          <button id="send" class="primary">Enviar</button>
         </div>
       </section>
 
@@ -39,16 +57,21 @@
         </div>
       </aside>
     </div>
-
-    <div class="footer muted">© ROBOTTO</div>
   </div>
 
-  <script type="module" src="../src/pages/triageChat.js"></script>
+  <!-- Rodapé único com o texto solicitado -->
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.</div>
+      <div><strong>Criado por Dr. Dario Hart — Apoio OTOSIG — Telemedicina</strong></div>
+    </div>
+  </footer>
+
+  <!-- Corrigido: se este arquivo está em src/pages/, importe com caminho relativo local -->
+  <script type="module" src="./triageChat.js"></script>
+  <script>
+    // atualiza ano do rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
-<footer class="site-footer">
-  <div class="container">
-    <div>© <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.</div>
-    <div><strong>Criado por Dr. Dario Hart — Apoio OTOSIG — Telemedicina</strong></div>
-  </div>
-</footer>
 </html>

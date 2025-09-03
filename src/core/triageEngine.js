@@ -87,16 +87,21 @@ export async function triage(rawInput = {}, { mode = "gated" } = {}) {
   // 5) fusão bayesiana por global_id (com perfis)
   const ranking = fuse({ registry, evidence: ev, areas, profiles });
 
-  // [ADD] Próximas melhores perguntas (NBQ)
-  const next_questions = suggestNextQuestions({
-    registry,
-    ranking,
-    areas,
-    evidence: ev,
-    max: 3,
-  });
+  // [CHG][NBQ] Próximas melhores perguntas com estado rico p/ sentinelas
+const nbqState = {
+  registry,
+  ranking,
+  areas,
+  evidence: ev,                       // evidenceStore já populado
+  rawInput,                           // entrada original (symptoms/hpi)
+  normalized: { features: featureSet }, // Set dos canônicos (evita renormalizar)
+  features: Array.from(featureSet),   // redundância p/ coletor (array)
+};
 
-  // 6) outputs base (caseBuilder)
+// cap 6: cabe sentinelas + discriminativas
+const next_questions = await suggestNextQuestions(nbqState, { topK: 3, cap: 6 });
+
+  // 7) outputs base (caseBuilder)
   let outputs = buildOutputs({
     rawInput,
     intakeSet: featureSet,
@@ -106,7 +111,7 @@ export async function triage(rawInput = {}, { mode = "gated" } = {}) {
     next_questions,
   });
 
-  // 6.1) Enriquecimento: via_reason + alarmes legíveis + resumo mínimo
+  // 7.1) Enriquecimento: via_reason + alarmes legíveis + resumo mínimo
   const evidenceSet = new Set(featureSet);
   const { via, reason } = decideVia(evidenceSet, registry, areas);
   const alarmes = collectAlarmes(evidenceSet, registry);
