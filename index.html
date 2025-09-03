@@ -5,26 +5,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ROBOTTO • Triagem Otorrino</title>
 
-  <!-- Tema global + estilos da landing -->
+  <link rel="icon" href="assets/otto-256.png" />
+  <!-- Tema + estilos da landing -->
   <link rel="preload" href="src/styles/theme.css" as="style">
   <link rel="stylesheet" href="src/styles/theme.css">
   <link rel="preload" href="src/styles/landing.css" as="style">
   <link rel="stylesheet" href="src/styles/landing.css">
 
-  <!-- Prefetch da página de chat para navegação imediata -->
+  <!-- Prefetch do chat para navegação rápida -->
   <link rel="prefetch" href="src/pages/triageChat.html">
-  <link rel="icon" href="assets/otto-256.png" />
 </head>
 <body>
   <div class="wrap">
-    <!-- Header -->
+    <!-- Topbar -->
     <header class="header-bar">
       <div class="container inner">
         <div class="brand">
           <img src="assets/otto-256.png" alt="OTTO" width="40" height="40" />
-          <div class="titleblock">
+          <div>
             <strong class="title">ROBOTTO</strong>
-            <span class="muted sub">Tele-ENT Triage</span>
+            <div class="muted sub">Tele-ENT Triage</div>
           </div>
         </div>
         <div class="actions">
@@ -39,13 +39,12 @@
       <div class="hero-text">
         <h1>Assistente de Triagem em Otorrinolaringologia</h1>
         <p class="lead">
-          Leia e aceite os termos de uso para iniciar o chat de triagem.
-          Respostas rápidas, via segura e recomendações com sinais de alerta.
+          Para começar, aceite os termos abaixo. Em seguida você entra no chat de triagem.
         </p>
         <ul class="bullets">
-          <li>Foco: <strong>ouvido, nariz, garganta e pescoço</strong></li>
-          <li>NBQ: perguntas que <em>ajudam a direcionar</em> e <em>detectar urgências</em></li>
-          <li>Relatório imprimível (MD/HTML)</li>
+          <li>Cobertura: ouvido, nariz, garganta e pescoço</li>
+          <li>Foco em segurança: identifica sinais de alerta</li>
+          <li>Relatório imprimível</li>
         </ul>
       </div>
       <div class="hero-art">
@@ -53,35 +52,26 @@
       </div>
     </section>
 
-    <!-- Card de Termos -->
+    <!-- Termos -->
     <main class="container">
       <section class="card terms-card" aria-labelledby="title-terms">
-        <h2 id="title-terms" class="hd">Termos de Uso e Privacidade — Teletriagem</h2>
-
+        <h2 id="title-terms" class="hd">Termos de Uso e Privacidade</h2>
         <div class="bd">
-          <div class="terms-scroll" id="termsText" tabindex="0" aria-label="Texto dos termos (rolável)">
-            <p><strong>Natureza do serviço:</strong> esta aplicação realiza <em>triagem</em> e orientação inicial,
-              não substituindo consulta médica presencial, exame físico ou exames complementares.</p>
-            <p><strong>Urgências:</strong> se houver sinais de emergência (por exemplo: dificuldade respiratória,
-              sangramento volumoso, dor incapacitante, desmaio, alteração neurológica súbita),
-              procure atendimento presencial imediatamente.</p>
-            <p><strong>Privacidade e dados:</strong> as informações fornecidas serão usadas para gerar um relatório
-              de triagem e podem ser armazenadas <em>localmente</em> no seu dispositivo para continuidade do atendimento.
-              Não compartilhe dados sensíveis que não sejam necessários.</p>
-            <p><strong>Consentimento:</strong> ao aceitar, você autoriza o uso dos dados informados para fins de triagem,
-              conforme a finalidade acima. Você poderá revogar o consentimento a qualquer momento.</p>
-            <p><strong>Limitações:</strong> respostas automáticas podem apresentar imprecisões.
-              Sempre siga orientações do seu médico.</p>
+          <div class="terms-scroll" id="termsText" tabindex="0" aria-label="Termos (rolável)">
+            <p><strong>O que é:</strong> ferramenta de <em>triagem</em> e orientação inicial. Não substitui consulta presencial.</p>
+            <p><strong>Urgências:</strong> falta de ar, sangramento volumoso, dor incapacitante, desmaio ou alteração neurológica súbita → procure emergência.</p>
+            <p><strong>Privacidade:</strong> usamos seus dados apenas para a triagem; podem ser salvos no seu dispositivo para continuidade do atendimento.</p>
+            <p><strong>Consentimento:</strong> ao aceitar, você autoriza o uso das informações para triagem. Pode revogar depois.</p>
           </div>
 
           <label class="accept">
             <input type="checkbox" id="agree" />
-            <span>Li e concordo com os <strong>Termos de Uso e Privacidade</strong> para prosseguir.</span>
+            <span>Li e concordo com os <strong>Termos de Uso e Privacidade</strong>.</span>
           </label>
 
           <div class="actions">
             <button id="btnStart" class="primary" disabled>Prosseguir para o chat</button>
-            <a class="secondary" href="src/docs/OUTPUTS_GUIDE.md" target="_blank" rel="noopener">Guia dos 4 outputs</a>
+            <a class="secondary" href="src/docs/OUTPUTS_GUIDE.md" target="_blank" rel="noopener">Saiba mais</a>
           </div>
 
           <p class="note">Em caso de emergência, procure um serviço de urgência imediatamente.</p>
@@ -90,7 +80,7 @@
     </main>
   </div>
 
-  <!-- Rodapé -->
+  <!-- Rodapé comum -->
   <footer class="site-footer">
     <div class="container">
       <div>© <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.</div>
@@ -98,14 +88,12 @@
     </div>
   </footer>
 
-  <!-- Splash / Loading -->
+  <!-- Splash -->
   <div id="splash" class="splash" aria-hidden="true" aria-live="polite">
     <div class="inner">
       <img src="assets/otto-256.png" alt="" />
-      <h2>Iniciando o chat de triagem…</h2>
-      <div class="typing" aria-label="Carregando">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </div>
+      <h2>Iniciando o chat…</h2>
+      <div class="typing"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
     </div>
   </div>
 
