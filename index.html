@@ -1,125 +1,77 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="light">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ROBOTTO • Triagem Otorrino</title>
 
-  <!-- Tema global (A1) -->
+  <!-- Tema global + estilos da landing -->
   <link rel="preload" href="src/styles/theme.css" as="style">
   <link rel="stylesheet" href="src/styles/theme.css">
+  <link rel="preload" href="src/styles/landing.css" as="style">
+  <link rel="stylesheet" href="src/styles/landing.css">
 
-  <!-- Prefetch da página do chat para navegação mais rápida -->
+  <!-- Prefetch da página de chat para navegação imediata -->
   <link rel="prefetch" href="src/pages/triageChat.html">
-
-  <style>
-    /* Estilo mínimo só da landing (mantém consistência com theme.css) */
-    .wrap { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
-    header { position: sticky; top:0; background: var(--surface-0); border-bottom: 1px solid var(--bd); }
-    header .inner { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { display:flex; align-items:center; gap:10px; }
-    .brand img { width: 36px; height: 36px; border-radius: 10px; }
-    .title { font-weight: 800; letter-spacing: .2px; }
-
-    main { display: grid; place-items: center; padding: 32px 16px; }
-    .card {
-      width: min(920px, 100%);
-      background: var(--surface-1);
-      border: 1px solid var(--bd);
-      border-radius: var(--radius-lg);
-      padding: 24px;
-      box-shadow: var(--shadow-1);
-    }
-    .card h1 { margin: 0 0 8px; font-size: 28px; }
-    .card p.lead { margin: 0 0 16px; color: var(--muted); }
-    .terms {
-      margin-top: 12px;
-      border: 1px solid var(--bd);
-      border-radius: var(--radius-md);
-      background: var(--surface-0);
-      padding: 14px;
-    }
-    .terms .scroll {
-      max-height: 220px;
-      overflow: auto;
-      padding-right: 6px;
-      font-size: var(--fs-14);
-      line-height: 1.55;
-      color: var(--fg);
-    }
-    .accept {
-      display: flex; align-items: flex-start; gap: 10px;
-      margin-top: 12px; font-size: var(--fs-14);
-    }
-    .actions { display:flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
-    .button { appearance:none; border:1px solid var(--bd); background: var(--brand); color:#fff; padding:12px 18px; border-radius:14px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:8px; cursor: pointer; }
-    .button:hover { background: var(--brand-strong); box-shadow: var(--shadow-2); }
-    .button.ghost { background:transparent; color:var(--fg); }
-    .button[disabled] { opacity: .6; cursor: not-allowed; }
-    .note { margin-top: 8px; font-size: 14px; color: var(--muted); }
-
-    footer { padding: 16px; color: var(--muted); font-size: 14px; text-align: center; border-top: 1px solid var(--bd); }
-
-    /* Splash full-screen ---------------------------------------------------- */
-    .splash {
-      position: fixed;
-      inset: 0;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(1200px 1200px at 50% 10%, color-mix(in srgb, var(--brand) 14%, var(--surface-0)) 0%, var(--surface-0) 45%);
-      z-index: 50;
-      opacity: 0; pointer-events: none;
-      transition: opacity .25s ease;
-    }
-    .splash.active { opacity: 1; pointer-events: auto; }
-    .splash .inner {
-      text-align: center;
-      padding: 24px;
-      border: 1px solid var(--bd);
-      border-radius: 18px;
-      background: color-mix(in srgb, var(--surface-1) 92%, transparent);
-      box-shadow: var(--shadow-2);
-      width: min(360px, 90vw);
-    }
-    .splash img { width: 96px; height: 96px; border-radius: 20px; }
-    .splash h2 { margin: 12px 0 6px; font-size: 22px; }
-    .typing { display: inline-flex; gap: 8px; align-items: center; color: var(--muted); font-size: 14px; }
-    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); animation: blink 1.2s infinite both; }
-    .dot:nth-child(2){ animation-delay: .2s; } .dot:nth-child(3){ animation-delay: .4s; }
-    @keyframes blink { 0%,80%,100%{opacity:.2} 40%{opacity:1} }
-
-    /* Acessibilidade */
-    .visually-hidden {
-      position: absolute !important; clip: rect(1px, 1px, 1px, 1px);
-      width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; overflow: hidden;
-    }
-  </style>
+  <link rel="icon" href="assets/otto-256.png" />
 </head>
 <body>
   <div class="wrap">
-    <header>
+    <!-- Header -->
+    <header class="header-bar">
       <div class="container inner">
         <div class="brand">
-          <img src="assets/otto-256.png" alt="OTTO" />
-          <span class="title">ROBOTTO</span>
+          <img src="assets/otto-256.png" alt="OTTO" width="40" height="40" />
+          <div class="titleblock">
+            <strong class="title">ROBOTTO</strong>
+            <span class="muted sub">Tele-ENT Triage</span>
+          </div>
         </div>
-        <nav class="muted">v<span id="appVersion">0.0.0</span></nav>
+        <div class="actions">
+          <button id="themeToggle" class="secondary outline" title="Alternar tema">Tema</button>
+          <span class="version muted">v<span id="appVersion">dev</span></span>
+        </div>
       </div>
     </header>
 
-    <main>
-      <section class="card" aria-labelledby="title">
-        <h1 id="title">Assistente de Triagem em Otorrinolaringologia</h1>
-        <p class="lead">Para iniciar, leia e aceite os termos abaixo. Em seguida, você poderá prosseguir para o chat de triagem.</p>
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-text">
+        <h1>Assistente de Triagem em Otorrinolaringologia</h1>
+        <p class="lead">
+          Leia e aceite os termos de uso para iniciar o chat de triagem.
+          Respostas rápidas, via segura e recomendações com sinais de alerta.
+        </p>
+        <ul class="bullets">
+          <li>Foco: <strong>ouvido, nariz, garganta e pescoço</strong></li>
+          <li>NBQ: perguntas que <em>ajudam a direcionar</em> e <em>detectar urgências</em></li>
+          <li>Relatório imprimível (MD/HTML)</li>
+        </ul>
+      </div>
+      <div class="hero-art">
+        <img src="assets/otto-256.png" alt="" class="otto-hero" />
+      </div>
+    </section>
 
-        <div class="terms" aria-labelledby="termsTitle">
-          <strong id="termsTitle">Termos de Uso e Privacidade — Teletriagem</strong>
-          <div class="scroll" id="termsText" tabindex="0" aria-label="Texto dos termos (rolável)">
-            <p><strong>Natureza do serviço:</strong> esta aplicação realiza <em>triagem</em> e orientação inicial, não substituindo consulta médica presencial, exame físico ou exames complementares.</p>
-            <p><strong>Urgências:</strong> se houver sinais de emergência (por exemplo: dificuldade respiratória, sangramento volumoso, dor incapacitante, desmaio, alteração neurológica súbita), procure atendimento presencial imediatamente.</p>
-            <p><strong>Privacidade e dados:</strong> as informações fornecidas serão usadas para gerar um relatório de triagem e podem ser armazenadas localmente no seu dispositivo para continuidade do atendimento. Não compartilhe dados sensíveis que não sejam necessários.</p>
-            <p><strong>Consentimento:</strong> ao aceitar, você autoriza o uso dos dados informados para fins de triagem, conforme a finalidade acima. Você poderá revogar o consentimento a qualquer momento.</p>
-            <p><strong>Limitações:</strong> respostas automáticas podem apresentar imprecisões. Sempre siga orientações do seu médico.</p>
+    <!-- Card de Termos -->
+    <main class="container">
+      <section class="card terms-card" aria-labelledby="title-terms">
+        <h2 id="title-terms" class="hd">Termos de Uso e Privacidade — Teletriagem</h2>
+
+        <div class="bd">
+          <div class="terms-scroll" id="termsText" tabindex="0" aria-label="Texto dos termos (rolável)">
+            <p><strong>Natureza do serviço:</strong> esta aplicação realiza <em>triagem</em> e orientação inicial,
+              não substituindo consulta médica presencial, exame físico ou exames complementares.</p>
+            <p><strong>Urgências:</strong> se houver sinais de emergência (por exemplo: dificuldade respiratória,
+              sangramento volumoso, dor incapacitante, desmaio, alteração neurológica súbita),
+              procure atendimento presencial imediatamente.</p>
+            <p><strong>Privacidade e dados:</strong> as informações fornecidas serão usadas para gerar um relatório
+              de triagem e podem ser armazenadas <em>localmente</em> no seu dispositivo para continuidade do atendimento.
+              Não compartilhe dados sensíveis que não sejam necessários.</p>
+            <p><strong>Consentimento:</strong> ao aceitar, você autoriza o uso dos dados informados para fins de triagem,
+              conforme a finalidade acima. Você poderá revogar o consentimento a qualquer momento.</p>
+            <p><strong>Limitações:</strong> respostas automáticas podem apresentar imprecisões.
+              Sempre siga orientações do seu médico.</p>
           </div>
 
           <label class="accept">
@@ -128,24 +80,25 @@
           </label>
 
           <div class="actions">
-            <button id="btnStart" class="button" disabled>Prosseguir para o chat</button>
-            <a class="button ghost" href="src/docs/OUTPUTS_GUIDE.md" target="_blank" rel="noopener">Guia dos 4 outputs</a>
+            <button id="btnStart" class="primary" disabled>Prosseguir para o chat</button>
+            <a class="secondary" href="src/docs/OUTPUTS_GUIDE.md" target="_blank" rel="noopener">Guia dos 4 outputs</a>
           </div>
+
           <p class="note">Em caso de emergência, procure um serviço de urgência imediatamente.</p>
         </div>
-
-        <noscript>
-          <p class="note">JavaScript está desativado. Ative-o para continuar. Caso não seja possível, você pode tentar abrir diretamente o chat: <a href="src/pages/triageChat.html">src/pages/triageChat.html</a>.</p>
-        </noscript>
       </section>
     </main>
-
-    <footer>
-      © <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.
-    </footer>
   </div>
 
-  <!-- Splash / Loading (controlado por src/main.js) -->
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <div class="container">
+      <div>© <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.</div>
+      <div><strong>Criado por Dr. Dario Hart — Apoio OTOSIG — Telemedicina</strong></div>
+    </div>
+  </footer>
+
+  <!-- Splash / Loading -->
   <div id="splash" class="splash" aria-hidden="true" aria-live="polite">
     <div class="inner">
       <img src="assets/otto-256.png" alt="" />
@@ -158,10 +111,4 @@
 
   <script type="module" src="main.js"></script>
 </body>
-<footer class="site-footer">
-  <div class="container">
-    <div>© <span id="year"></span> ROBOTTO — Tele-ENT Triage. Todos os direitos reservados.</div>
-    <div><strong>Criado por Dr. Dario Hart — Apoio OTOSIG — Telemedicina</strong></div>
-  </div>
-</footer>
 </html>

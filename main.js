@@ -1,85 +1,97 @@
-// src/main.js
-const CHAT_URL = 'src/pages/triageChat.html';
-const STORAGE_KEY = 'otto_terms_accepted_v1';
+// File: /main.js
+// Landing controller: termos, toggle de tema, splash e navegação para o chat.
 
-function qs(sel, root = document) { return root.querySelector(sel); }
-function on(el, ev, cb) { el && el.addEventListener(ev, cb, { passive: true }); }
+const els = {
+  themeToggle: document.getElementById("themeToggle"),
+  agree: document.getElementById("agree"),
+  btnStart: document.getElementById("btnStart"),
+  terms: document.getElementById("termsText"),
+  splash: document.getElementById("splash"),
+  year: document.getElementById("year"),
+  appVersion: document.getElementById("appVersion"),
+};
 
-function setBtnState(agree) {
-  const btn = qs('#btnStart');
-  if (!btn) return;
-  btn.disabled = !agree;
-  btn.setAttribute('aria-disabled', String(!agree));
+init();
+
+function init() {
+  // Rodapé e versão
+  if (els.year) els.year.textContent = new Date().getFullYear();
+  if (els.appVersion) els.appVersion.textContent = (window.APP_VERSION || "dev");
+
+  // Tema persistente (mesma lógica do chat)
+  initTheme();
+
+  // Aceite dos termos
+  wireTerms();
+
+  // Prefetch: se já aceitou antes, pré-habilita
+  const TOS_KEY = "robotto_tos_ok";
+  const acceptedBefore = localStorage.getItem(TOS_KEY) === "1";
+  if (acceptedBefore && els.agree && els.btnStart) {
+    els.agree.checked = true;
+    els.btnStart.disabled = false;
+  }
 }
 
-function showSplash(active) {
-  const splash = qs('#splash');
-  if (!splash) return;
-  splash.classList.toggle('active', !!active);
-  splash.setAttribute('aria-hidden', String(!active));
-}
+function initTheme() {
+  const root = document.documentElement;
+  const KEY = "robotto_theme";
 
-function gotoChat() {
-  // Pequeno atraso só para o splash “aparecer” visualmente
-  setTimeout(() => {
-    window.location.href = CHAT_URL;
-  }, 450);
-}
-
-function tryPrefetch(url) {
-  try {
-    // Warm-up leve (não quebra em file://)
-    fetch(url, { method: 'GET', mode: 'no-cors' }).catch(() => {});
-  } catch (_) {}
-}
-
-function initLanding() {
-  // Ano no rodapé
-  const yearEl = qs('#year');
-  if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
-  // Tenta mostrar versão a partir do env (opcional)
-  fetch('src/config/env.json').then(r => r.json()).then(env => {
-    if (env?.VERSION) qs('#appVersion')?.replaceChildren(document.createTextNode(env.VERSION));
-    if (env?.APP_NAME) document.title = `${env.APP_NAME} • Triagem Otorrino`;
-  }).catch(() => {});
-
-  // Estado inicial do aceite
-  const agreeStored = localStorage.getItem(STORAGE_KEY) === 'true';
-  setBtnState(agreeStored);
-  if (agreeStored) {
-    // Se já aceitou antes, deixamos só habilitado.
-    // (Se quiser auto-redirecionar, basta descomentar as 2 linhas abaixo)
-    // showSplash(true);
-    // gotoChat();
+  // prioridade: localStorage → preferência do SO → dark
+  const saved = localStorage.getItem(KEY);
+  if (saved === "light" || saved === "dark") {
+    root.setAttribute("data-theme", saved);
+  } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) {
+    root.setAttribute("data-theme", "light");
+  } else {
+    root.setAttribute("data-theme", "dark");
   }
 
-  // Eventos de UI
-  const agreeCb = qs('#agree');
-  on(agreeCb, 'change', (e) => {
-    const checked = e.target.checked;
-    setBtnState(checked);
-  });
-
-  const btn = qs('#btnStart');
-  on(btn, 'click', () => {
-    const agree = qs('#agree')?.checked || agreeStored;
-    if (!agree) return;
-
-    // Persistência do aceite
-    localStorage.setItem(STORAGE_KEY, 'true');
-
-    // Splash e navegação
-    showSplash(true);
-    tryPrefetch(CHAT_URL);
-    gotoChat();
-  });
-
-  // Acessibilidade: se focar no texto rolável, damos um hint visual (opcional)
-  const terms = qs('#termsText');
-  on(terms, 'focus', () => terms.style.outline = `2px solid var(--focus)`);
-  on(terms, 'blur',  () => terms.style.outline = 'none');
+  if (els.themeToggle) {
+    els.themeToggle.addEventListener("click", () => {
+      const curr = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", curr);
+      localStorage.setItem(KEY, curr);
+    });
+  }
 }
 
-document.addEventListener('DOMContentLoaded', initLanding);
-// ROBOTTO — client LLM triage (chama backend /api/triage se disponível) --- IGNORE ---
+function wireTerms() {
+  const TOS_KEY = "robotto_tos_ok";
+
+  if (els.agree && els.btnStart) {
+    els.agree.addEventListener("change", () => {
+      els.btnStart.disabled = !els.agree.checked;
+    });
+
+    // Enter também prossegue quando o foco está na checkbox e está marcada
+    els.agree.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && els.agree.checked && !els.btnStart.disabled) {
+        e.preventDefault();
+        startFlow();
+      }
+    });
+
+    els.btnStart.addEventListener("click", () => {
+      if (els.agree.checked) {
+        localStorage.setItem(TOS_KEY, "1");
+        startFlow();
+      }
+    });
+  }
+}
+
+function startFlow() {
+  // Splash curto e navegação
+  showSplash(true);
+  // pequeno delay para feedback visual
+  setTimeout(() => {
+    // Caminho do chat (arquivo real do app)
+    window.location.href = "src/pages/triageChat.html";
+  }, 600);
+}
+
+function showSplash(on) {
+  if (!els.splash) return;
+  els.splash.classList.toggle("active", !!on);
+}
